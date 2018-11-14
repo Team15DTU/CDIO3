@@ -1,6 +1,4 @@
-package Chancecard;
-
-import model.chancecard.Chancecard;
+package model.chancecard;
 
 import java.util.ArrayList;
 import java.util.Collections;
