@@ -1,7 +1,7 @@
 package model.chancecard;
 
 /**
- * @auther Rasmus Sander Larsen
+ * @author Rasmus Sander Larsen
  * @date 14-11-2018
  */
 public class Chancecard {

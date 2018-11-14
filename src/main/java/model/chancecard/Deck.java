@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * @auther Rasmus Sander Larsen
+ * @author Rasmus Sander Larsen
  * @date 14-11-2018
  */
 public class Deck {
