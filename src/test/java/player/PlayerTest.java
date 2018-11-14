@@ -1,5 +1,7 @@
 package player;
 
+import model.player.Account;
+import model.player.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

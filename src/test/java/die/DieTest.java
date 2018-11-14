@@ -1,5 +1,6 @@
 package die;
 
+import model.die.Die;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
