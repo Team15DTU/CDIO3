@@ -9,6 +9,7 @@ public class Player {
     private String name;
     private Account account;
     private boolean hasWon = false;
+    private int position;
 
     /*
      ------- Constructors ------------
@@ -17,7 +18,7 @@ public class Player {
     /**
      * Default constructor
      */
-    public Player ( String name ) {
+    public Player ( String name) {
         // Initialize
         this.name = name;
         account = new Account();
@@ -34,6 +35,13 @@ public class Player {
         account = new Account(initialBalance);
     }
 
+    public Player ( String name, int initialBalance, int startingPosition) {
+        // Initialize
+        this.name = name;
+        account = new Account(initialBalance);
+        position=startingPosition;
+
+    }
 
     /*
     -------- Public Methods ----------
