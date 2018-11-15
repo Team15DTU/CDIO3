@@ -8,7 +8,7 @@ public class Player {
 
     private String name;
     private Account account;
-    private boolean hasWon = false;
+    private boolean hasLost = false;
     private int position;
 
     /*
@@ -56,10 +56,6 @@ public class Player {
         account.update(score);
     }
 
-    public void resetScore () {
-        // Set players account to 0
-        account.setBalance(0);
-    }
 
     /*
     ------- Support Methods ----------
@@ -81,11 +77,11 @@ public class Player {
         this.name = name;
     }
 
-    public boolean isHasWon() {
-        return hasWon;
-    }
+    public boolean isHasLost() {return hasLost;}
 
-    public void setHasWon(boolean hasWon) {
-        this.hasWon = hasWon;
-    }
+    public void setHasLost(boolean hasLost) {this.hasLost = hasLost;}
+
+    public int getPosition() {return position;}
+
+    public void setPosition(int position) {this.position = position;}
 }
