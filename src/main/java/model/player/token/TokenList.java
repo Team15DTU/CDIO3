@@ -19,11 +19,16 @@ public class TokenList {
 
     /**
      *
-     * @param list
      */
-    public TokenList(ArrayList<Token> list) {
+    public TokenList() {
         // Initialize
-        this.list = list;
+        list = new ArrayList<>(4);
+
+        // Set the Monopoly relevant Tokens in the list
+        list.add(new Token("RaceCar"));
+        list.add(new Token("Car"));
+        list.add(new Token("Tractor"));
+        list.add(new Token("UFO"));
     }
     /*
     ------------------------------ Properties ----------------------------------
