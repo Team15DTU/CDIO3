@@ -18,7 +18,7 @@ public class Player {
     /**
      * Default constructor
      */
-    public Player ( String name) {
+    public Player ( String name ) {
         // Initialize
         this.name = name;
         account = new Account();
@@ -39,7 +39,7 @@ public class Player {
         hasLost = false;
     }
 
-    public Player ( String name, int initialBalance, int startingPosition) {
+    public Player ( String name, int initialBalance, int startingPosition ) {
         // Initialize
         this.name = name;
         account = new Account(initialBalance);
@@ -60,6 +60,14 @@ public class Player {
         account.update(score);
     }
 
+    /**
+     * Updates the position of the player according to a 24 Field board
+     * @param value The amount of positions to move as an int
+     */
+    public void updatePosition ( int value ) {
+        // Update the position with modulus
+        position = position % value;
+    }
 
     /*
     ------- Support Methods ----------
