@@ -8,7 +8,7 @@ public class Player {
 
     private String name;
     private Account account;
-    private boolean hasLost = false;
+    private boolean hasLost;
     private int position;
 
     /*
@@ -22,6 +22,8 @@ public class Player {
         // Initialize
         this.name = name;
         account = new Account();
+        position = 1;
+        hasLost = false;
     }
 
     /**
@@ -33,6 +35,8 @@ public class Player {
         // Initialize
         this.name = name;
         account = new Account(initialBalance);
+        position = 1;
+        hasLost = false;
     }
 
     public Player ( String name, int initialBalance, int startingPosition) {
@@ -40,7 +44,7 @@ public class Player {
         this.name = name;
         account = new Account(initialBalance);
         position=startingPosition;
-
+        hasLost = false;
     }
 
     /*
