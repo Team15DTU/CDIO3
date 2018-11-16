@@ -97,32 +97,4 @@ public class PlayerTest {
 
     }
 
-    @Test
-    public void setName() {
-        // Variables
-        final int STARTINGSCORE     = 1000;
-        final String NAME           = "test";
-        final String SETTEDNAME     = "Setted name";
-
-        Player player1 = new Player( NAME, STARTINGSCORE );
-
-        player1.setName(SETTEDNAME);
-
-    }
-
-    @Test
-    public void isHasLost() {
-    }
-
-    @Test
-    public void setHasLost() {
-    }
-
-    @Test
-    public void getPosition() {
-    }
-
-    @Test
-    public void setPosition() {
-    }
 }
