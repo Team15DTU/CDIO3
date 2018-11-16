@@ -66,7 +66,7 @@ public class Player {
      */
     public void updatePosition ( int value ) {
         // Update the position with modulus
-        position = position % value;
+        position = (position + value) % 24;
     }
 
     /*

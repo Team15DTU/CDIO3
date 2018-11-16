@@ -25,14 +25,40 @@ public class PlayerTest {
     }
 
     @Test
-    public void resetScore() {
+    public void updatePosition() {
+
+        /*
+        First check where it shouldn't wrap around
+         */
+
         // Variables
-        final int STARTINGSCORE = 1000;
+        final int STARTPOSITION1 = 1, FIELDSTOMOVE1 = 10, EXPECTED1 = STARTPOSITION1+FIELDSTOMOVE1;
 
-        Player player1 = new Player("test",STARTINGSCORE);
-        player1.resetScore();
+        // Create player and set startposition
+        Player player1 = new Player("A", 200, STARTPOSITION1);
 
-        assertEquals( 0, player1.getAccount().getBalance() );
+        // Call the update method
+        player1.updatePosition(FIELDSTOMOVE1);
+
+        // Check if it's correct
+        assertEquals(EXPECTED1, player1.getPosition());
+
+        /*
+        --------------------------------------------------------
+        Second check where it SHOULD wrap around
+         */
+
+        // Variables
+        final int STARTPOSITION2 = 20, FIELDSTOMOVE2 = 10, EXPECTED2 = (STARTPOSITION2+FIELDSTOMOVE2) % 24;
+
+        // Create player and set startposition
+        Player player2 = new Player("B", 200, STARTPOSITION2);
+
+        // Call the update method
+        player2.updatePosition(FIELDSTOMOVE2);
+
+        // Check if it's correct
+        assertEquals(EXPECTED2, player2.getPosition());
     }
 
     @Test
@@ -85,28 +111,18 @@ public class PlayerTest {
     }
 
     @Test
-    public void isHasWon() {
-        // Variables
-        final int STARTINGSCORE = 9999;
-        final String NAME       = "test";
-
-        Player player1 = new Player( NAME, STARTINGSCORE );
-
-        assertFalse( player1.isHasWon() );
-
+    public void isHasLost() {
     }
 
     @Test
-    public void setHasWon() {
-
-        final int STARTINGSCORE = 1000;
-        final String name       = "test";
-
-        Player player1 = new Player( name, STARTINGSCORE );
-        assertFalse( player1.isHasWon() );
-
-        player1.setHasWon(true);
-        assertTrue( player1.isHasWon() );
+    public void setHasLost() {
     }
-    
+
+    @Test
+    public void getPosition() {
+    }
+
+    @Test
+    public void setPosition() {
+    }
 }
