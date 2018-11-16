@@ -16,8 +16,8 @@ public class Token {
     ------------------------------ Constructors --------------------------------
      */
     /**
-     *
-     * @param type
+     * Creates a Token of the specified type
+     * @param type The type of the Token as a String
      */
     Token(String type) {
         this.type = type;

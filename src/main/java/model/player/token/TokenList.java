@@ -18,7 +18,7 @@ public class TokenList {
      */
 
     /**
-     *
+     * Monopoly constructor
      */
     public TokenList() {
         // Initialize
