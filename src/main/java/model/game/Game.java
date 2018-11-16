@@ -16,8 +16,7 @@ public class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-    final static int STARTPOINT = 1000;
-    final static int WINNINGPOINTS = 3000;
+    final static int STARTPOINT = 12000;
 
     /*
     -------- Public Methods -------
@@ -27,6 +26,19 @@ public class Game {
      */
 
     public void launch () {
+
+        System.out.println("Welcome to the game of Matador Junior");
+
+        System.out.println("The game can be played by 2 - 4 players. Please enter number of players: ");
+
+        int noOfPlayers = scanner.nextInt();
+        while (noOfPlayers < 2 || noOfPlayers > 4) {
+            System.out.println("The game can be played by 2 - 4 players. Please enter number of players: ");
+            noOfPlayers = scanner.nextInt();
+        }
+
+
+
 
         System.out.println(Reader.print("enterName") + Reader.print("player1"));
         String navn = scanner.nextLine();
