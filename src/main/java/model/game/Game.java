@@ -46,43 +46,26 @@ public class Game {
         ArrayList<Player> players = new ArrayList<>();
 
         for (int i = 0; i < noOfPlayers; i++) {
-            System.out.println("Enter name of player "+i);
+            System.out.println("Enter name of player " + i);
             String name = scanner.next();
             System.out.println("Now choose a token among ");
-            tokens.forEach((a)-> System.out.println(a));
+            tokens.forEach((a) -> System.out.println(a));
             System.out.println("Press the number corresponding to your desired token ");
             int tokenNo = scanner.nextInt();
 
-
-
-            Player p = new Player(name, STARTPOINT);
+            String token = tokens.get(tokenNo);
+            Player p = new Player(name, token);
             players.add(p);
+            tokens.remove(tokenNo);
         }
 
+        System.out.println("welcome to the game ");
 
-
-
-        System.out.println(Reader.print("enterName") + Reader.print("player1"));
-        String navn = scanner.nextLine();
-        Player player1 = new Player(navn, STARTPOINT);
-        String player1Name = player1.getName();
-        System.out.print(Reader.print("hi") + " " + player1Name + Reader.print("hiPlayer"));
-        System.out.println(" " + STARTPOINT + Reader.print("pointName"));
-
-        System.out.println(Reader.print("enterName") + Reader.print("player2"));
-        navn = scanner.nextLine();
-        Player player2 = new Player(navn, STARTPOINT);
-        String player2Name = player2.getName();
-        System.out.print(Reader.print("hi") + " " + player2Name + Reader.print("hiPlayer"));
-        System.out.println(" " + STARTPOINT + Reader.print("pointName"));
-        System.out.println();
-
-        System.out.println(Reader.print("welcomeToGame"));
-
-        Cup cup = new Cup();
+        model.die.Cup cup = new model.die.Cup();
 
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
+
 
         while (!player1.isHasWon() && !player2.isHasWon()) {
             GameTurn.turn(player1, cup);

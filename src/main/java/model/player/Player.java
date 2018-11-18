@@ -1,4 +1,6 @@
 package model.player;
+import model.player;
+
 
 public class Player {
 
@@ -7,8 +9,9 @@ public class Player {
       */
 
     private String name;
-    private Account account;
+    private model.player.Account account;
     private boolean hasWon = false;
+    private String token;
 
     /*
      ------- Constructors ------------
@@ -17,10 +20,11 @@ public class Player {
     /**
      * Default constructor
      */
-    public Player ( String name ) {
+    public Player ( String name, String token) {
         // Initialize
         this.name = name;
-        account = new Account();
+        this.token = token;
+        account = new model.player.Account();
     }
 
     /**
@@ -62,9 +66,9 @@ public class Player {
      ------ Variable accessible ------
       */
 
-    public Account getAccount()  { return account; }
+    public model.player.Account getAccount()  { return account; }
 
-    public void setAccount(Account account) { this.account = account; }
+    public void setAccount(model.player.Account account) { this.account = account; }
 
     public String getName() {
         return name; }
