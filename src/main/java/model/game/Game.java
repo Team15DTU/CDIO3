@@ -1,5 +1,8 @@
 package main.java.model.game;
 
+import model.player.Player;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -35,6 +38,25 @@ public class Game {
         while (noOfPlayers < 2 || noOfPlayers > 4) {
             System.out.println("The game can be played by 2 - 4 players. Please enter number of players: ");
             noOfPlayers = scanner.nextInt();
+        }
+
+        ArrayList<String> tokens = new ArrayList<>();
+        tokens.add("Car"); tokens.add("Dog"); tokens.add("Cat"); tokens.add("Boat");
+
+        ArrayList<Player> players = new ArrayList<>();
+
+        for (int i = 0; i < noOfPlayers; i++) {
+            System.out.println("Enter name of player "+i);
+            String name = scanner.next();
+            System.out.println("Now choose a token among ");
+            tokens.forEach((a)-> System.out.println(a));
+            System.out.println("Press the number corresponding to your desired token ");
+            int tokenNo = scanner.nextInt();
+
+
+
+            Player p = new Player(name, STARTPOINT);
+            players.add(p);
         }
 
 
