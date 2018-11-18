@@ -1,6 +1,4 @@
 package model.player;
-import model.player;
-
 
 public class Player {
 
@@ -10,7 +8,10 @@ public class Player {
 
     private String name;
     private model.player.Account account;
-    private boolean hasWon = false;
+    private boolean hasLost = false;
+
+
+
     private String token;
 
     /*
@@ -35,7 +36,7 @@ public class Player {
     public Player ( String name, int initialBalance ) {
         // Initialize
         this.name = name;
-        account = new Account(initialBalance);
+        account = new model.player.Account(initialBalance);
     }
 
 
@@ -77,11 +78,19 @@ public class Player {
         this.name = name;
     }
 
-    public boolean isHasWon() {
-        return hasWon;
+    public boolean isHasLost() {
+        return hasLost;
     }
 
-    public void setHasWon(boolean hasWon) {
-        this.hasWon = hasWon;
+    public void setHasLost(boolean hasLost) {
+        this.hasLost = hasLost;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

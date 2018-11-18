@@ -1,7 +1,7 @@
 package main.java.model.game;
 
 import model.player.Player;
-
+import model.die.Cup;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,15 +20,17 @@ public class Game {
     Scanner scanner = new Scanner(System.in);
 
     final static int STARTPOINT = 12000;
+    boolean someoneLost = false;
 
     /*
     -------- Public Methods -------
      */
+
     /**
      * This method runs the game with all logic and rules from the beginning till the announcing of the winner.
      */
 
-    public void launch () {
+    public void launch() {
 
         System.out.println("Welcome to the game of Matador Junior");
 
@@ -41,7 +43,10 @@ public class Game {
         }
 
         ArrayList<String> tokens = new ArrayList<>();
-        tokens.add("Car"); tokens.add("Dog"); tokens.add("Cat"); tokens.add("Boat");
+        tokens.add("Car");
+        tokens.add("Dog");
+        tokens.add("Cat");
+        tokens.add("Boat");
 
         ArrayList<Player> players = new ArrayList<>();
 
@@ -66,25 +71,33 @@ public class Game {
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
 
+        int i = 0;
+        int k = 0;
+        while (!someoneLost) {
+            k = i / noOfPlayers;
+            Player currPlayer = players.get(k);
+            GameTurn.turn(currPlayer, cup);
+            i++;
+        }
 
-        while (!player1.isHasWon() && !player2.isHasWon()) {
-            GameTurn.turn(player1, cup);
-            if (!player1.isHasWon()) {
-                GameTurn.turn(player2, cup);
+        int amount = 0;
+        String winner = "noone";
+        for (int j = 0; j < noOfPlayers; j++) {
+            Player currPlayer = players.get(j);
+            if (currPlayer.getAccount().getBalance() > amount) {
+                amount = currPlayer.getAccount().getBalance();
+                winner = currPlayer.getName();
             }
+            i++;
         }
 
+        System.out.println("The winner is "+winner+" with an amount of "+amount);
 
-        if (player1.getAccount().getBalance() > player2.getAccount().getBalance()) {
-            System.out.println(Reader.print("congrats") + " " +player1.getName());
-            System.out.print(Reader.print("theEnding"));
-        } else {
-            System.out.println(Reader.print("congrats") + " " + player2.getName());
-            System.out.print(Reader.print("theEnding"));
-        }
     }
 
-    public static int getSTARTPOINT() {return STARTPOINT;}
+        public static int getSTARTPOINT () {
+            return STARTPOINT;
+        }
 
-    public static int getWINNINGPOINTS() {return WINNINGPOINTS;}
+
 }

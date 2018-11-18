@@ -1,5 +1,7 @@
 package main.java.model.game;
 
+import java.util.Scanner;
+
 public class Turn {
 
     /*
@@ -17,15 +19,15 @@ public class Turn {
     --------- Public Methods ----------
     */
 
-    public void turn(Player player, Cup cup) {
+    public void turn(model.player.Player player, model.die.Cup cup) {
         // Initialize object variable
 
         // Press to roll message printed and waiting for input
-        System.out.println(Reader.print("rollPress") + " " + player.getName());
+        System.out.println("Press to roll for "+ player.getName());
         input = scanner.nextLine();
 
         // teksten "exit" eller "sluk" afslutter spillet
-        if (input.equals(Reader.print("exit"))) {
+        if (input.equals("exit")) {
             System.exit(666);
         }
 
@@ -34,30 +36,18 @@ public class Turn {
         rollValue = cup.getCupValue();
 
         // rollValue input into fieldsSwitch and assigning fieldPoint, fieldName and fieldDescription
-        Fields.fieldsSwitch(rollValue);
-        turnPoint = Fields.getFieldPoint();
-        fieldName = Fields.getFieldName();
-        fieldDescription = Fields.getFieldDescription();
+
 
         // turnPoint is added to the players current balance and the new balance is assigned to totalScore
         player.updateScore(turnPoint);
         totalScore = player.getAccount().getBalance();
 
         // Result of your turn is printed out.
-        System.out.println(Reader.print("rolled") + " " + rollValue + Reader.print("landed") + " " + Reader.print(fieldName));
-        System.out.println();
-        System.out.println(Reader.print(fieldDescription));
-        System.out.println(Reader.print("totalScore") + " " + totalScore + Reader.print("pointName"));
-        System.out.println();
+        System.out.println("You rolled" + rollValue);
 
         // Check if totalScore is enough to win. If yes, players boolean hasWon is set to true.
-        if (totalScore > Game.WINNINGPOINTS) {
-            player.setHasWon(true);
-        }
-
-        // If rollValue is equal to 10 you get an extra turn
-        if (rollValue == 10) {
-            turn(player, cup);
+        if (totalScore < 0) {
+            player.setHasLost(true);
         }
 
     }
