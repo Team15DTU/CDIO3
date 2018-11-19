@@ -10,6 +10,7 @@ public class Player {
     private Account account;
     private boolean hasLost;
     private int position;
+    private String token;
 
     /*
      ------- Constructors ------------
@@ -86,9 +87,13 @@ public class Player {
      ------ Variable accessible ------
       */
 
-    public model.player.Account getAccount()  { return account; }
+    public Account getAccount() {
+        return account;
+    }
 
-    public void setAccount(model.player.Account account) { this.account = account; }
+    public void setAccount(Account account) {
+        //this.model.player.account = account;
+    }
 
     public String getName() {
         return name; }

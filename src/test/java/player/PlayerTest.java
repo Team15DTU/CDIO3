@@ -1,4 +1,4 @@
-package player;
+package model.player;
 
 import model.player.Account;
 import model.player.Player;

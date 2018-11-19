@@ -1,4 +1,7 @@
+package java;
+
 import model.game.Game;
+
 
 public class Main {
 
