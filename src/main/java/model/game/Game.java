@@ -42,13 +42,15 @@ public class Game {
             noOfPlayers = scanner.nextInt();
         }
 
+        // this ArrayList contains tokens but they may be changed to obejcts Token instead of Strings
+
+
         ArrayList<String> tokens = new ArrayList<>();
-        tokens.add("Car");
-        tokens.add("Dog");
-        tokens.add("Cat");
-        tokens.add("Boat");
+        tokens.add("Car"); tokens.add("Dog"); tokens.add("Cat"); tokens.add("Boat");
 
         ArrayList<Player> players = new ArrayList<>();
+
+        //For numbers of players enter name, choose a token, pass these info to new instance of Player in ArrayList
 
         for (int i = 0; i < noOfPlayers; i++) {
             System.out.println("Enter name of player " + i);
@@ -71,6 +73,8 @@ public class Game {
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
 
+        //As long as no one has lost loop through players list and do a turn
+
         int i = 0;
         int k = 0;
         while (!someoneLost) {
@@ -79,6 +83,8 @@ public class Game {
             GameTurn.turn(currPlayer, cup);
             i++;
         }
+
+        //When someone lost, find the player with the biggest balance and crown as winner
 
         int amount = 0;
         String winner = "noone";

@@ -45,7 +45,7 @@ public class Turn {
         // Result of your turn is printed out.
         System.out.println("You rolled" + rollValue);
 
-        // Check if totalScore is enough to win. If yes, players boolean hasWon is set to true.
+        // Check if totalScore is so low that the player lost. If yes, players boolean hasLost is set to true.
         if (totalScore < 0) {
             player.setHasLost(true);
         }
