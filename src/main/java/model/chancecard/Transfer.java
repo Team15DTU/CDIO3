@@ -6,23 +6,27 @@ import model.player.Player;
  * @author Rasmus Sander Larsen
  * @date 19-11-2018
  */
-public class MovingRel extends Card {
+public class Transfer extends Card {
 
 
     /*
     -------------------------- Fields --------------------------
      */
 
-    private int movementRel;
+    private int moneyTransfered;
 
+    
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public MovingRel(int cardNumber, String text, String description, int movementRel) {
+    public Transfer(int cardNumber, String text, String description, int money) {
+
         super(cardNumber, text, description);
-        this.movementRel=movementRel;
+        moneyTransfered=money;
+
     }
+    
     
     /*
     ------------------------ Properties -------------------------
@@ -34,16 +38,14 @@ public class MovingRel extends Card {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action (Player player) {
+    public void action (Player player1, Player player2) {
 
-        int prePosition = player.getPosition();
-        int currentPosition;
-
-        currentPosition = prePosition+ movementRel;
-        player.setPosition(currentPosition);
+        player1.updateScore(-1*moneyTransfered);
+        player2.updateScore(1*moneyTransfered);
 
     }
-
+    
+    
     /*
     ---------------------- Support Methods ----------------------
      */
