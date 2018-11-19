@@ -7,7 +7,6 @@ import model.player.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * @author Alfred Röttger Rydahl
