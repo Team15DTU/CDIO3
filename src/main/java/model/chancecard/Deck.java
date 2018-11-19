@@ -14,22 +14,18 @@ public class Deck {
      */
 
     ArrayList<Card> chanceDeck;
+    private int numberOfSetsInDeck;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public Deck (int numberOfCardsInDeck) {
+    public Deck (int numberOfSetsInDeck) {
 
         chanceDeck = new ArrayList<>();
 
-        for (int i = 0; i < numberOfCardsInDeck; i++) {
+        createDeck(numberOfSetsInDeck);
 
-            Card card = new Card(i);
-
-            chanceDeck.add(card);
-
-        }
     }
 
     /*
@@ -42,6 +38,18 @@ public class Deck {
     ---------------------- Public Methods -----------------------
      */
 
+    public void createDeck (int numberOfSetsInDeck) {
+
+        for (int i =0; i<numberOfSetsInDeck; i++) {
+
+            addMovingAbs(1,"Lyngbyvejen", "Ryk til Lyngbyvejen", 12);
+            addMovingAbs(2, "Slikbutikken", "Ryk direkte til Slikbutikken", 6);
+            addMovingRel(3, "Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", 2);
+            addMovingRel(4,"Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
+
+        }
+    }
+
     public void shuffleDeck() {
 
         Collections.shuffle(chanceDeck);
@@ -51,6 +59,17 @@ public class Deck {
     /*
     ---------------------- Support Methods ----------------------
      */
+
+    public void addMovingAbs (int cardNumber, String text, String description, int positionAbs) {
+        MovingAbs movingAbs;
+        chanceDeck.add(movingAbs = new MovingAbs(cardNumber,text,description,positionAbs));
+
+    }
+
+    public void addMovingRel (int cardNumber, String text, String description, int movementRel) {
+        MovingRel movingRel;
+        chanceDeck.add(movingRel = new MovingRel(cardNumber,text,description,movementRel));
+    }
 
 
 }
