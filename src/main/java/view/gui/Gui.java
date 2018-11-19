@@ -33,6 +33,9 @@ public class Gui {
         // Create the GUI_Player array
         this.players = createPlayers(players);
 
+        // Create the GUI_Field array
+
+
         // Start GUI
         gui = new GUI(this.fields, Color.GRAY);
 
@@ -49,6 +52,24 @@ public class Gui {
     /*
     ----------------------------- Support Methods ------------------------------
      */
+
+    private GUI_Field[] createProportyFields ( ArrayList<Field> fields ) {
+
+        // Create the GUI_Field array
+        GUI_Field[] newFields = new GUI_Field[fields.size()];
+
+        // Iterate through fields and create GUI_Ownable for each
+        for ( int i=0 ; i < fields.size() ; i++ ) {
+
+            // Create new GUI_Ownable
+            GUI_Ownable ownable = new GUI_Ownable(Color.BLACK, Color.RED, fields.get(i).getTitle(), "subtext",
+                                                    fields.get(i).getDescription(), fields.get(i).getLeje()); {
+            }
+        }
+
+
+        return newFields;
+    }
 
     /**
      * This method helps the constructor create an Array of GUI_Player's
