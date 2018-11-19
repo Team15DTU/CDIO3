@@ -1,50 +1,45 @@
 package model.chancecard;
 
+import model.player.Player;
+
 /**
  * @author Rasmus Sander Larsen
- * @date 14-11-2018
+ * @date 19-11-2018
  */
+public class MovingAbs extends Card {
 
-public abstract class Card {
-    
+
     /*
     -------------------------- Fields --------------------------
      */
-
-    protected int cardNumber;
-    protected String text;
-    protected String description;
+    
+    private int positionAbs;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    protected Card(int cardNumber,String text, String description) {
-
-        this.cardNumber=cardNumber;
-        this.text=text;
-        this.description=description;
-
+    public MovingAbs(int cardNumber, String text, String description, int positionAbs) {
+        super(cardNumber, text, description);
+        this.positionAbs=positionAbs;
     }
-
+    
     /*
     ------------------------ Properties -------------------------
      */
-
-
-
+    
+    
+    
     /*
     ---------------------- Public Methods -----------------------
      */
 
-    protected void action () {
+    public void action (Player player, int positionAbs) {
 
-
+        player.setPosition(positionAbs);
 
     }
-    
-    
-    
+
     /*
     ---------------------- Support Methods ----------------------
      */
