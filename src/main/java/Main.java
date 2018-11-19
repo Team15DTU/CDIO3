@@ -1,4 +1,4 @@
-import main.java.model.game.Game;
+import model.game.Game;
 
 public class Main {
 
