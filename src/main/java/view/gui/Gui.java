@@ -7,6 +7,7 @@ import model.player.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author Alfred Röttger Rydahl
@@ -34,7 +35,7 @@ public class Gui {
         this.players = createPlayers(players);
 
         // Create the GUI_Field array
-
+        this.fields = createProportyFields(fields);
 
         // Start GUI
         gui = new GUI(this.fields, Color.GRAY);
@@ -58,17 +59,17 @@ public class Gui {
      * @param fields An Array of type Field
      * @return Return an Array of type GUI_Field
      */
-    private GUI_Field[] createProportyFields ( ArrayList<Field> fields ) {
+    private GUI_Field[] createProportyFields ( Field[] fields ) {
 
         // Create the GUI_Field array
-        GUI_Field[] newFields = new GUI_Field[fields.size()];
+        GUI_Field[] newFields = new GUI_Field[fields.length];
 
         // Iterate through fields and create GUI_Ownable for each
-        for ( int i=0 ; i < fields.size() ; i++ ) {
+        for ( int i=0 ; i < fields.length ; i++ ) {
 
             // Create new GUI_Street
-            GUI_Street ownable = new GUI_Street(fields.get(i).getTitle(), "subtext", fields.get(i).getDescription(),
-                                                fields.get(i).getLeje(), Color.BLACK, Color.RED);
+            GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
+                                                fields[i].getLeje(), Color.BLACK, Color.RED);
 
             newFields[i] = ownable;
         }
