@@ -21,6 +21,7 @@ public class Game {
 
     final static int STARTPOINT = 12000;
     boolean someoneLost = false;
+    int tokenNo;
 
     /*
     -------- Public Methods -------
@@ -58,8 +59,10 @@ public class Game {
             System.out.println("Now choose a token among ");
             tokens.forEach((a) -> System.out.println(a));
             System.out.println("Press the number corresponding to your desired token ");
-            int tokenNo = (scanner.nextInt()-1);
-
+            while (true) {
+                tokenNo = (scanner.nextInt() - 1);
+                if (tokenNo > (-1) && tokenNo < tokens.size()){break;}
+            }
             String token = tokens.get(tokenNo);
             Player p = new Player(name, token);
             players.add(p);
