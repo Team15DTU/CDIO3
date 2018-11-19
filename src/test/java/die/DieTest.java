@@ -1,7 +1,10 @@
-package die;
+package java.die;
 
-import model.die.Die;
+import model.die.*;
+
 import org.junit.Test;
+
+
 
 import static org.junit.Assert.*;
 

@@ -1,6 +1,5 @@
-package die;
+package model.die;
 
-import model.die.Cup;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

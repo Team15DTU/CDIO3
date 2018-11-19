@@ -10,6 +10,7 @@ public class Player {
     private Account account;
     private boolean hasLost;
     private int position;
+    private String token;
 
     /*
      ------- Constructors ------------
@@ -18,12 +19,20 @@ public class Player {
     /**
      * Default constructor
      */
-    public Player ( String name ) {
+    public Player ( String name, String token) {
         // Initialize
         this.name = name;
+        this.token = token;
+        account = new Account();
+    }
+  
+  public Player ( String name) {
+        // Initialize
+        this.name = name;  
         account = new Account();
         position = 1;
         hasLost = false;
+
     }
 
     /**
@@ -78,9 +87,13 @@ public class Player {
      ------ Variable accessible ------
       */
 
-    public Account getAccount()  { return account; }
+    public Account getAccount() {
+        return account;
+    }
 
-    public void setAccount(Account account) { this.account = account; }
+    public void setAccount(Account account) {
+        //this.model.player.account = account;
+    }
 
     public String getName() {
         return name; }
@@ -89,6 +102,14 @@ public class Player {
         this.name = name;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+  
     public boolean isHasLost() {return hasLost;}
 
     public void setHasLost(boolean hasLost) {this.hasLost = hasLost;}
@@ -96,4 +117,5 @@ public class Player {
     public int getPosition() {return position;}
 
     public void setPosition(int position) {this.position = position;}
+
 }
