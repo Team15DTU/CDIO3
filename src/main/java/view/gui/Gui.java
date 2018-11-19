@@ -53,6 +53,11 @@ public class Gui {
     ----------------------------- Support Methods ------------------------------
      */
 
+    /**
+     * This method helps the constructor create an Array of GUI_Field's
+     * @param fields An Array of type Field
+     * @return Return an Array of type GUI_Field
+     */
     private GUI_Field[] createProportyFields ( ArrayList<Field> fields ) {
 
         // Create the GUI_Field array
@@ -61,13 +66,14 @@ public class Gui {
         // Iterate through fields and create GUI_Ownable for each
         for ( int i=0 ; i < fields.size() ; i++ ) {
 
-            // Create new GUI_Ownable
-            GUI_Ownable ownable = new GUI_Ownable(Color.BLACK, Color.RED, fields.get(i).getTitle(), "subtext",
-                                                    fields.get(i).getDescription(), fields.get(i).getLeje()); {
-            }
+            // Create new GUI_Street
+            GUI_Street ownable = new GUI_Street(fields.get(i).getTitle(), "subtext", fields.get(i).getDescription(),
+                                                fields.get(i).getLeje(), Color.BLACK, Color.RED);
+
+            newFields[i] = ownable;
         }
 
-
+        // Return the newly created array
         return newFields;
     }
 
