@@ -18,10 +18,10 @@ public class Gui {
     ---------------------------------- Fields ----------------------------------
      */
 
-    GUI gui;
-    GUI_Field[] fields;
-    GUI_Player[] players;
-    Color backgroundColor;
+    private GUI gui;
+    private GUI_Field[] fields;
+    private GUI_Player[] players;
+    private Color backgroundColor;
 
     
     /*
