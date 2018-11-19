@@ -1,5 +1,7 @@
 package view.gui;
 
+import gui_main.GUI;
+
 /**
  * @author Alfred Röttger Rydahl
  * @date 19-11-2018
@@ -9,6 +11,9 @@ public class Gui {
     /*
     ---------------------------------- Fields ----------------------------------
      */
+
+    GUI gui;
+
     
     /*
     ------------------------------ Constructors --------------------------------
