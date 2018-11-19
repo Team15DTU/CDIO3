@@ -30,14 +30,8 @@ public class Gui {
 
     public Gui (ArrayList<Player> players, Field[] fields) {
 
-        // Create the players array as the right size
-        this.players = new GUI_Player[players.size()];
-
-
-        for ( Player player : players ) {
-
-        }
-
+        // Create the GUI_Player array
+        this.players = createPlayers(players);
 
         // Start GUI
         gui = new GUI(this.fields, Color.GRAY);
@@ -55,4 +49,24 @@ public class Gui {
     /*
     ----------------------------- Support Methods ------------------------------
      */
+
+    private GUI_Player[] createPlayers (ArrayList<Player> players) {
+
+        // Create the players array as the right size
+        GUI_Player[] guiPlayers = new GUI_Player[players.size()];
+
+        // Iterate over the players list and create a GUI_Player for each
+        for ( int i=0 ; i < players.size() ; i++ ) {
+            GUI_Player newPlayer = new GUI_Player(  players.get(i).getName(),
+                                                    players.get(i).getAccount().getBalance(),
+                                                    new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
+                                                    );
+
+            // Add the created player to the player array
+            guiPlayers[i] = newPlayer;
+        }
+
+        // Return the GUI_Player array
+        return guiPlayers;
+    }
 }
