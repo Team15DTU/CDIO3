@@ -50,6 +50,11 @@ public class Gui {
     ----------------------------- Support Methods ------------------------------
      */
 
+    /**
+     * This method helps the constructor create an Array of GUI_Player's
+     * @param players An ArrayList<Player>
+     * @return Return an Array of GUI_Player's
+     */
     private GUI_Player[] createPlayers (ArrayList<Player> players) {
 
         // Create the players array as the right size
