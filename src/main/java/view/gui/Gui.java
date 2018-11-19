@@ -38,6 +38,9 @@ public class Gui {
 
         // Start GUI
         gui = new GUI(this.fields, Color.GRAY);
+        for (GUI_Player player : this.players) {
+            gui.addPlayer(player);
+        }
 
     }
     
