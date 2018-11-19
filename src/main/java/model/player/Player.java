@@ -7,12 +7,9 @@ public class Player {
       */
 
     private String name;
-    private model.player.Account account;
-    private boolean hasLost = false;
-
-
-
-    private String token;
+    private Account account;
+    private boolean hasLost;
+    private int position;
 
     /*
      ------- Constructors ------------
@@ -25,7 +22,16 @@ public class Player {
         // Initialize
         this.name = name;
         this.token = token;
-        account = new model.player.Account();
+        account = new Account();
+    }
+  
+  public Player ( String name) {
+        // Initialize
+        this.name = name;  
+        account = new Account();
+        position = 1;
+        hasLost = false;
+
     }
 
     /**
@@ -36,9 +42,18 @@ public class Player {
     public Player ( String name, int initialBalance ) {
         // Initialize
         this.name = name;
-        account = new model.player.Account(initialBalance);
+        account = new Account(initialBalance);
+        position = 1;
+        hasLost = false;
     }
 
+    public Player ( String name, int initialBalance, int startingPosition ) {
+        // Initialize
+        this.name = name;
+        account = new Account(initialBalance);
+        position=startingPosition;
+        hasLost = false;
+    }
 
     /*
     -------- Public Methods ----------
@@ -53,9 +68,13 @@ public class Player {
         account.update(score);
     }
 
-    public void resetScore () {
-        // Set players account to 0
-        account.setBalance(0);
+    /**
+     * Updates the position of the player according to a 24 Field board
+     * @param value The amount of positions to move as an int
+     */
+    public void updatePosition ( int value ) {
+        // Update the position with modulus
+        position = (position + value) % 24;
     }
 
     /*
@@ -78,14 +97,6 @@ public class Player {
         this.name = name;
     }
 
-    public boolean isHasLost() {
-        return hasLost;
-    }
-
-    public void setHasLost(boolean hasLost) {
-        this.hasLost = hasLost;
-    }
-
     public String getToken() {
         return token;
     }
@@ -93,4 +104,13 @@ public class Player {
     public void setToken(String token) {
         this.token = token;
     }
+  
+    public boolean isHasLost() {return hasLost;}
+
+    public void setHasLost(boolean hasLost) {this.hasLost = hasLost;}
+
+    public int getPosition() {return position;}
+
+    public void setPosition(int position) {this.position = position;}
+
 }
