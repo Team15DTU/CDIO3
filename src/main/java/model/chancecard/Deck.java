@@ -13,7 +13,7 @@ public class Deck {
     -------------------------- Fields --------------------------
      */
 
-    ArrayList<Chancecard> chanceDeck;
+    ArrayList<Card> chanceDeck;
 
     /*
     ----------------------- Constructor -------------------------
@@ -25,9 +25,9 @@ public class Deck {
 
         for (int i = 0; i < numberOfCardsInDeck; i++) {
 
-            Chancecard chancecard = new Chancecard(i);
+            Card card = new Card(i);
 
-            chanceDeck.add(chancecard);
+            chanceDeck.add(card);
 
         }
     }

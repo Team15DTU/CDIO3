@@ -4,7 +4,7 @@ package model.chancecard;
  * @author Rasmus Sander Larsen
  * @date 14-11-2018
  */
-public class Chancecard {
+public class Card {
     
     /*
     -------------------------- Fields --------------------------
@@ -16,7 +16,7 @@ public class Chancecard {
     ----------------------- Constructor -------------------------
      */
 
-    public Chancecard (int cardNumber) {
+    public Card(int cardNumber) {
 
         this.cardNumber=cardNumber;
 
