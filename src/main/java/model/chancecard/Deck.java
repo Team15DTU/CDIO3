@@ -14,7 +14,6 @@ public class Deck {
      */
 
     ArrayList<Card> chanceDeck;
-    private int numberOfSetsInDeck;
 
     /*
     ----------------------- Constructor -------------------------
