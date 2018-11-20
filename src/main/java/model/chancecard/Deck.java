@@ -1,5 +1,9 @@
 package model.chancecard;
 
+import model.chancecard.cards.MovingAbs;
+import model.chancecard.cards.MovingRel;
+import model.chancecard.cards.Transfer;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -13,7 +17,7 @@ public class Deck {
     -------------------------- Fields --------------------------
      */
 
-    ArrayList<Card> chanceDeck;
+    private ArrayList<Card> chanceDeck;
     private int totalCardsInDeck;
 
     /*
@@ -46,7 +50,7 @@ public class Deck {
             addMovingAbs(2, "Slikbutikken", "Ryk direkte til Slikbutikken", 6);
             addMovingRel(3, "Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", -2);
             addMovingRel(4,"Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
-            addTransfor(5, "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
+            addTransfer(5, "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
 
         }
 
@@ -72,17 +76,17 @@ public class Deck {
     ---------------------- Support Methods ----------------------
      */
 
-    public void addMovingAbs (int cardNumber, String text, String description, int positionAbs) {
+    private void addMovingAbs (int cardNumber, String text, String description, int positionAbs) {
         chanceDeck.add(new MovingAbs(cardNumber,text,description,positionAbs));
 
     }
 
-    public void addMovingRel (int cardNumber, String text, String description, int movementRel) {
+    private void addMovingRel (int cardNumber, String text, String description, int movementRel) {
         MovingRel movingRel;
         chanceDeck.add(movingRel = new MovingRel(cardNumber,text,description,movementRel));
     }
 
-    public void addTransfor (int cardNumber, String text, String description, int money) {
+    private void addTransfer(int cardNumber, String text, String description, int money) {
         chanceDeck.add( new Transfer(cardNumber, text, description, money));
     }
 

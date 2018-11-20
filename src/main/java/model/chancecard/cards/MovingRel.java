@@ -1,27 +1,28 @@
-package model.chancecard;
+package model.chancecard.cards;
 
+import model.chancecard.Card;
 import model.player.Player;
 
 /**
  * @author Rasmus Sander Larsen
  * @date 19-11-2018
  */
-public class MovingAbs extends Card {
+public class MovingRel extends Card {
 
 
     /*
     -------------------------- Fields --------------------------
      */
-    
-    private int positionAbs;
+
+    private int movementRel;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public MovingAbs(int cardNumber, String text, String description, int positionAbs) {
+    public MovingRel(int cardNumber, String text, String description, int movementRel) {
         super(cardNumber, text, description);
-        this.positionAbs=positionAbs;
+        this.movementRel=movementRel;
     }
     
     /*
@@ -33,10 +34,14 @@ public class MovingAbs extends Card {
     /*
     ---------------------- Public Methods -----------------------
      */
+    @Override
+    public void action (Player player) {
 
-    public void action (Player player, int positionAbs) {
+        int prePosition = player.getPosition();
+        int currentPosition;
 
-        player.setPosition(positionAbs);
+        currentPosition = prePosition+ movementRel;
+        player.setPosition(currentPosition);
 
     }
 

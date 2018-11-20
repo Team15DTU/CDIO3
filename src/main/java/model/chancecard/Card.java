@@ -1,5 +1,7 @@
 package model.chancecard;
 
+import model.player.Player;
+
 /**
  * @author Rasmus Sander Larsen
  * @date 14-11-2018
@@ -37,11 +39,7 @@ public abstract class Card {
     ---------------------- Public Methods -----------------------
      */
 
-    protected void action () {
-
-
-
-    }
+    protected void action (Player player) {}
     
     
     

@@ -1,32 +1,29 @@
-package model.chancecard;
+package model.chancecard.cards;
 
+import model.chancecard.Card;
 import model.player.Player;
 
 /**
  * @author Rasmus Sander Larsen
  * @date 19-11-2018
  */
-public class Transfer extends Card {
+public class MovingAbs extends Card {
 
 
     /*
     -------------------------- Fields --------------------------
      */
-
-    private int moneyTransfered;
-
     
+    private int positionAbs;
+
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public Transfer(int cardNumber, String text, String description, int money) {
-
+    public MovingAbs(int cardNumber, String text, String description, int positionAbs) {
         super(cardNumber, text, description);
-        moneyTransfered=money;
-
+        this.positionAbs=positionAbs;
     }
-    
     
     /*
     ------------------------ Properties -------------------------
@@ -38,14 +35,13 @@ public class Transfer extends Card {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action (Player player1, Player player2) {
+    @Override
+    public void action ( Player player ) {
 
-        player1.updateScore(-1*moneyTransfered);
-        player2.updateScore(1*moneyTransfered);
+        player.setPosition(positionAbs);
 
     }
-    
-    
+
     /*
     ---------------------- Support Methods ----------------------
      */
