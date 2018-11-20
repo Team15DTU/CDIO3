@@ -1,5 +1,3 @@
-package java;
-
 import model.game.Game;
 
 

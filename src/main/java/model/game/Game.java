@@ -21,6 +21,7 @@ public class Game {
 
     final static int STARTPOINT = 12000;
     boolean someoneLost = false;
+    int tokenNo;
 
     /*
     -------- Public Methods -------
@@ -53,13 +54,15 @@ public class Game {
         //For numbers of players enter name, choose a token, pass these info to new instance of Player in ArrayList
 
         for (int i = 0; i < noOfPlayers; i++) {
-            System.out.println("Enter name of player " + i);
+            System.out.println("Enter name of player " + (i+1));
             String name = scanner.next();
             System.out.println("Now choose a token among ");
             tokens.forEach((a) -> System.out.println(a));
             System.out.println("Press the number corresponding to your desired token ");
-            int tokenNo = scanner.nextInt();
-
+            while (true) {
+                tokenNo = (scanner.nextInt() - 1);
+                if (tokenNo > (-1) && tokenNo < tokens.size()){break;}
+            }
             String token = tokens.get(tokenNo);
             Player p = new Player(name, token);
             players.add(p);
@@ -78,7 +81,7 @@ public class Game {
         int i = 0;
         int k = 0;
         while (!someoneLost) {
-            k = i / noOfPlayers;
+            k = i % noOfPlayers;
             Player currPlayer = players.get(k);
             GameTurn.turn(currPlayer, cup);
             i++;
