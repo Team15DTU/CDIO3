@@ -50,6 +50,26 @@ public class Controller {
     /*
     ----------------------- Public Methods -----------------------
      */
+
+    /**
+     * Adds the given list of Players to the gui
+     * @param players The ArrayList<Player></Player>
+     */
+    public void addPlayers ( ArrayList<Player> players ) {
+
+        // Add the players
+        gui.addPlayers(players);
+    }
+
+    /**
+     * Adds the given Player to the gui
+     * @param player The Player object to be added
+     */
+    public void addPlayer ( Player player ) {
+
+        // Add the player to the gui
+        gui.addPlayer(player);
+    }
     /*
     ----------------------- Support Methods ----------------------
      */
