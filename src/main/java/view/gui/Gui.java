@@ -75,33 +75,43 @@ public class Gui {
     ---------------------------- Public Methods --------------------------------
      */
 
+    /**
+     * This method adds an ArrayList of players to the game.
+     * @param players An ArrayList<Player></Player>
+     */
     public void addPlayers ( ArrayList<Player> players ) {
 
         // Iterate over the players list and add the player
         for ( Player player : players ) {
             addPlayer(player);
         }
-
-
     }
 
+    /**
+     * This method adds a new Player to the game.
+     * @param player The Player to add
+     */
     public void addPlayer ( Player player ) {
 
         // Create the GUI_Player
         GUI_Player newPlayer = new GUI_Player(  player.getName(),
                 player.getAccount().getBalance(),
                 new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
-        );
+                );
 
         // Add the player to the gui
         addGUIPlayer(newPlayer);
-
     }
     
     /*
     ----------------------------- Support Methods ------------------------------
      */
 
+    /**
+     * This method has the responsibility to add a new player to
+     * this objects GUI_Player list and to the visual board.
+     * @param player A GUI_Player to add
+     */
     private void addGUIPlayer ( GUI_Player player ) {
 
         // Add to the GUI_Player list
