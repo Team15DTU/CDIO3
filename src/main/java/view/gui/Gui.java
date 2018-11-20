@@ -81,6 +81,20 @@ public class Gui {
      */
 
     /**
+     * Updates the given player visual balance.
+     * @param player The player whos balance will get updated
+     * @param newBalance The absolute balance of the player
+     */
+    public void updatePlayerBalance ( Player player, int newBalance ) {
+
+        // Find the player in the GUI_Player list
+        GUI_Player playerToUpdate = findPlayer(player);
+
+        // Update the visual balance for the player
+        playerToUpdate.setBalance(newBalance);
+    }
+
+    /**
      * This method moves the given player to the field
      * according to the index.
      * @param player The player which shall be moved

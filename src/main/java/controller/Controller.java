@@ -47,6 +47,7 @@ public class Controller {
     /*
     ------------------------- Properties -------------------------
      */
+
     /*
     ----------------------- Public Methods -----------------------
      */
@@ -82,6 +83,7 @@ public class Controller {
         // Add the player to the gui
         gui.addPlayer(player);
     }
+
     /*
     ----------------------- Support Methods ----------------------
      */
