@@ -81,17 +81,18 @@ public class Gui {
      */
 
     /**
-     *
-     * @param player
-     * @param fieldsToMove
+     * This method moves the given player to the field
+     * according to the index.
+     * @param player The player which shall be moved
+     * @param theFieldIndex The index of the field in the array
      */
-    public void movePlayerAbs ( Player player, int fieldsToMove ) {
+    public void movePlayer ( Player player, int theFieldIndex ) {
 
         // Find the player in the GUI_Player list
         GUI_Player playerToMove = findPlayer(player);
 
         // Move the player on the board
-
+        fields[theFieldIndex].setCar (playerToMove, true);
     }
 
     /**
