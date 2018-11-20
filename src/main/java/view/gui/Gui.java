@@ -119,8 +119,9 @@ public class Gui {
                 new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
                 );
 
-        // Add the player to the gui
+        // Add the player to the gui and set them on the start field
         addGUIPlayer(newPlayer);
+        fields[0].setCar(newPlayer, true);
     }
     
     /*
@@ -205,8 +206,9 @@ public class Gui {
                                                     new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
                                                     );
 
-            // Add the created player to the player array
+            // Add the created player to the player array and set the player on the start field
             guiPlayers.add(newPlayer);
+            fields[0].setCar(newPlayer, true);
         }
 
         // Return the GUI_Player array
