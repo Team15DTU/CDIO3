@@ -14,6 +14,7 @@ public class Deck {
      */
 
     ArrayList<Card> chanceDeck;
+    private int totalCardsInDeck;
 
     /*
     ----------------------- Constructor -------------------------
@@ -47,13 +48,23 @@ public class Deck {
             addMovingRel(4,"Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
             addTransfor(5, "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
 
-
         }
+
+        totalCardsInDeck = chanceDeck.size();
     }
 
-    public void shuffleDeck() {
+    public void shuffleDeck(int totalShuffles) {
 
-        Collections.shuffle(chanceDeck);
+        for (int i =0; i<totalShuffles; i++) {
+            Collections.shuffle(chanceDeck);
+        }
+
+    }
+
+    public void drawCard () {
+
+        Card drawedCard = chanceDeck.get(1);
+        chanceDeck.set(totalCardsInDeck-1, drawedCard);
 
     }
 
@@ -74,6 +85,5 @@ public class Deck {
     public void addTransfor (int cardNumber, String text, String description, int money) {
         chanceDeck.add( new Transfer(cardNumber, text, description, money));
     }
-
 
 }
