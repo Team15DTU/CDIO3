@@ -53,6 +53,17 @@ public class Controller {
      */
 
     /**
+     *
+     * @param player
+     * @param newBalance
+     */
+    public void updatePlayerBalance ( Player player, int newBalance ) {
+
+        // Update the Balance
+        gui.updatePlayerBalance( player, newBalance );
+    }
+
+    /**
      * This method moves the given player to the Field with the
      * corresponding index.
      * @param player The Player object
