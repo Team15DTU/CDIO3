@@ -44,7 +44,7 @@ public class Deck {
 
             addMovingAbs(1,"Lyngbyvejen", "Ryk til Lyngbyvejen", 12);
             addMovingAbs(2, "Slikbutikken", "Ryk direkte til Slikbutikken", 6);
-            addMovingRel(3, "Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", 2);
+            addMovingRel(3, "Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", -2);
             addMovingRel(4,"Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
             addTransfor(5, "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
 
@@ -63,7 +63,7 @@ public class Deck {
 
     public void drawCard () {
 
-        Card drawedCard = chanceDeck.get(1);
+        Card drawedCard = chanceDeck.get(0);
         chanceDeck.set(totalCardsInDeck-1, drawedCard);
 
     }
