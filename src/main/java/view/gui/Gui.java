@@ -40,8 +40,11 @@ public class Gui {
         // Create the GUI_Field array
         this.fields = createPropertyFields(fields);
 
+        // Set Color
+        backgroundColor = Color.GRAY;
+
         // Start GUI
-        gui = new GUI(this.fields, Color.GRAY);
+        gui = new GUI(this.fields, backgroundColor);
 
     }
 
@@ -59,12 +62,14 @@ public class Gui {
         // Create the GUI_Field array
         this.fields = createPropertyFields(fields);
 
+        // Set Color
+        backgroundColor = Color.GRAY;
+
         // Start GUI
-        gui = new GUI(this.fields, Color.GRAY);
+        gui = new GUI(this.fields, backgroundColor);
         for (GUI_Player player : this.players) {
             gui.addPlayer(player);
         }
-
     }
     
     /*
@@ -74,6 +79,20 @@ public class Gui {
     /*
     ---------------------------- Public Methods --------------------------------
      */
+
+    /**
+     *
+     * @param player
+     * @param fieldsToMove
+     */
+    public void movePlayerAbs ( Player player, int fieldsToMove ) {
+
+        // Find the player in the GUI_Player list
+        GUI_Player playerToMove = findPlayer(player);
+
+        // Move the player on the board
+
+    }
 
     /**
      * This method adds an ArrayList of players to the game.
@@ -106,6 +125,30 @@ public class Gui {
     /*
     ----------------------------- Support Methods ------------------------------
      */
+
+    /**
+     * Finds the corresponding GUI_Player in the list
+     * @param player The player to find
+     * @return Returns the found GUI_Player or null
+     */
+    private GUI_Player findPlayer ( Player player ) {
+
+        // Declare GUI_Player variable
+        GUI_Player playerToFind = null;
+
+        // Find the player
+        for ( GUI_Player p : players ) {
+
+            // Check if the name corresponds
+            if ( p.getName().equals(player.getName()) ) {
+                playerToFind = p;
+                break;
+            }
+        }
+
+        // Return the found GUI_Player
+        return playerToFind;
+    }
 
     /**
      * This method has the responsibility to add a new player to
