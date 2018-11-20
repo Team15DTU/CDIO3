@@ -52,6 +52,18 @@ public class Controller {
      */
 
     /**
+     * This method moves the given player to the Field with the
+     * corresponding index.
+     * @param player The Player object
+     * @param theFieldIndex The Index of the Field
+     */
+    public void movePlayer ( Player player, int theFieldIndex ) {
+
+        // Move the Player in the gui
+        gui.movePlayer ( player, theFieldIndex );
+    }
+
+    /**
      * Adds the given list of Players to the gui
      * @param players The ArrayList<Player></Player>
      */
