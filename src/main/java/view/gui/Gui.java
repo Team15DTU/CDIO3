@@ -20,7 +20,7 @@ public class Gui {
 
     private GUI gui;
     private GUI_Field[] fields;
-    private GUI_Player[] players;
+    private ArrayList<GUI_Player> players;
     private Color backgroundColor;
 
     
@@ -28,13 +28,36 @@ public class Gui {
     ------------------------------ Constructors --------------------------------
      */
 
-    public Gui (ArrayList<Player> players, Field[] fields) {
+    /**
+     * This Constructor creates a visual board, with the given fields.
+     * @param fields The list of Field's as Field[]
+     */
+    public Gui ( Field[] fields ) {
+
+        // Initialize Player ArrayList
+        this.players = new ArrayList<>();
+
+        // Create the GUI_Field array
+        this.fields = createPropertyFields(fields);
+
+        // Start GUI
+        gui = new GUI(this.fields, Color.GRAY);
+
+    }
+
+    /**
+     * Constructor to use if the player list is known, and then creates
+     * a visual board with the given fields.
+     * @param players The Player list as an ArrayList<Player>
+     * @param fields The list of Field's as Field[]
+     */
+    public Gui ( ArrayList<Player> players, Field[] fields ) {
 
         // Create the GUI_Player array
         this.players = createPlayers(players);
 
         // Create the GUI_Field array
-        this.fields = createProportyFields(fields);
+        this.fields = createPropertyFields(fields);
 
         // Start GUI
         gui = new GUI(this.fields, Color.GRAY);
@@ -61,7 +84,7 @@ public class Gui {
      * @param fields An Array of type Field
      * @return Return an Array of type GUI_Field
      */
-    private GUI_Field[] createProportyFields ( Field[] fields ) {
+    private GUI_Field[] createPropertyFields(Field[] fields ) {
 
         // Create the GUI_Field array
         GUI_Field[] newFields = new GUI_Field[fields.length];
@@ -83,12 +106,12 @@ public class Gui {
     /**
      * This method helps the constructor create an Array of GUI_Player's
      * @param players An ArrayList<Player>
-     * @return Return an Array of GUI_Player's
+     * @return Return an ArrayList<GUI_Player>
      */
-    private GUI_Player[] createPlayers (ArrayList<Player> players) {
+    private ArrayList<GUI_Player> createPlayers (ArrayList<Player> players) {
 
-        // Create the players array as the right size
-        GUI_Player[] guiPlayers = new GUI_Player[players.size()];
+        // Create the players arraylist as the right size
+        ArrayList<GUI_Player> guiPlayers = new ArrayList<>(players.size());
 
         // Iterate over the players list and create a GUI_Player for each
         for ( int i=0 ; i < players.size() ; i++ ) {
@@ -98,7 +121,7 @@ public class Gui {
                                                     );
 
             // Add the created player to the player array
-            guiPlayers[i] = newPlayer;
+            guiPlayers.add(newPlayer);
         }
 
         // Return the GUI_Player array
