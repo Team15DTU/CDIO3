@@ -32,21 +32,25 @@ public abstract class Field {
      */
 
     //<editor-fold desc="Properties">
-    public int getCardNumber() {return fieldNumber;}
 
-    public void setCardNumber (int fieldNumber) {this.fieldNumber = fieldNumber;}
+    public int getFieldNumber() { return fieldNumber; }
 
-    public String getTitle() {        return title;    }
+    public void setFieldNumber(int fieldNumber) { this.fieldNumber = fieldNumber; }
 
-    public void setTitle (String title) {        this.title = title;    }
+    public String getTitle() { return title; }
 
-    public String getDescription() {        return description;    }
+    public void setTitle(String title) { this.title = title; }
 
-    public void setDescription (String description) {        this.description = description;    }
+    public String getDescription() { return description; }
 
-    public Player getOwner() {        return owner;    }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setOwner (Player owner) {        this.owner = owner;    }
+    public Player getOwner() { return owner; }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
     //</editor-fold>
 
     /*
