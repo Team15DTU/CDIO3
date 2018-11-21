@@ -20,7 +20,7 @@ public class Controller {
     /*
     ------------------------ Constructors ------------------------
      */
-
+    //<editor-fold desc="Constructors">
     /**
      * Use this constructor if you don't know the players
      * in the game
@@ -43,6 +43,7 @@ public class Controller {
         // Create the new Gui
         gui = new Gui(players, fields);
     }
+    //</editor-fold>
 
     /*
     ------------------------- Properties -------------------------
@@ -53,9 +54,20 @@ public class Controller {
      */
 
     /**
-     *
-     * @param player
-     * @param newBalance
+     * Shows a message to the players
+     * @param message The message as a String
+     */
+    public void showMessage (String message) {
+
+        // Show the message
+        gui.showMessage(message);
+    }
+
+    //<editor-fold desc="Player methods">
+    /**
+     * Updates the players visual balance.
+     * @param player The Player which balance shall be updated.
+     * @param newBalance The new absolute balance of the player
      */
     public void updatePlayerBalance ( Player player, int newBalance ) {
 
@@ -94,6 +106,7 @@ public class Controller {
         // Add the player to the gui
         gui.addPlayer(player);
     }
+    //</editor-fold>
 
     /*
     ----------------------- Support Methods ----------------------

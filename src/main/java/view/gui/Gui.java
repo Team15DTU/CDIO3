@@ -81,6 +81,17 @@ public class Gui {
      */
 
     /**
+     * Shows a message to the players
+     * @param message The message to show as String
+     */
+    public void showMessage (String message) {
+
+        // Show the message in the gui
+        gui.showMessage(message);
+    }
+
+    //<editor-fold desc="Player Methods">
+    /**
      * Updates the given player visual balance.
      * @param player The player whos balance will get updated
      * @param newBalance The absolute balance of the player
@@ -137,6 +148,7 @@ public class Gui {
         addGUIPlayer(newPlayer);
         fields[0].setCar(newPlayer, true);
     }
+    //</editor-fold>
     
     /*
     ----------------------------- Support Methods ------------------------------
