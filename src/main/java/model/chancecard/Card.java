@@ -41,7 +41,7 @@ public abstract class Card {
 
     public void setText(String text) { this.text = text; }
 
-    protected String getDescription() { return description; }
+    public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
 
