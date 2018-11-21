@@ -1,5 +1,7 @@
 package model.game;
 
+import model.board.Board;
+import model.chancecard.Deck;
 import model.player.Player;
 import model.die.Cup;
 import java.util.ArrayList;
@@ -72,6 +74,8 @@ public class Game {
         System.out.println("welcome to the game ");
 
         model.die.Cup cup = new model.die.Cup();
+        Deck chancedeck = new Deck(10);
+        Board playingboard = new Board();
 
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
