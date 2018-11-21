@@ -2,6 +2,8 @@ package model.board;
 
 import model.player.Player;
 
+import java.awt.*;
+
 public abstract class Field {
 
     /*
@@ -11,20 +13,18 @@ public abstract class Field {
         protected int fieldNumber;
         protected String title;
         protected String description;
-        protected int cost;
-        protected int rent;
+        protected Color color;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-        protected Field (int fieldNumber, String title, String description, int cost, int rent) {
+        protected Field (int fieldNumber, String title, String description, Color color) {
 
             this.fieldNumber=fieldNumber;
             this.title=title;
             this.description=description;
-            this.cost=cost;
-            this.rent=rent;
+            this.color = color;
 
         }
 

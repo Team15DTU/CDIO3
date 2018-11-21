@@ -3,6 +3,8 @@ package model.board.fields;
 import model.board.Field;
 import model.player.Player;
 
+import java.awt.*;
+
 public class Property extends Field {
 
 
@@ -10,15 +12,17 @@ public class Property extends Field {
     -------------------------- Fields --------------------------
      */
 
+    private int cost;
 
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public Property (int fieldNumber, String title, String description, int cost, int rent) {
+    public Property (int fieldNumber, String title, String description, Color color, int cost) {
 
-        super(fieldNumber, title, description, cost, rent);
+        super(fieldNumber, title, description, color);
+        this.cost=cost;
 
     }
 
@@ -28,8 +32,7 @@ public class Property extends Field {
 
     public int getCardNumber() {return fieldNumber;}
 
-    public void setCardNumber(int cardNumber) {this.fieldNumber = fieldNumber;}
-
+    public void setCardNumber(int fieldNumber) {this.fieldNumber = fieldNumber;}
 
     public String getTitle() {        return title;    }
 
@@ -42,10 +45,6 @@ public class Property extends Field {
     public int getCost() {        return cost;    }
 
     public void setCost(int cost) {        this.cost = cost;    }
-
-    public int getRent() {        return rent;    }
-
-    public void setRent(int rent) {        this.rent = rent;    }
 
     /*
     ---------------------- Public Methods -----------------------
