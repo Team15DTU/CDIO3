@@ -14,7 +14,7 @@ public class Transfer extends Card {
     -------------------------- Fields --------------------------
      */
 
-    private int moneyTransfered;
+    private int moneyTransferred;
 
     
     /*
@@ -24,7 +24,7 @@ public class Transfer extends Card {
     public Transfer(int cardNumber, String text, String description, int money) {
 
         super(cardNumber, text, description);
-        moneyTransfered=money;
+        moneyTransferred = money;
 
     }
     
@@ -39,11 +39,9 @@ public class Transfer extends Card {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action (Player player1, Player player2) {
+    public void action (Player player1) {
 
-        player1.updateScore(-1*moneyTransfered);
-        player2.updateScore(1*moneyTransfered);
-
+        player1.updateScore(moneyTransferred);
     }
     
     

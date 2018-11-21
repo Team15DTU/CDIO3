@@ -39,7 +39,7 @@ public abstract class Card {
     ---------------------- Public Methods -----------------------
      */
 
-    protected void action (Player player) {}
+    protected abstract void action (Player player);
     
     
     
