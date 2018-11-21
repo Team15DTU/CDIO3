@@ -8,7 +8,9 @@ public class Player {
 
     private String name;
     private Account account;
-    private boolean hasWon = false;
+    private boolean hasLost;
+    private int position;
+    private String token;
 
     /*
      ------- Constructors ------------
@@ -17,10 +19,20 @@ public class Player {
     /**
      * Default constructor
      */
-    public Player ( String name ) {
+    public Player ( String name, String token) {
         // Initialize
         this.name = name;
+        this.token = token;
         account = new Account();
+    }
+  
+  public Player ( String name) {
+        // Initialize
+        this.name = name;  
+        account = new Account();
+        position = 1;
+        hasLost = false;
+
     }
 
     /**
@@ -32,8 +44,17 @@ public class Player {
         // Initialize
         this.name = name;
         account = new Account(initialBalance);
+        position = 1;
+        hasLost = false;
     }
 
+    public Player ( String name, int initialBalance, int startingPosition ) {
+        // Initialize
+        this.name = name;
+        account = new Account(initialBalance);
+        position=startingPosition;
+        hasLost = false;
+    }
 
     /*
     -------- Public Methods ----------
@@ -48,9 +69,13 @@ public class Player {
         account.update(score);
     }
 
-    public void resetScore () {
-        // Set players account to 0
-        account.setBalance(0);
+    /**
+     * Updates the position of the player according to a 24 Field board
+     * @param value The amount of positions to move as an int
+     */
+    public void updatePosition ( int value ) {
+        // Update the position with modulus
+        position = (position + value) % 24;
     }
 
     /*
@@ -62,9 +87,13 @@ public class Player {
      ------ Variable accessible ------
       */
 
-    public Account getAccount()  { return account; }
+    public Account getAccount() {
+        return account;
+    }
 
-    public void setAccount(Account account) { this.account = account; }
+    public void setAccount(Account account) {
+        //this.model.player.account = account;
+    }
 
     public String getName() {
         return name; }
@@ -73,11 +102,20 @@ public class Player {
         this.name = name;
     }
 
-    public boolean isHasWon() {
-        return hasWon;
+    public String getToken() {
+        return token;
     }
 
-    public void setHasWon(boolean hasWon) {
-        this.hasWon = hasWon;
+    public void setToken(String token) {
+        this.token = token;
     }
+  
+    public boolean isHasLost() {return hasLost;}
+
+    public void setHasLost(boolean hasLost) {this.hasLost = hasLost;}
+
+    public int getPosition() {return position;}
+
+    public void setPosition(int position) {this.position = position;}
+
 }
