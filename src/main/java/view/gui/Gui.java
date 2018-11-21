@@ -18,12 +18,13 @@ public class Gui {
     ---------------------------------- Fields ----------------------------------
      */
 
+    //<editor-fold desc="Fields">
     private GUI gui;
     private GUI_Field[] fields;
     private ArrayList<GUI_Player> players;
     private Color backgroundColor;
+    //</editor-fold>
 
-    
     /*
     ------------------------------ Constructors --------------------------------
      */
