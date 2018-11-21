@@ -21,6 +21,8 @@ public class Board {
 
         for (int i = 0; i < 24; i++) {
 
+            Field currField =
+
             Field field = new Field(i);
 
             board[i] = field;
