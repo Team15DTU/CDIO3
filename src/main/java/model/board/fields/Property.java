@@ -1,6 +1,7 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.player.Player;
 
 public class Property extends Field {
 
@@ -9,11 +10,7 @@ public class Property extends Field {
     -------------------------- Fields --------------------------
      */
 
-    private int fieldNumber;
-    private String title;
-    private String description;
-    private int cost;
-    private int rent;
+
 
     /*
     ----------------------- Constructor -------------------------
@@ -21,11 +18,7 @@ public class Property extends Field {
 
     public Property (int fieldNumber, String title, String description, int cost, int rent) {
 
-        this.fieldNumber=fieldNumber;
-        this.title=title;
-        this.description=description;
-        this.cost=cost;
-        this.rent=rent;
+        super(fieldNumber, title, description, cost, rent);
 
     }
 
@@ -57,6 +50,10 @@ public class Property extends Field {
     /*
     ---------------------- Public Methods -----------------------
      */
+
+    public void action (Player player) {
+        player.//owns and
+    }
 
 
 

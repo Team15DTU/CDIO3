@@ -1,22 +1,24 @@
 package model.board;
 
-public class Field {
+import model.player.Player;
+
+public abstract class Field {
 
     /*
     -------------------------- Fields --------------------------
      */
 
-        private int fieldNumber;
-        private String title;
-        private String description;
-        private int cost;
-        private int rent;
+        protected int fieldNumber;
+        protected String title;
+        protected String description;
+        protected int cost;
+        protected int rent;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-        public Field (int fieldNumber, String title, String description, int cost, int rent) {
+        protected Field (int fieldNumber, String title, String description, int cost, int rent) {
 
             this.fieldNumber=fieldNumber;
             this.title=title;
@@ -55,6 +57,7 @@ public class Field {
     ---------------------- Public Methods -----------------------
      */
 
+    protected void action (Player player) {}
 
 
     /*
