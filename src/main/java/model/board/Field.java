@@ -33,10 +33,9 @@ public abstract class Field {
     ------------------------ Properties -------------------------
      */
 
-        public int getCardNumber() {return fieldNumber;}
+    public int getCardNumber() {return fieldNumber;}
 
-        public void setCardNumber(int cardNumber) {this.fieldNumber = fieldNumber;}
-
+    public void setCardNumber(int fieldNumber) {this.fieldNumber = fieldNumber;}
 
     public String getTitle() {        return title;    }
 
