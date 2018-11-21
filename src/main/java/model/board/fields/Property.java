@@ -13,6 +13,7 @@ public class Property extends Field {
      */
 
     private int cost;
+    private Color color;
 
 
     /*
@@ -21,8 +22,9 @@ public class Property extends Field {
 
     public Property (int fieldNumber, String title, String description, Color color, int cost) {
 
-        super(fieldNumber, title, description, color);
+        super(fieldNumber, title, description);
         this.cost=cost;
+        this.color=color;
 
     }
 
@@ -45,6 +47,11 @@ public class Property extends Field {
     public int getCost() {        return cost;    }
 
     public void setCost(int cost) {        this.cost = cost;    }
+
+    public Color getColor() {        return color;    }
+
+    public void setColor(Color color) {        this.color = color;    }
+
 
     /*
     ---------------------- Public Methods -----------------------

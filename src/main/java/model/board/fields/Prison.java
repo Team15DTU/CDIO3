@@ -5,19 +5,19 @@ import model.player.Player;
 
 import java.awt.*;
 
-public class Chancefield extends Field {
-
+public class Prison extends Field {
 
 
     /*
     -------------------------- Fields --------------------------
      */
 
+
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public Chancefield (int fieldNumber, String title, String description) {
+    public Prison(int fieldNumber, String title, String description) {
 
         super(fieldNumber, title, description);
 
@@ -45,7 +45,8 @@ public class Chancefield extends Field {
 
     public void action (Player player) {
 
-        //implement draw card action to player.
+        System.out.println(description);
+        player.setPosition(7);
 
     }
 
@@ -54,7 +55,6 @@ public class Chancefield extends Field {
     /*
     ---------------------- Support Methods ----------------------
      */
-
 
 
 

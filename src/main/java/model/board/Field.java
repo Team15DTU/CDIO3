@@ -13,19 +13,17 @@ public abstract class Field {
         protected int fieldNumber;
         protected String title;
         protected String description;
-        protected Color color;
         protected Player owner = null;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-        protected Field (int fieldNumber, String title, String description, Color color) {
+        protected Field (int fieldNumber, String title, String description) {
 
             this.fieldNumber=fieldNumber;
             this.title=title;
             this.description=description;
-            this.color = color;
 
         }
 

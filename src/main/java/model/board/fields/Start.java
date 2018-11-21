@@ -5,8 +5,7 @@ import model.player.Player;
 
 import java.awt.*;
 
-public class Chancefield extends Field {
-
+public class Start extends Field { //start could be an instance of 'visiting'
 
 
     /*
@@ -17,7 +16,7 @@ public class Chancefield extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public Chancefield (int fieldNumber, String title, String description) {
+    public Start(int fieldNumber, String title, String description) {
 
         super(fieldNumber, title, description);
 
@@ -45,7 +44,8 @@ public class Chancefield extends Field {
 
     public void action (Player player) {
 
-        //implement draw card action to player.
+        System.out.println(description);
+        //payment of startline is handled elsewhere.
 
     }
 
@@ -54,7 +54,6 @@ public class Chancefield extends Field {
     /*
     ---------------------- Support Methods ----------------------
      */
-
 
 
 
