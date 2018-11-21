@@ -13,14 +13,14 @@ public class Property extends Field {
      */
 
     private int cost;
-    private Color color;
+    private String color;
 
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public Property (int fieldNumber, String title, String description, Color color, int cost) {
+    public Property (int fieldNumber, String title, String description, String color, int cost) {
 
         super(fieldNumber, title, description);
         this.cost=cost;
@@ -50,7 +50,7 @@ public class Property extends Field {
 
     public Color getColor() {        return color;    }
 
-    public void setColor(Color color) {        this.color = color;    }
+    public void setColor(String color) {        this.color = color;    }
 
 
     /*
