@@ -3,6 +3,7 @@ package view.gui;
 import gui_fields.*;
 import gui_main.GUI;
 import model.board.Field;
+import model.board.fields.Property;
 import model.player.Player;
 
 import java.awt.*;
@@ -218,11 +219,13 @@ public class Gui {
         // Iterate through fields and create GUI_Ownable for each
         for ( int i=0 ; i < fields.length ; i++ ) {
 
-            // Create new GUI_Street
-            GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
-                                                fields[i].getLeje(), Color.BLACK, Color.RED);
+            if( fields[i] instanceof Property ) {
+                // Create new GUI_Street
+                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
+                        Integer.toString(fields[i].getRent()), Color.BLACK, Color.RED);
 
-            newFields[i] = ownable;
+                newFields[i] = ownable;
+            }
         }
 
         // Return the newly created array

@@ -16,9 +16,9 @@ public class Visiting extends Field { //this class is used for visiting prison a
     ----------------------- Constructor -------------------------
      */
 
-    public Visiting(int fieldNumber, String title, String description) {
+    public Visiting(int fieldNumber, String title, String description, int rent) {
 
-        super(fieldNumber, title, description);
+        super(fieldNumber, title, description, rent);
 
     }
 

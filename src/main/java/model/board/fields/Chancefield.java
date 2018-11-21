@@ -17,9 +17,9 @@ public class Chancefield extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public Chancefield (int fieldNumber, String title, String description) {
+    public Chancefield (int fieldNumber, String title, String description, int rent) {
 
-        super(fieldNumber, title, description);
+        super(fieldNumber, title, description, rent);
 
     }
 
