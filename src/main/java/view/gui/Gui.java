@@ -28,7 +28,7 @@ public class Gui {
     /*
     ------------------------------ Constructors --------------------------------
      */
-
+    //<editor-fold desc="Constructors">
     /**
      * This Constructor creates a visual board, with the given fields.
      * @param fields The list of Field's as Field[]
@@ -72,6 +72,7 @@ public class Gui {
             gui.addPlayer(player);
         }
     }
+    //</editor-fold>
     
     /*
     ------------------------------ Properties ----------------------------------
