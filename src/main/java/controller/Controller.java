@@ -54,6 +54,18 @@ public class Controller {
      */
 
     /**
+     * his method prompts the user to input a String into
+     * a textfield, and returns the inputted String.
+     * @param message An informal message to the user.
+     * @return Returns the input as a String
+     */
+    public String getUserString (String message) {
+
+        // Prompt the user for a String and Return
+        return gui.getUserString(message);
+    }
+
+    /**
      * Shows a message to the players
      * @param message The message as a String
      */

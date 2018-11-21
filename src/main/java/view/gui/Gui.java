@@ -82,6 +82,18 @@ public class Gui {
      */
 
     /**
+     * This method prompts the user to input a String into
+     * a textfield, and returns the inputted String.
+     * @param message An informal message to the user.
+     * @return Returns the input as a String
+     */
+    public String getUserString (String message) {
+
+        // Get the String and Return
+        return gui.getUserString(message);
+    }
+
+    /**
      * Shows a message to the players
      * @param message The message to show as String
      */
