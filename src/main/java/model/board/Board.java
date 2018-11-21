@@ -1,4 +1,5 @@
 package model.board;
+import model.board.Field;
 
 public class Board {
 
@@ -7,21 +8,22 @@ public class Board {
     -------------------------- Fields --------------------------
      */
 
-    ArrayList<Chancecard> chanceDeck;
+    Field[] board;
+
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public Deck (int numberOfCardsInDeck) {
+    public Board () {
 
-        chanceDeck = new ArrayList<>();
+        board = new Field[24];
 
-        for (int i = 0; i < numberOfCardsInDeck; i++) {
+        for (int i = 0; i < 24; i++) {
 
-            Chancecard chancecard = new Chancecard(i);
+            Field field = new Field(i);
 
-            chanceDeck.add(chancecard);
+            board[i] = field;
 
         }
     }
