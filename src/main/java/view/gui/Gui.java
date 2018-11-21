@@ -18,16 +18,17 @@ public class Gui {
     ---------------------------------- Fields ----------------------------------
      */
 
+    //<editor-fold desc="Fields">
     private GUI gui;
     private GUI_Field[] fields;
     private ArrayList<GUI_Player> players;
     private Color backgroundColor;
+    //</editor-fold>
 
-    
     /*
     ------------------------------ Constructors --------------------------------
      */
-
+    //<editor-fold desc="Constructors">
     /**
      * This Constructor creates a visual board, with the given fields.
      * @param fields The list of Field's as Field[]
@@ -71,6 +72,7 @@ public class Gui {
             gui.addPlayer(player);
         }
     }
+    //</editor-fold>
     
     /*
     ------------------------------ Properties ----------------------------------
@@ -80,6 +82,29 @@ public class Gui {
     ---------------------------- Public Methods --------------------------------
      */
 
+    /**
+     * This method prompts the user to input a String into
+     * a textfield, and returns the inputted String.
+     * @param message An informal message to the user.
+     * @return Returns the input as a String
+     */
+    public String getUserString (String message) {
+
+        // Get the String and Return
+        return gui.getUserString(message);
+    }
+
+    /**
+     * Shows a message to the players
+     * @param message The message to show as String
+     */
+    public void showMessage (String message) {
+
+        // Show the message in the gui
+        gui.showMessage(message);
+    }
+
+    //<editor-fold desc="Player Methods">
     /**
      * Updates the given player visual balance.
      * @param player The player whos balance will get updated
@@ -137,6 +162,7 @@ public class Gui {
         addGUIPlayer(newPlayer);
         fields[0].setCar(newPlayer, true);
     }
+    //</editor-fold>
     
     /*
     ----------------------------- Support Methods ------------------------------
