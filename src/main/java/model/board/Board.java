@@ -38,9 +38,8 @@ public class Board {
     ---------------------- Public Methods -----------------------
      */
 
-    public void shuffleDeck() {
-
-        Collections.shuffle(chanceDeck);
+    public void createBoard () {
+        Field()
 
     }
 

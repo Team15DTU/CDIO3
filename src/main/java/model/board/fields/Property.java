@@ -1,38 +1,41 @@
-package model.board;
+package model.board.fields;
 
-public class Field {
+import model.board.Field;
+
+public class Property extends Field {
+
 
     /*
     -------------------------- Fields --------------------------
      */
 
-        private int fieldNumber;
-        private String title;
-        private String description;
-        private int cost;
-        private int rent;
+    private int fieldNumber;
+    private String title;
+    private String description;
+    private int cost;
+    private int rent;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-        public Field (int fieldNumber, String title, String description, int cost, int rent) {
+    public Property (int fieldNumber, String title, String description, int cost, int rent) {
 
-            this.fieldNumber=fieldNumber;
-            this.title=title;
-            this.description=description;
-            this.cost=cost;
-            this.rent=rent;
+        this.fieldNumber=fieldNumber;
+        this.title=title;
+        this.description=description;
+        this.cost=cost;
+        this.rent=rent;
 
-        }
+    }
 
     /*
     ------------------------ Properties -------------------------
      */
 
-        public int getCardNumber() {return fieldNumber;}
+    public int getCardNumber() {return fieldNumber;}
 
-        public void setCardNumber(int cardNumber) {this.fieldNumber = fieldNumber;}
+    public void setCardNumber(int cardNumber) {this.fieldNumber = fieldNumber;}
 
 
     public String getTitle() {        return title;    }
@@ -62,5 +65,5 @@ public class Field {
      */
 
 
-}
 
+}
