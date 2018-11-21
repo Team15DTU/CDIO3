@@ -14,6 +14,7 @@ public abstract class Field {
         protected String title;
         protected String description;
         protected Color color;
+        protected Player owner = null;
 
     /*
     ----------------------- Constructor -------------------------
@@ -45,13 +46,9 @@ public abstract class Field {
 
     public void setDescription(String description) {        this.description = description;    }
 
-    public int getCost() {        return cost;    }
+    public Player getOwner() {        return owner;    }
 
-    public void setCost(int cost) {        this.cost = cost;    }
-
-    public int getRent() {        return rent;    }
-
-    public void setRent(int rent) {        this.rent = rent;    }
+    public void setOwner(Player owner) {        this.owner = owner;    }
 
     /*
     ---------------------- Public Methods -----------------------
