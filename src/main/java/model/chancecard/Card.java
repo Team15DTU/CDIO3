@@ -32,6 +32,7 @@ public abstract class Card {
     /*
     ------------------------ Properties -------------------------
      */
+
     //<editor-fold desc="Properties">
     public int getCardNumber()                      { return cardNumber; }
 

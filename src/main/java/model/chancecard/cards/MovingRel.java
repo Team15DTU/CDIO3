@@ -28,9 +28,15 @@ public class MovingRel extends Card {
     /*
     ------------------------ Properties -------------------------
      */
-    
-    
-    
+
+    //<editor-fold desc="Properties">
+
+    public int getMovementRel()                 { return movementRel; }
+
+    public void setMovementRel(int movementRel) { this.movementRel = movementRel; }
+
+    //</editor-fold>
+
     /*
     ---------------------- Public Methods -----------------------
      */

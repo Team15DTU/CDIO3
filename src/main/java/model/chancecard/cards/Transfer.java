@@ -33,7 +33,13 @@ public class Transfer extends Card {
     ------------------------ Properties -------------------------
      */
     
-    
+    //<editor-fold desc="Properties">
+
+    public int getMoneyTransferred()                        { return moneyTransferred; }
+
+    public void setMoneyTransferred(int moneyTransferred)   { this.moneyTransferred = moneyTransferred; }
+
+    //</editor-fold>
     
     /*
     ---------------------- Public Methods -----------------------

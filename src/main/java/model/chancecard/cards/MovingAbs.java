@@ -28,9 +28,15 @@ public class MovingAbs extends Card {
     /*
     ------------------------ Properties -------------------------
      */
-    
-    
-    
+
+    //<editor-fold desc="Properties">
+
+    public int getPositionAbs()                 { return positionAbs; }
+
+    public void setPositionAbs(int positionAbs) { this.positionAbs = positionAbs; }
+
+    //</editor-fold>
+
     /*
     ---------------------- Public Methods -----------------------
      */
