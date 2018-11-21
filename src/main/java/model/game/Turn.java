@@ -43,7 +43,7 @@ public class Turn {
         totalScore = player.getAccount().getBalance();
 
         // Result of your turn is printed out.
-        System.out.println("You rolled" + rollValue);
+        System.out.println("You rolled " + rollValue);
 
         // Check if totalScore is so low that the player lost. If yes, players boolean hasLost is set to true.
         if (totalScore < 0) {
