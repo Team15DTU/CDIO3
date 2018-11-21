@@ -27,18 +27,6 @@ public class Chancefield extends Field {
     ------------------------ Properties -------------------------
      */
 
-    public int getCardNumber() {return fieldNumber;}
-
-    public void setCardNumber(int fieldNumber) {this.fieldNumber = fieldNumber;}
-
-    public String getTitle() {        return title;    }
-
-    public void setTitle(String title) {        this.title = title;    }
-
-    public String getDescription() {        return description;    }
-
-    public void setDescription(String description) {        this.description = description;    }
-
     /*
     ---------------------- Public Methods -----------------------
      */

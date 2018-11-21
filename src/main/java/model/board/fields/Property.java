@@ -12,18 +12,19 @@ public class Property extends Field {
     -------------------------- Fields --------------------------
      */
 
-    private int cost;
-    private String color;
+    private int cost, rent;
+    private Color color;
 
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    public Property (int fieldNumber, String title, String description, String color, int cost) {
+    public Property (int fieldNumber, String title, String description, Color color, int cost, int rent) {
 
         super(fieldNumber, title, description);
         this.cost=cost;
+        this.rent=rent;
         this.color=color;
 
     }
@@ -32,26 +33,19 @@ public class Property extends Field {
     ------------------------ Properties -------------------------
      */
 
-    public int getCardNumber() {return fieldNumber;}
+    //<editor-fold desc="Properties">
+    public int getCost() { return cost; }
 
-    public void setCardNumber(int fieldNumber) {this.fieldNumber = fieldNumber;}
+    public void setCost(int cost) { this.cost = cost; }
 
-    public String getTitle() {        return title;    }
+    public int getRent() { return rent; }
 
-    public void setTitle(String title) {        this.title = title;    }
+    public void setRent(int rent) { this.rent = rent; }
 
-    public String getDescription() {        return description;    }
+    public Color getColor() { return color; }
 
-    public void setDescription(String description) {        this.description = description;    }
-
-    public int getCost() {        return cost;    }
-
-    public void setCost(int cost) {        this.cost = cost;    }
-
-    public String getColor() {        return color;    }
-
-    public void setColor(String color) {        this.color = color;    }
-
+    public void setColor(Color color) { this.color = color; }
+    //</editor-fold>
 
     /*
     ---------------------- Public Methods -----------------------
