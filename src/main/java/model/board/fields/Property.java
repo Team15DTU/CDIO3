@@ -12,7 +12,7 @@ public class Property extends Field {
     -------------------------- Fields --------------------------
      */
 
-    private int cost, rent;
+    private int cost;
     private Color color;
 
 
@@ -20,11 +20,10 @@ public class Property extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public Property (int fieldNumber, String title, String description, Color color, int cost, int rent) {
+    public Property (int fieldNumber, String title, String description, int rent, Color color, int cost) {
 
-        super(fieldNumber, title, description);
+        super(fieldNumber, title, description,rent);
         this.cost=cost;
-        this.rent=rent;
         this.color=color;
 
     }
@@ -37,10 +36,6 @@ public class Property extends Field {
     public int getCost() { return cost; }
 
     public void setCost(int cost) { this.cost = cost; }
-
-    public int getRent() { return rent; }
-
-    public void setRent(int rent) { this.rent = rent; }
 
     public Color getColor() { return color; }
 

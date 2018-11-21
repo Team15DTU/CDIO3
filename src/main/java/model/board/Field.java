@@ -10,7 +10,7 @@ public abstract class Field {
     -------------------------- Fields --------------------------
      */
 
-    protected int fieldNumber;
+    protected int fieldNumber, rent;
     protected String title;
     protected String description;
     protected Player owner;
@@ -19,11 +19,12 @@ public abstract class Field {
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNumber, String title, String description) {
+    protected Field (int fieldNumber, String title, String description, int rent) {
 
         this.fieldNumber=fieldNumber;
         this.title=title;
         this.description=description;
+        this.rent=rent;
 
     }
 
@@ -50,6 +51,10 @@ public abstract class Field {
     public void setOwner(Player owner) {
         this.owner = owner;
     }
+
+    public int getRent() { return rent; }
+
+    public void setRent(int rent) { this.rent = rent; }
 
     //</editor-fold>
 

@@ -17,9 +17,9 @@ public class Prison extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public Prison(int fieldNumber, String title, String description) {
+    public Prison(int fieldNumber, String title, String description, int rent) {
 
-        super(fieldNumber, title, description);
+        super(fieldNumber, title, description, rent);
 
     }
 

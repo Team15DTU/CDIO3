@@ -1,5 +1,6 @@
 package controller;
 
+import model.board.Field;
 import model.player.Player;
 import view.gui.Gui;
 
