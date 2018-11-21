@@ -11,7 +11,7 @@ public class Board {
     -------------------------- Fields --------------------------
      */
 
-    Field[] board;
+    private Field[] board;
 
 
     /*
@@ -37,11 +37,12 @@ public class Board {
 
     public void createBoard () {
 
-        board[0] = new Start(1, "Start", "Du er landet på start og har fået 2 ekstra penge");
-        board[1] = new Property(2, "Burgerbar", "Du er landet på burgerbaren", "Brun",1);
-        board[2] = new Property(3, "Pizzeria", "Du er landet på pizzeriaet", "Brun", 1);
-        board[3] = new Chancefield(4, "Chance felt", "Du har chancen ved et kort");
-        board[4] = new Property(5, "Slikbutik", "Du er landet på slikbutikken", "Lyseblå", 1);
+        board[0] = new Start(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 0);
+        board[1] = new Property(2, "Burgerbar", "Du er landet på burgerbaren", 20, Color.BLUE, 200);
+        board[2] = new Property(3, "Pizzeria", "Du er landet på pizzeriaet", 20, Color.BLUE, 200);
+        board[3] = new Chancefield(4, "Chance felt", "Du har chancen ved et kort", 0);
+        board[4] = new Property(5, "Slikbutik", "Du er landet på slikbutikken", 10, Color.BLUE, 200);
+        /*
         board[5] = new Property(6, "Iskiosk", "Du er landet på iskiosken", "Lyseblå", 1);
         board[6] = new Visiting(7, "På besøg i fængslet", "Du er på besøg i fængslet");
         board[7] = new Property(8, "Museum", "Du er landet på museet", "Pink", 2);
@@ -61,6 +62,7 @@ public class Board {
         board[21] = new Chancefield(22, "Chance felt", "Du har chancen ved et kort");
         board[22] = new Property(23, "Vandland", "Du er landet på vandland", "Mørkeblå", 5);
         board[23] = new Property(24, "Strandpromenade", "Du er landet på strandpromenaden", "Mørkeblå", 5);
+        */
 
     }
 
