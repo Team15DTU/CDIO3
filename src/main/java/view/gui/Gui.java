@@ -3,7 +3,7 @@ package view.gui;
 import gui_fields.*;
 import gui_main.GUI;
 import model.board.Field;
-import model.board.fields.Property;
+import model.board.fields.*;
 import model.player.Player;
 
 import java.awt.*;
@@ -29,6 +29,7 @@ public class Gui {
     /*
     ------------------------------ Constructors --------------------------------
      */
+
     //<editor-fold desc="Constructors">
     /**
      * This Constructor creates a visual board, with the given fields.
@@ -40,7 +41,7 @@ public class Gui {
         this.players = new ArrayList<>();
 
         // Create the GUI_Field array
-        this.fields = createPropertyFields(fields);
+        this.fields = createFields(fields);
 
         // Set Color
         backgroundColor = Color.GRAY;
@@ -62,7 +63,7 @@ public class Gui {
         this.players = createPlayers(players);
 
         // Create the GUI_Field array
-        this.fields = createPropertyFields(fields);
+        this.fields = createFields(fields);
 
         // Set Color
         backgroundColor = Color.GRAY;
@@ -211,20 +212,56 @@ public class Gui {
      * @param fields An Array of type Field
      * @return Return an Array of type GUI_Field
      */
-    private GUI_Field[] createPropertyFields(Field[] fields ) {
+    private GUI_Field[] createFields(Field[] fields ) {
 
         // Create the GUI_Field array
         GUI_Field[] newFields = new GUI_Field[fields.length];
 
-        // Iterate through fields and create GUI_Ownable for each
+        // Iterate through fields and create GUI_Field for each
         for ( int i=0 ; i < fields.length ; i++ ) {
 
-            if( fields[i] instanceof Property ) {
+            if ( fields[i] instanceof Property ) {
+
                 // Create new GUI_Street
                 GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
                         Integer.toString(fields[i].getRent()), Color.BLACK, Color.RED);
 
                 newFields[i] = ownable;
+            }
+
+            else if ( fields[i] instanceof Chancefield ) {
+
+                // Create new Field
+                GUI_Chance chance = new GUI_Chance(fields[i].getTitle(), "subtext", fields[i].getDescription(),
+                                                    Color.orange, Color.RED);
+
+                newFields[i] = chance;
+            }
+
+            else if ( fields[i] instanceof Prison) {
+
+                // Create new Field
+                GUI_Jail jail = new GUI_Jail();
+
+                newFields[i] = jail;
+
+            }
+
+            else if ( fields[i] instanceof Visiting ) {
+
+                // Create new Field
+                GUI_Refuge refuge = new GUI_Refuge();
+
+                newFields[i] = refuge;
+
+            }
+
+            else if ( fields[i] instanceof Start ) {
+
+                // Create new Field
+                GUI_Start start = new GUI_Start();
+
+                newFields[i] = start;
             }
         }
 
