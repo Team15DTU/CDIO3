@@ -256,7 +256,7 @@ public class Gui {
 
             }
 
-            else if ( fields[i] instanceof Start ) {
+            else if ( fields[i] instanceof model.board.fields.Start ) {
 
                 // Create new Field
                 GUI_Start start = new GUI_Start();
