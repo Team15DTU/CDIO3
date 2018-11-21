@@ -21,7 +21,7 @@ public abstract class Card {
     ----------------------- Constructor -------------------------
      */
 
-    protected Card(int cardNumber,String text, String description) {
+    protected Card (int cardNumber,String text, String description) {
 
         this.cardNumber=cardNumber;
         this.text=text;
@@ -33,7 +33,17 @@ public abstract class Card {
     ------------------------ Properties -------------------------
      */
 
+    public int getCardNumber() { return cardNumber; }
 
+    public void setCardNumber(int cardNumber) { this.cardNumber = cardNumber; }
+
+    public String getText() { return text; }
+
+    public void setText(String text) { this.text = text; }
+
+    protected String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     /*
     ---------------------- Public Methods -----------------------
