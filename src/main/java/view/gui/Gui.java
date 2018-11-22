@@ -62,17 +62,16 @@ public class Gui {
         // Create the GUI_Field array
         this.fields = createFields(fields);
 
-        // Create the GUI_Player array
-        this.players = createPlayers(players);
-
         // Set Color
         backgroundColor = Color.GRAY;
 
         // Start GUI
         gui = new GUI(this.fields, backgroundColor);
-        for (GUI_Player player : this.players) {
-            gui.addPlayer(player);
-        }
+
+        // Create the GUI_Player array
+        this.players = createPlayers(players);
+
+        for (GUI_Player player : this.players) { gui.addPlayer(player); }
     }
     //</editor-fold>
 
@@ -318,7 +317,7 @@ public class Gui {
 
             // Add the created player to the player array and set the player on the start field
             guiPlayers.add(newPlayer);
-            // fields[0].setCar(newPlayer, true);
+            fields[0].setCar(newPlayer, true);
         }
 
         // Return the GUI_Player array
