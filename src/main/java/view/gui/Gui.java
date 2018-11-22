@@ -75,14 +75,51 @@ public class Gui {
         }
     }
     //</editor-fold>
-    
+
+
     /*
     ------------------------------ Properties ----------------------------------
      */
-    
+
     /*
     ---------------------------- Public Methods --------------------------------
      */
+
+    /**
+     * Shows a message to the players
+     * @param message The message to show as String
+     */
+    public void showMessage (String message) {
+
+        // Show the message in the gui
+        gui.showMessage(message);
+    }
+
+    //<editor-fold desc="User Input">
+
+    /**
+     * Gets an Integer from the user in a specified range.
+     * @param message The message to inform the user
+     * @param min The minimum possible valid Integer
+     * @param max The maximum possible valid Integer
+     * @return Returns an Integer between min and max
+     */
+    public int getUserInteger (String message, int min, int max) {
+
+        // Get the Integer and Return
+        return gui.getUserInteger(message, min, max);
+    }
+
+    /**
+     * Getting an Integer from the user, and displays a message.
+     * @param message The message to inform the user
+     * @return Returns the inputted Integer
+     */
+    public int getUserInteger (String message) {
+
+        // Get the Integer and Return
+        return gui.getUserInteger(message);
+    }
 
     /**
      * This method prompts the user to input a String into
@@ -96,15 +133,7 @@ public class Gui {
         return gui.getUserString(message);
     }
 
-    /**
-     * Shows a message to the players
-     * @param message The message to show as String
-     */
-    public void showMessage (String message) {
-
-        // Show the message in the gui
-        gui.showMessage(message);
-    }
+    //</editor-fold>
 
     //<editor-fold desc="Player Methods">
     /**
