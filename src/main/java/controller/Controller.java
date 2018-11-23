@@ -56,6 +56,54 @@ public class Controller {
      */
 
     /**
+     * Shows a message to the players
+     * @param message The message as a String
+     */
+    public void showMessage (String message) {
+
+        // Show the message
+        gui.showMessage(message);
+    }
+
+    /**
+     * This method displays a Die on the board, with the given
+     * facevalue.
+     * @param faceValue The value to face up on the Die
+     */
+    public void setDie (int faceValue) {
+
+        // Display the Die on the board
+        gui.setDie(faceValue);
+    }
+
+    //<editor-fold desc="User Input">
+    /**
+     * This method prompts the user to input an Integer
+     * in range min - max, and prints the message
+     * @param message The message to inform the user
+     * @param min The minimum allowable int
+     * @param max the maximum allowable int
+     * @return Return the input as an int
+     */
+    public int getUserInteger (String message, int min, int max) {
+
+        // Get the user integer in range min - max
+        return gui.getUserInteger(message, min, max);
+    }
+
+    /**
+     * This method is prompting the user to input a
+     * String, and prints a given message.
+     * @param message The message to inform the user
+     * @return Return the input as an int
+     */
+    public int getUserInteger (String message) {
+
+        // Get the user int
+        return gui.getUserInteger(message);
+    }
+
+    /**
      * his method prompts the user to input a String into
      * a textfield, and returns the inputted String.
      * @param message An informal message to the user.
@@ -66,16 +114,7 @@ public class Controller {
         // Prompt the user for a String and Return
         return gui.getUserString(message);
     }
-
-    /**
-     * Shows a message to the players
-     * @param message The message as a String
-     */
-    public void showMessage (String message) {
-
-        // Show the message
-        gui.showMessage(message);
-    }
+    //</editor-fold>
 
     //<editor-fold desc="Player methods">
     /**
@@ -93,12 +132,16 @@ public class Controller {
      * This method moves the given player to the Field with the
      * corresponding index.
      * @param player The Player object
-     * @param theFieldIndex The Index of the Field
+     * @param rollValue The value of the dice
      */
-    public void movePlayer ( Player player, int theFieldIndex ) {
+    public void movePlayer ( Player player, int rollValue ) {
+
+        // Update the players position
+        player.updatePosition(rollValue);
 
         // Move the Player in the gui
-        gui.movePlayer ( player, theFieldIndex );
+        gui.movePlayer ( player, player.getPosition() );
+
     }
 
     /**

@@ -59,9 +59,6 @@ public class Gui {
      */
     public Gui ( ArrayList<Player> players, Field[] fields ) {
 
-        // Create the GUI_Player array
-        this.players = createPlayers(players);
-
         // Create the GUI_Field array
         this.fields = createFields(fields);
 
@@ -70,19 +67,69 @@ public class Gui {
 
         // Start GUI
         gui = new GUI(this.fields, backgroundColor);
-        for (GUI_Player player : this.players) {
-            gui.addPlayer(player);
-        }
+
+        // Create the GUI_Player array
+        this.players = createPlayers(players);
+
+        for (GUI_Player player : this.players) { gui.addPlayer(player); }
     }
     //</editor-fold>
-    
+
+
     /*
     ------------------------------ Properties ----------------------------------
      */
-    
+
     /*
     ---------------------------- Public Methods --------------------------------
      */
+
+    /**
+     * Shows a message to the players
+     * @param message The message to show as String
+     */
+    public void showMessage (String message) {
+
+        // Show the message in the gui
+        gui.showMessage(message);
+    }
+
+    /**
+     * This method sets a Die on the board with the
+     * given facevalue.
+     * @param faceValue The value of the face on the Die
+     */
+    public void setDie (int faceValue) {
+
+        // Set the dice on the board
+        gui.setDie(faceValue);
+    }
+
+    //<editor-fold desc="User Input">
+
+    /**
+     * Gets an Integer from the user in a specified range.
+     * @param message The message to inform the user
+     * @param min The minimum possible valid Integer
+     * @param max The maximum possible valid Integer
+     * @return Returns an Integer between min and max
+     */
+    public int getUserInteger (String message, int min, int max) {
+
+        // Get the Integer and Return
+        return gui.getUserInteger(message, min, max);
+    }
+
+    /**
+     * Getting an Integer from the user, and displays a message.
+     * @param message The message to inform the user
+     * @return Returns the inputted Integer
+     */
+    public int getUserInteger (String message) {
+
+        // Get the Integer and Return
+        return gui.getUserInteger(message);
+    }
 
     /**
      * This method prompts the user to input a String into
@@ -96,15 +143,7 @@ public class Gui {
         return gui.getUserString(message);
     }
 
-    /**
-     * Shows a message to the players
-     * @param message The message to show as String
-     */
-    public void showMessage (String message) {
-
-        // Show the message in the gui
-        gui.showMessage(message);
-    }
+    //</editor-fold>
 
     //<editor-fold desc="Player Methods">
     /**
@@ -131,6 +170,11 @@ public class Gui {
 
         // Find the player in the GUI_Player list
         GUI_Player playerToMove = findPlayer(player);
+
+        // First remove the player from its current field
+        for ( GUI_Field field : fields ) {
+            field.setCar(playerToMove, false);
+        }
 
         // Move the player on the board
         fields[theFieldIndex].setCar (playerToMove, true);
@@ -162,7 +206,7 @@ public class Gui {
 
         // Add the player to the gui and set them on the start field
         addGUIPlayer(newPlayer);
-        fields[0].setCar(newPlayer, true);
+        fields[player.getPosition()].setCar(newPlayer, true);
     }
     //</editor-fold>
     
@@ -259,7 +303,8 @@ public class Gui {
             else if ( fields[i] instanceof model.board.fields.Start ) {
 
                 // Create new Field
-                GUI_Start start = new GUI_Start();
+                GUI_Start start = new GUI_Start(fields[i].getTitle(), "Subtext", fields[i].getDescription(),
+                                                Color.GREEN, Color.RED);
 
                 newFields[i] = start;
             }
@@ -288,7 +333,7 @@ public class Gui {
 
             // Add the created player to the player array and set the player on the start field
             guiPlayers.add(newPlayer);
-            fields[0].setCar(newPlayer, true);
+            fields[players.get(i).getPosition()].setCar(newPlayer, true);
         }
 
         // Return the GUI_Player array
