@@ -331,7 +331,7 @@ public class Gui {
 
             // Add the created player to the player array and set the player on the start field
             guiPlayers.add(newPlayer);
-            fields[0].setCar(newPlayer, true);
+            fields[players.get(i).getPosition()].setCar(newPlayer, true);
         }
 
         // Return the GUI_Player array
