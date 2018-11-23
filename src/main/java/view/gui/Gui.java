@@ -172,7 +172,9 @@ public class Gui {
         GUI_Player playerToMove = findPlayer(player);
 
         // First remove the player from its current field
-        fields[player.getPosition()].setCar(playerToMove, false);
+        for ( GUI_Field field : fields ) {
+            field.setCar(playerToMove, false);
+        }
 
         // Move the player on the board
         fields[theFieldIndex].setCar (playerToMove, true);
