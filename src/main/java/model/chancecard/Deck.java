@@ -46,11 +46,11 @@ public class Deck {
 
         for (int i =0; i<numberOfSetsInDeck; i++) {
 
-            addMovingAbs(1,"Lyngbyvejen", "Ryk til Lyngbyvejen", 12);
-            addMovingAbs(2, "Slikbutikken", "Ryk direkte til Slikbutikken", 6);
-            addMovingRel(3, "Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", -2);
-            addMovingRel(4,"Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
-            addTransfer(5, "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
+            addMovingAbs("Lyngbyvejen", "Ryk til Lyngbyvejen", 12);
+            addMovingAbs("Slikbutikken", "Ryk direkte til Slikbutikken", 6);
+            addMovingRel("Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", -2);
+            addMovingRel("Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
+            addTransfer ( "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
 
         }
 
@@ -76,18 +76,18 @@ public class Deck {
     ---------------------- Support Methods ----------------------
      */
 
-    private void addMovingAbs (int cardNumber, String text, String description, int positionAbs) {
-        chanceDeck.add(new MovingAbs(cardNumber,text,description,positionAbs));
+    private void addMovingAbs ( String text, String description, int positionAbs) {
+        chanceDeck.add(new MovingAbs(text,description,positionAbs));
 
     }
 
-    private void addMovingRel (int cardNumber, String text, String description, int movementRel) {
+    private void addMovingRel (String text, String description, int movementRel) {
         MovingRel movingRel;
-        chanceDeck.add(movingRel = new MovingRel(cardNumber,text,description,movementRel));
+        chanceDeck.add(movingRel = new MovingRel(text,description,movementRel));
     }
 
-    private void addTransfer(int cardNumber, String text, String description, int money) {
-        chanceDeck.add( new Transfer(cardNumber, text, description, money));
+    private void addTransfer(String text, String description, int money) {
+        chanceDeck.add( new Transfer(text, description, money));
     }
 
 }
