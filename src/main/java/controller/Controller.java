@@ -65,6 +65,7 @@ public class Controller {
         gui.showMessage(message);
     }
 
+    //<editor-fold desc="User Input">
     /**
      * This method prompts the user to input an Integer
      * in range min - max, and prints the message
@@ -102,6 +103,7 @@ public class Controller {
         // Prompt the user for a String and Return
         return gui.getUserString(message);
     }
+    //</editor-fold>
 
     //<editor-fold desc="Player methods">
     /**
