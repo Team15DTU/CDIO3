@@ -1,9 +1,12 @@
 package model.game;
 
+import controller.Controller;
 import model.board.Board;
 import model.chancecard.Deck;
 import model.player.Player;
 import model.die.Cup;
+import model.player.token.Token;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,15 +38,12 @@ public class Game {
 
     public void launch() {
 
-        System.out.println("Welcome to the game of Matador Junior");
+        Board playingboard = new Board();
+        Controller controller = new Controller(playingboard.getBoard());
 
-        System.out.println("The game can be played by 2 - 4 players. Please enter number of players: ");
 
-        int noOfPlayers = scanner.nextInt();
-        while (noOfPlayers < 2 || noOfPlayers > 4) {
-            System.out.println("The game can be played by 2 - 4 players. Please enter number of players: ");
-            noOfPlayers = scanner.nextInt();
-        }
+
+        int noOfPlayers = controller.getUserInteger("The game can be played by 2 - 4 players. Please enter number of players", 2, 4);
 
         // this ArrayList contains tokens but they may be changed to obejcts Token instead of Strings
 
@@ -56,26 +56,25 @@ public class Game {
         //For numbers of players enter name, choose a token, pass these info to new instance of Player in ArrayList
 
         for (int i = 0; i < noOfPlayers; i++) {
-            System.out.println("Enter name of player " + (i+1));
-            String name = scanner.next();
-            System.out.println("Now choose a token among ");
-            tokens.forEach((a) -> System.out.println(a));
-            System.out.println("Press the number corresponding to your desired token ");
-            while (true) {
-                tokenNo = (scanner.nextInt() - 1);
-                if (tokenNo > (-1) && tokenNo < tokens.size()){break;}
+            String name = controller.getUserString("Enter name of player " + Integer.toString(i+1));
+            int j = 1;controller.showMessage("Now choose a token among ");
+            for (String t : tokens) {
+                controller.showMessage(Integer.toString(j));
+                controller.showMessage(t);
+                j++;
             }
+            tokenNo = controller.getUserInteger("Press the number corresponding to your desired token ", 0, tokens.size());
+            System.out.println("Press the number corresponding to your desired token ");
             String token = tokens.get(tokenNo);
             Player p = new Player(name, token);
             players.add(p);
             tokens.remove(tokenNo);
         }
 
-        System.out.println("welcome to the game ");
+        controller.showMessage("welcome to the game ");
 
         model.die.Cup cup = new model.die.Cup();
         Deck chancedeck = new Deck(10);
-        Board playingboard = new Board();
 
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
@@ -87,7 +86,7 @@ public class Game {
         while (!someoneLost) {
             k = i % noOfPlayers;
             Player currPlayer = players.get(k);
-            GameTurn.turn(currPlayer, cup);
+            GameTurn.turn(currPlayer, cup, controller);
             i++;
         }
 
@@ -104,8 +103,7 @@ public class Game {
             i++;
         }
 
-        System.out.println("The winner is "+winner+" with an amount of "+amount);
-
+        controller.showMessage("The winner is "+winner+" with an amount of "+amount);
     }
 
         public static int getSTARTPOINT () {

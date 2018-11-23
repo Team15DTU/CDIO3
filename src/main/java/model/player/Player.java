@@ -26,11 +26,11 @@ public class Player {
         account = new Account();
     }
   
-  public Player ( String name) {
+    public Player ( String name) {
         // Initialize
         this.name = name;  
         account = new Account();
-        position = 1;
+        position = 0;
         hasLost = false;
 
     }

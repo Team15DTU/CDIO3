@@ -1,5 +1,7 @@
 package model.game;
 
+import controller.Controller;
+
 import java.util.Scanner;
 
 public class Turn {
@@ -19,10 +21,11 @@ public class Turn {
     --------- Public Methods ----------
     */
 
-    public void turn(model.player.Player player, model.die.Cup cup) {
+    public void turn(model.player.Player player, model.die.Cup cup, Controller controller) {
         // Initialize object variable
 
         // Press to roll message printed and waiting for input
+
         System.out.println("Press to roll for "+ player.getName());
         input = scanner.nextLine();
 

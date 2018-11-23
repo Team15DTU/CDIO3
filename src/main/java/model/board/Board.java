@@ -20,7 +20,7 @@ public class Board {
 
     public Board () {
 
-        board = new Field[24];
+        board = new Field[5];
         createBoard();
 
     }
@@ -69,7 +69,9 @@ public class Board {
     /*
     ---------------------- Support Methods ----------------------
      */
-
+    public Field[] getBoard() {
+        return board;
+    }
 
 
 }
