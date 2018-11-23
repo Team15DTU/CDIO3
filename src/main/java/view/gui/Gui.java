@@ -268,7 +268,8 @@ public class Gui {
             if ( fields[i] instanceof Property ) {
 
                 // Create new GUI_Street
-                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), , fields[i].getDescription(),
+                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "Beløb: " + fields[i].getCost(),
+                        fields[i].getDescription(),
                         Integer.toString(fields[i].getCost()), fields[i].getColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
@@ -320,6 +321,7 @@ public class Gui {
                 GUI_Start start = new GUI_Start(fields[i].getTitle(), "Subtext", fields[i].getDescription(),
                                                 fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = start;
             }
         }
