@@ -58,6 +58,10 @@ public abstract class Field {
         this.owner = owner;
     }
 
+    public int getCost() { return cost; }
+
+    public void setCost(int cost) { this.cost = cost; }
+
     //</editor-fold>
 
     /*
