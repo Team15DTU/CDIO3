@@ -12,7 +12,6 @@ public class Property extends Field {
     -------------------------- Fields --------------------------
      */
 
-    private int cost;
     private Color color;
 
 
@@ -20,11 +19,9 @@ public class Property extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public Property (int fieldNumber, String title, String description, int rent, Color color, int cost) {
+    public Property (int fieldNumber, String title, String description, int rent, Color color) {
 
-        super(fieldNumber, title, description,rent);
-        this.cost=cost;
-        this.color=color;
+        super(fieldNumber, title, description,rent, color);
 
     }
 

@@ -24,6 +24,7 @@ public class Gui {
     private GUI_Field[] fields;
     private ArrayList<GUI_Player> players;
     private Color backgroundColor;
+    private Color textColor = Color.BLACK;
     //</editor-fold>
 
     /*
@@ -268,7 +269,7 @@ public class Gui {
 
                 // Create new GUI_Street
                 GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
-                        Integer.toString(fields[i].getRent()), Color.BLACK, Color.RED);
+                        Integer.toString(fields[i].getRent()), fields[i].getColor(), textColor);
 
                 newFields[i] = ownable;
             }
@@ -277,12 +278,12 @@ public class Gui {
 
                 // Create new Field
                 GUI_Chance chance = new GUI_Chance(fields[i].getTitle(), "subtext", fields[i].getDescription(),
-                                                    Color.orange, Color.RED);
+                                                    fields[i].getColor(), textColor);
 
                 newFields[i] = chance;
             }
 
-            else if ( fields[i] instanceof Prison) {
+            else if ( fields[i] instanceof Prison ) {
 
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();
@@ -304,7 +305,7 @@ public class Gui {
 
                 // Create new Field
                 GUI_Start start = new GUI_Start(fields[i].getTitle(), "Subtext", fields[i].getDescription(),
-                                                Color.GREEN, Color.RED);
+                                                fields[i].getColor(), textColor);
 
                 newFields[i] = start;
             }
