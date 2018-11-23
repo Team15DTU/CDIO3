@@ -297,6 +297,12 @@ public class Gui {
                 // Create new Field
                 GUI_Refuge refuge = new GUI_Refuge();
 
+                // Change the text of the field
+                refuge.setTitle(fields[i].getTitle());
+                refuge.setDescription(fields[i].getDescription());
+                refuge.setSubText("Gratis");
+
+                // Put the GUI_Field into the newFields array
                 newFields[i] = refuge;
 
             }
