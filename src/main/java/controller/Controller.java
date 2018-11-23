@@ -56,6 +56,40 @@ public class Controller {
      */
 
     /**
+     * Shows a message to the players
+     * @param message The message as a String
+     */
+    public void showMessage (String message) {
+
+        // Show the message
+        gui.showMessage(message);
+    }
+
+    /**
+     *
+     * @param message
+     * @param min
+     * @param max
+     * @return
+     */
+    public int getUserInteger (String message, int min, int max) {
+
+        // Get the user integer in range min - max
+        return gui.getUserInteger(message, min, max);
+    }
+
+    /**
+     *
+     * @param message
+     * @return
+     */
+    public int getUserInteger (String message) {
+
+        // Get the user int
+        return gui.getUserInteger(message);
+    }
+
+    /**
      * his method prompts the user to input a String into
      * a textfield, and returns the inputted String.
      * @param message An informal message to the user.
@@ -65,16 +99,6 @@ public class Controller {
 
         // Prompt the user for a String and Return
         return gui.getUserString(message);
-    }
-
-    /**
-     * Shows a message to the players
-     * @param message The message as a String
-     */
-    public void showMessage (String message) {
-
-        // Show the message
-        gui.showMessage(message);
     }
 
     //<editor-fold desc="Player methods">
