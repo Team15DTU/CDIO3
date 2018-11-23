@@ -268,18 +268,20 @@ public class Gui {
             if ( fields[i] instanceof Property ) {
 
                 // Create new GUI_Street
-                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
+                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), , fields[i].getDescription(),
                         Integer.toString(fields[i].getCost()), fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = ownable;
             }
 
             else if ( fields[i] instanceof Chancefield ) {
 
                 // Create new Field
-                GUI_Chance chance = new GUI_Chance(fields[i].getTitle(), "subtext", fields[i].getDescription(),
+                GUI_Chance chance = new GUI_Chance(fields[i].getTitle(), "Chance Felt", fields[i].getDescription(),
                                                     fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = chance;
             }
 
@@ -288,6 +290,11 @@ public class Gui {
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();
 
+                // Change the text of the field
+                jail.setSubText("Fængsel");
+                jail.setDescription(fields[i].getDescription());
+
+                // Put the GUI_Field into the newFields array
                 newFields[i] = jail;
 
             }
