@@ -282,7 +282,7 @@ public class Gui {
                 newFields[i] = chance;
             }
 
-            else if ( fields[i] instanceof Prison) {
+            else if ( fields[i] instanceof Prison ) {
 
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();

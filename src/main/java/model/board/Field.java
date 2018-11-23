@@ -14,17 +14,19 @@ public abstract class Field {
     protected String title;
     protected String description;
     protected Player owner;
+    protected Color color;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    protected Field (int fieldNumber, String title, String description, int rent) {
+    protected Field(int fieldNumber, String title, String description, int rent, Color color) {
 
         this.fieldNumber=fieldNumber;
         this.title=title;
         this.description=description;
         this.rent=rent;
+        this.color=color;
 
     }
 
@@ -33,6 +35,10 @@ public abstract class Field {
      */
 
     //<editor-fold desc="Properties">
+
+    public Color getColor() { return color; }
+
+    public void setColor(Color color) { this.color = color; }
 
     public int getFieldNumber() { return fieldNumber; }
 
