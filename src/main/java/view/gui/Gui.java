@@ -171,6 +171,9 @@ public class Gui {
         // Find the player in the GUI_Player list
         GUI_Player playerToMove = findPlayer(player);
 
+        // First remove the player from its current field
+        fields[player.getPosition()].setCar(playerToMove, false);
+
         // Move the player on the board
         fields[theFieldIndex].setCar (playerToMove, true);
     }
@@ -201,7 +204,7 @@ public class Gui {
 
         // Add the player to the gui and set them on the start field
         addGUIPlayer(newPlayer);
-        fields[0].setCar(newPlayer, true);
+        fields[player.getPosition()].setCar(newPlayer, true);
     }
     //</editor-fold>
     
