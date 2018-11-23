@@ -20,8 +20,8 @@ public class MovingRel extends Card {
     ----------------------- Constructor -------------------------
      */
 
-    public MovingRel(int cardNumber, String text, String description, int movementRel) {
-        super(cardNumber, text, description);
+    public MovingRel(String text, String description, int movementRel) {
+        super(text, description);
         this.movementRel=movementRel;
     }
     
