@@ -68,7 +68,9 @@ public abstract class Field {
     ---------------------- Public Methods -----------------------
      */
 
-    protected abstract void action (Player player);
+    public void action (Player player) {
+
+    }
 
 
     /*
