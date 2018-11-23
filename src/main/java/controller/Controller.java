@@ -66,11 +66,12 @@ public class Controller {
     }
 
     /**
-     *
-     * @param message
-     * @param min
-     * @param max
-     * @return
+     * This method prompts the user to input an Integer
+     * in range min - max, and prints the message
+     * @param message The message to inform the user
+     * @param min The minimum allowable int
+     * @param max the maximum allowable int
+     * @return Return the input as an int
      */
     public int getUserInteger (String message, int min, int max) {
 
@@ -79,9 +80,10 @@ public class Controller {
     }
 
     /**
-     *
-     * @param message
-     * @return
+     * This method is prompting the user to input a
+     * String, and prints a given message.
+     * @param message The message to inform the user
+     * @return Return the input as an int
      */
     public int getUserInteger (String message) {
 
