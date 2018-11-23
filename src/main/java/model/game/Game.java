@@ -24,7 +24,8 @@ public class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-    final static int STARTPOINT = 12000;
+    static int STARTPOINT = 20;
+    final static int STARTINGPOSITION=0;
     boolean someoneLost = false;
     int tokenNo;
 
@@ -41,45 +42,46 @@ public class Game {
         Board playingboard = new Board();
         Controller controller = new Controller(playingboard.getBoard());
 
+        int noOfPlayers = controller.getUserInteger("Spillet kan spilles af 2 - 4 spillere. Hvor mange skal spille med?", 2, 4);
 
-
-        int noOfPlayers = controller.getUserInteger("The game can be played by 2 - 4 players. Please enter number of players", 2, 4);
+        // Set Starting points from number of players playing the game.
+        setStartPointsFromNoOfPlayer(noOfPlayers);
 
         // this ArrayList contains tokens but they may be changed to obejcts Token instead of Strings
 
 
         ArrayList<String> tokens = new ArrayList<>();
-        tokens.add("Car"); tokens.add("Dog"); tokens.add("Cat"); tokens.add("Boat");
+        tokens.add("Bil"); tokens.add("Racerbil"); tokens.add("UFO"); tokens.add("Traktor");
 
         ArrayList<Player> players = new ArrayList<>();
 
         //For numbers of players enter name, choose a token, pass these info to new instance of Player in ArrayList
 
         for (int i = 0; i < noOfPlayers; i++) {
-            String name = controller.getUserString("Enter name of player " + Integer.toString(i+1));
+            String name = controller.getUserString("Indtast navn på spiller " + Integer.toString(i+1));
             StringBuilder str = new StringBuilder();
-            str.append("Now choose a token among \n");
+            str.append("Vælg en spillerbrik: \n");
             int j = 1;
             for (String t : tokens) {
                 str.append(Integer.toString(j)+" - ");
                 str.append(t+"\n");
                 j++;
             }
-            str.append("Press the number corresponding to your desired token ");
+            str.append("Indtast tallet der passer til den ønskede spillerbrik.");
             String string = str.toString();
             tokenNo = controller.getUserInteger(string, 0, tokens.size());
-            System.out.println("Press the number corresponding to your desired token ");
+            tokenNo=tokenNo-1;
             String token = tokens.get(tokenNo);
-            Player p = new Player(name, token);
+            Player p = new Player(name, token, STARTPOINT, STARTINGPOSITION);
             players.add(p);
-            controller.showMessage("You chose "+tokens.get(tokenNo));
+            controller.showMessage("Du valgt: "+tokens.get(tokenNo));
             tokens.remove(tokenNo);
         }
 
-        controller.showMessage("welcome to the game ");
+        controller.showMessage("Velkommen til Monopoly Junior");
 
-        model.die.Cup cup = new model.die.Cup();
-        Deck chancedeck = new Deck(10);
+        Cup cup = new Cup(1,6);
+        Deck chancedeck = new Deck(1);
 
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
@@ -87,11 +89,14 @@ public class Game {
         //As long as no one has lost loop through players list and do a turn
 
         int i = 0;
-        int k = 0;
+        int k;
         while (!someoneLost) {
             k = i % noOfPlayers;
             Player currPlayer = players.get(k);
             GameTurn.turn(currPlayer, cup, controller);
+            if (currPlayer.isHasLost()){
+                someoneLost=true;
+            }
             i++;
         }
 
@@ -116,4 +121,22 @@ public class Game {
         }
 
 
+        /*
+        ---------------- Support Method --------------------
+         */
+
+        public void setStartPointsFromNoOfPlayer (int totalNoOfPlayer) {
+            switch (totalNoOfPlayer) {
+                case 2:
+                    STARTPOINT = 20;
+                    break;
+                case 3:
+                    STARTPOINT = 18;
+                    break;
+                case 4:
+                    STARTPOINT = 16;
+                default:
+                    break;
+            }
+        }
 }

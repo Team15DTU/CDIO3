@@ -45,7 +45,6 @@ public class Player {
         this.name = name;
         account = new Account(initialBalance);
         position = 1;
-        hasLost = false;
     }
 
     public Player ( String name, int initialBalance, int startingPosition ) {
@@ -53,8 +52,17 @@ public class Player {
         this.name = name;
         account = new Account(initialBalance);
         position=startingPosition;
-        hasLost = false;
     }
+
+    public Player (String name, String token, int initialBalance, int startingPosition){
+        //Initialize
+        this.name=name;
+        this.token=token;
+        account = new Account(initialBalance);
+        position=startingPosition;
+
+    }
+
 
     /*
     -------- Public Methods ----------
