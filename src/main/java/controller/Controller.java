@@ -65,6 +65,17 @@ public class Controller {
         gui.showMessage(message);
     }
 
+    /**
+     * This method displays a Die on the board, with the given
+     * facevalue.
+     * @param faceValue The value to face up on the Die
+     */
+    public void setDie (int faceValue) {
+
+        // Display the Die on the board
+        gui.setDie(faceValue);
+    }
+
     //<editor-fold desc="User Input">
     /**
      * This method prompts the user to input an Integer
