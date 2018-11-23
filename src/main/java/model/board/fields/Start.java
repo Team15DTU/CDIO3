@@ -16,9 +16,9 @@ public class Start extends Field { //start could be an instance of 'visiting'
     ----------------------- Constructor -------------------------
      */
 
-    public Start(int fieldNumber, String title, String description, int rent) {
+    public Start(int fieldNumber, String title, String description, int rent, Color color) {
 
-        super(fieldNumber, title, description, rent);
+        super(fieldNumber, title, description, rent, color);
 
     }
 

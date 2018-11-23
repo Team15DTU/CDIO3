@@ -56,6 +56,67 @@ public class Controller {
      */
 
     /**
+     * Shows a message to the players
+     * @param message The message as a String
+     */
+    public void showMessage (String message) {
+
+        // Show the message
+        gui.showMessage(message);
+    }
+
+    /**
+     * This method displays a Die on the board, with the given
+     * facevalue.
+     * @param faceValue The value to face up on the Die
+     */
+    public void setDie (int faceValue) {
+
+        // Display the Die on the board
+        gui.setDie(faceValue);
+    }
+
+    //<editor-fold desc="User Input">
+
+    /**
+     * Shows a message and a dropdown menu, and return the
+     * choosen String
+     * @param message The information to the user
+     * @param options The available options as Strings
+     * @return Returns the choosen String as String
+     */
+    public String getUserChoice (String message, String ... options) {
+
+        // Return the String
+        return gui.getUserChoice(message, options);
+    }
+    /**
+     * This method prompts the user to input an Integer
+     * in range min - max, and prints the message
+     * @param message The message to inform the user
+     * @param min The minimum allowable int
+     * @param max the maximum allowable int
+     * @return Return the input as an int
+     */
+    public int getUserInteger (String message, int min, int max) {
+
+        // Get the user integer in range min - max
+        return gui.getUserInteger(message, min, max);
+    }
+
+    /**
+     * This method is prompting the user to input a
+     * String, and prints a given message.
+     * @param message The message to inform the user
+     * @return Return the input as an int
+     */
+    public int getUserInteger (String message) {
+
+        // Get the user int
+        return gui.getUserInteger(message);
+    }
+
+    /**
      * his method prompts the user to input a String into
      * a textfield, and returns the inputted String.
      * @param message An informal message to the user.
@@ -66,16 +127,7 @@ public class Controller {
         // Prompt the user for a String and Return
         return gui.getUserString(message);
     }
-
-    /**
-     * Shows a message to the players
-     * @param message The message as a String
-     */
-    public void showMessage (String message) {
-
-        // Show the message
-        gui.showMessage(message);
-    }
+    //</editor-fold>
 
     //<editor-fold desc="Player methods">
     /**
@@ -93,12 +145,16 @@ public class Controller {
      * This method moves the given player to the Field with the
      * corresponding index.
      * @param player The Player object
-     * @param theFieldIndex The Index of the Field
+     * @param rollValue The value of the dice
      */
-    public void movePlayer ( Player player, int theFieldIndex ) {
+    public void movePlayer ( Player player, int rollValue ) {
+
+        // Update the players position
+        player.updatePosition(rollValue);
 
         // Move the Player in the gui
-        gui.movePlayer ( player, theFieldIndex );
+        gui.movePlayer ( player, player.getPosition() );
+
     }
 
     /**
@@ -120,6 +176,22 @@ public class Controller {
         // Add the player to the gui
         gui.addPlayer(player);
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Field Methods">
+
+    /**
+     * This method changes the owner of the field and
+     * displays it.
+     * @param player The Player which shall own the field
+     * @param field The field to be owned
+     */
+    public void setFieldOwner (Player player, Field field) {
+
+        // Set the new owner of the field
+        gui.setFieldOwner(player, field);
+    }
+
     //</editor-fold>
 
     /*
