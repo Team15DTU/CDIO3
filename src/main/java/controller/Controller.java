@@ -180,7 +180,17 @@ public class Controller {
 
     //<editor-fold desc="Field Methods">
 
+    /**
+     * This method changes the owner of the field and
+     * displays it.
+     * @param player The Player which shall own the field
+     * @param field The field to be owned
+     */
+    public void setFieldOwner (Player player, Field field) {
 
+        // Set the new owner of the field
+        gui.setFieldOwner(player, field);
+    }
 
     //</editor-fold>
 
