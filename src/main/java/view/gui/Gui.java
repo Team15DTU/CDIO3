@@ -269,7 +269,7 @@ public class Gui {
 
                 // Create new GUI_Street
                 GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
-                        Integer.toString(fields[i].getRent()), fields[i].getColor(), textColor);
+                        Integer.toString(fields[i].getCost()), fields[i].getColor(), textColor);
 
                 newFields[i] = ownable;
             }
