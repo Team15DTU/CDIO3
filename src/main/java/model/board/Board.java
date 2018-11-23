@@ -37,8 +37,8 @@ public class Board {
 
     public void createBoard () {
 
-        board[0] = new Start(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 0);
-        board[1] = new Property(2, "Burgerbar", "Du er landet på burgerbaren", 20, Color.BLUE, 200);
+        board[0] = new Start(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 20, Color.GREEN);
+        board[1] = new Property(2, "Burgerbar", "Du er landet på burgerbaren", 20, Color.ORANGE, 5);
         board[2] = new Property(3, "Pizzeria", "Du er landet på pizzeriaet", 20, Color.BLUE, 200);
         board[3] = new Chancefield(4, "Chance felt", "Du har chancen ved et kort", 0);
         board[4] = new Property(5, "Slikbutik", "Du er landet på slikbutikken", 10, Color.BLUE, 200);

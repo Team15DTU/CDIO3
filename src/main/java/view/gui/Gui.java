@@ -24,7 +24,7 @@ public class Gui {
     private GUI_Field[] fields;
     private ArrayList<GUI_Player> players;
     private Color backgroundColor;
-    private Color textColor;
+    private Color textColor = Color.BLACK;
     //</editor-fold>
 
     /*
