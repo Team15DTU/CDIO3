@@ -216,6 +216,23 @@ public class Gui {
         fields[player.getPosition()].setCar(newPlayer, true);
     }
     //</editor-fold>
+
+    //<editor-fold desc="Field Methods"
+
+    /**
+     * This method changes the owner of the given field
+     * to the given Player.
+     * @param player The player which shall own the field
+     * @param theField The field in focus
+     */
+    public void setFieldOwner (Player player, Field theField) {
+
+        // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
+        ((GUI_Street)fields[theField.getFieldNumber()]).setOwnerName(player.getName());
+
+    }
+
+    //</editor-fold>
     
     /*
     ----------------------------- Support Methods ------------------------------

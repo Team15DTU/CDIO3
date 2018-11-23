@@ -178,6 +178,12 @@ public class Controller {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Field Methods">
+
+
+
+    //</editor-fold>
+
     /*
     ----------------------- Support Methods ----------------------
      */
