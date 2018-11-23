@@ -46,11 +46,12 @@ public class Deck {
 
         for (int i =0; i<numberOfSetsInDeck; i++) {
 
-            addMovingAbs("Lyngbyvejen", "Ryk til Lyngbyvejen", 12);
-            addMovingAbs("Slikbutikken", "Ryk direkte til Slikbutikken", 6);
-            addMovingRel("Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", -2);
-            addMovingRel("Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
-            addTransfer ( "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
+            addMovingAbs("Start", "Ryk frem til Start", 0);
+            addMovingRel("Motorvej", "Du har fart på, Ryk 5 felter fren", 5);
+            addMovingRel("Forlomme", "Du får en forlomme i køen", 1);
+            addTransfer("For meget slik", "Du har spist for meget slik. Betal 2 pengesedler til banken", 2);
+            addMovingAbs("Strandpromenaden", "Ryk frem til Strandpromenaden", 23);
+            addTransfer("Lektier", "Du har lavet alle dine lektier. Modtag 2 pengesedler fra Banken", 2);
 
         }
 
