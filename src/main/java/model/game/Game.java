@@ -57,17 +57,22 @@ public class Game {
 
         for (int i = 0; i < noOfPlayers; i++) {
             String name = controller.getUserString("Enter name of player " + Integer.toString(i+1));
-            int j = 1;controller.showMessage("Now choose a token among ");
+            StringBuilder str = new StringBuilder();
+            str.append("Now choose a token among \n");
+            int j = 1;
             for (String t : tokens) {
-                controller.showMessage(Integer.toString(j));
-                controller.showMessage(t);
+                str.append(Integer.toString(j)+" - ");
+                str.append(t+"\n");
                 j++;
             }
-            tokenNo = controller.getUserInteger("Press the number corresponding to your desired token ", 0, tokens.size());
+            str.append("Press the number corresponding to your desired token ");
+            String string = str.toString();
+            tokenNo = controller.getUserInteger(string, 0, tokens.size());
             System.out.println("Press the number corresponding to your desired token ");
             String token = tokens.get(tokenNo);
             Player p = new Player(name, token);
             players.add(p);
+            controller.showMessage("You chose "+tokens.get(tokenNo));
             tokens.remove(tokenNo);
         }
 
