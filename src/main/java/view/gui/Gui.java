@@ -94,6 +94,16 @@ public class Gui {
         gui.showMessage(message);
     }
 
+    /**
+     *
+     * @param faceValue
+     */
+    public void setDie (int faceValue) {
+
+        // Set the dice on the board
+        gui.setDie(faceValue);
+    }
+
     //<editor-fold desc="User Input">
 
     /**
