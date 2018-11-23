@@ -108,6 +108,12 @@ public class Gui {
 
     //<editor-fold desc="User Input">
 
+    public String getUserChoice (String message, String ... options) {
+
+        // Return the String
+        return gui.getUserSelection(message, options);
+    }
+
     /**
      * Gets an Integer from the user in a specified range.
      * @param message The message to inform the user

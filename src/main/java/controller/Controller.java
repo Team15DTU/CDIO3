@@ -77,6 +77,19 @@ public class Controller {
     }
 
     //<editor-fold desc="User Input">
+
+    /**
+     * Shows a message and a dropdown menu, and return the
+     * choosen String
+     * @param message The information to the user
+     * @param options The available options as Strings
+     * @return Returns the choosen String as String
+     */
+    public String getUserChoice (String message, String ... options) {
+
+        // Return the String
+        return gui.getUserChoice(message, options);
+    }
     /**
      * This method prompts the user to input an Integer
      * in range min - max, and prints the message
