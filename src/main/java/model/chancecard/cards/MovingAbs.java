@@ -20,8 +20,8 @@ public class MovingAbs extends Card {
     ----------------------- Constructor -------------------------
      */
 
-    public MovingAbs(int cardNumber, String text, String description, int positionAbs) {
-        super(cardNumber, text, description);
+    public MovingAbs(String text, String description, int positionAbs) {
+        super(text, description);
         this.positionAbs=positionAbs;
     }
     
