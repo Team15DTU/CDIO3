@@ -47,11 +47,15 @@ public class Deck {
         for (int i =0; i<numberOfSetsInDeck; i++) {
 
             addMovingAbs("Start", "Ryk frem til Start", 0);
+            addMovingAbs("Sommerdag", "Det er 30 grader og du trænger til en dukkert. Ryk til Svømmningpoolen",11);
             addMovingRel("Motorvej", "Du har fart på, Ryk 5 felter fren", 5);
+            addMovingRel("Kæden faldt af", "Kæden på din cykel faldt af. Ryk 2 felter tilbage", 2);
             addMovingRel("Forlomme", "Du får en forlomme i køen", 1);
-            addTransfer("For meget slik", "Du har spist for meget slik. Betal 2 pengesedler til banken", 2);
+            addTransfer("For meget slik", "Du har spist for meget slik. Betal 2 pengesedler til banken", -2);
+            addTransfer("Lommepenge", "Du har taget opvasken i en uge. Modtag 1 pengesedler", 1);
             addMovingAbs("Strandpromenaden", "Ryk frem til Strandpromenaden", 23);
             addTransfer("Lektier", "Du har lavet alle dine lektier. Modtag 2 pengesedler fra Banken", 2);
+            addTransfer("Biografen", "Du skal i biografen med dine venner. Betal 1 pengesedler", -1);
 
         }
 
