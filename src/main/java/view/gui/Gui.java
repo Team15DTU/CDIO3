@@ -95,8 +95,9 @@ public class Gui {
     }
 
     /**
-     *
-     * @param faceValue
+     * This method sets a Die on the board with the
+     * given facevalue.
+     * @param faceValue The value of the face on the Die
      */
     public void setDie (int faceValue) {
 
