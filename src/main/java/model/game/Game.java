@@ -5,7 +5,6 @@ import model.board.Board;
 import model.chancecard.Deck;
 import model.player.Player;
 import model.die.Cup;
-import model.player.token.Token;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -82,6 +81,7 @@ public class Game {
 
         Cup cup = new Cup(1,6);
         Deck chancedeck = new Deck(1);
+        chancedeck.shuffleDeck(10);
 
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
@@ -93,7 +93,7 @@ public class Game {
         while (!someoneLost) {
             k = i % noOfPlayers;
             Player currPlayer = players.get(k);
-            GameTurn.turn(currPlayer, cup, controller);
+            GameTurn.turn(currPlayer, cup, controller,chancedeck);
             if (currPlayer.isHasLost()){
                 someoneLost=true;
             }

@@ -1,5 +1,6 @@
 package model.board;
 
+import model.chancecard.Deck;
 import model.player.Player;
 
 import java.awt.*;
@@ -68,7 +69,11 @@ public abstract class Field {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action (Player player) {
+    public void action (Player player){
+
+    }
+
+    public void action (Player player, Deck deck) {
 
     }
 
