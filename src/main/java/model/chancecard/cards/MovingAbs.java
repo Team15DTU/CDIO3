@@ -1,5 +1,6 @@
 package model.chancecard.cards;
 
+import controller.Controller;
 import model.chancecard.Card;
 import model.player.Player;
 
@@ -42,7 +43,7 @@ public class MovingAbs extends Card {
      */
 
     @Override
-    public void action ( Player player ) {
+    public void action(Player player, Controller controller) {
 
         player.setPosition(positionAbs);
 

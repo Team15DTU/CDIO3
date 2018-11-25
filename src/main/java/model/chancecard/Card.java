@@ -1,5 +1,6 @@
 package model.chancecard;
 
+import controller.Controller;
 import model.player.Player;
 
 /**
@@ -47,7 +48,7 @@ public abstract class Card {
     ---------------------- Public Methods -----------------------
      */
 
-    protected abstract void action (Player player);
+    protected abstract void action(Player player, Controller controller);
 
     /*
     ---------------------- Support Methods ----------------------

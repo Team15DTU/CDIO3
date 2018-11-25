@@ -1,6 +1,7 @@
 package model.board;
 import model.board.Field;
 import model.board.fields.*;
+import model.chancecard.Card;
 
 import java.awt.*;
 
@@ -20,7 +21,7 @@ public class Board {
 
     public Board () {
 
-        board = new Field[24];
+        board = new Field[8];
         createBoard();
 
     }
@@ -42,10 +43,10 @@ public class Board {
         board[2] = new Property(3, "Pizzeria", "Du er landet på pizzeriaet", 20, Color.BLUE);
         board[3] = new Chancefield(4, "Chance felt", "Du har chancen ved et kort", 0, Color.WHITE);
         board[4] = new Property(5, "Slikbutik", "Du er landet på slikbutikken", 10, Color.BLUE);
+        board[5] = new Property(6, "Iskiosk", "Du er landet på iskiosken",1, Color.BLUE);
+        board[6] = new Visiting(7, "På besøg i fængslet", "Du er på besøg i fængslet",0,Color.BLUE);
+        board[7] = new Property(8, "Museum", "Du er landet på museet",1,Color.pink);
         /*
-        board[5] = new Property(6, "Iskiosk", "Du er landet på iskiosken", "Lyseblå", 1);
-        board[6] = new Visiting(7, "På besøg i fængslet", "Du er på besøg i fængslet");
-        board[7] = new Property(8, "Museum", "Du er landet på museet", "Pink", 2);
         board[8] = new Property(9, "Bibliotek", "Du er landet på biblioteket", "Pink", 2);
         board[9] = new Chancefield(10, "Chance felt", "Du har chancen med et kort!");
         board[10] = new Property(11, "Skaterpark", "Du er landet på skaterparken", "Orange", 2);
@@ -69,7 +70,11 @@ public class Board {
     /*
     ---------------------- Support Methods ----------------------
      */
+    public Field[] getBoard() {
+        return board;
+    }
 
+    public Field getField (int index) {return getField(index);}
 
 
 }

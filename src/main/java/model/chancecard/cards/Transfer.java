@@ -1,5 +1,6 @@
 package model.chancecard.cards;
 
+import controller.Controller;
 import model.chancecard.Card;
 import model.player.Player;
 
@@ -44,7 +45,7 @@ public class Transfer extends Card {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action (Player player1) {
+    public void action(Player player1, Controller controller) {
 
         player1.updateScore(moneyTransferred);
     }
