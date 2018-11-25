@@ -33,18 +33,12 @@ public class Turn {
 
         // Press to roll message printed and waiting for input
 
-        System.out.println("Tryk for at slå med terninger for "+ player.getName());
-        input = scanner.nextLine();
-
-        // teksten "exit" afslutter spillet
-        if (input.equals("exit")) {
-            System.exit(666);
-        }
+        controller.getUserString("Tryk for at slå med terninger for "+ player.getName());
 
         // Cup is rolled and result is assigned to rollValue
         cup.cupRoll();
         rollValue = cup.getCupValue();
-        System.out.println("Du slog " + rollValue);
+        controller.showMessage("Du slog " + rollValue);
 
         // Moving Player and does Fields Action.
         controller.movePlayer(player, rollValue);
