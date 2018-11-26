@@ -79,12 +79,26 @@ public class Controller {
     //<editor-fold desc="Chancecard Methods"
 
     /**
+     * This method sets the next ChanceCard and
+     * displays it right away.
+     * @param text The text to the ChanceCard.
+     */
+    public void setAndDisplayChanceCard (String text) {
+
+        // Set the ChanceCard
+        setChanceCard(text);
+
+        // Then display the ChanceCard
+        displayChanceCard();
+    }
+
+    /**
      * This method sets the next Chancecard, so that
      * the displayChancecard method can show the card,
      * or you can press the deck to see it.
      * @param text The text to the Chancecard
      */
-    public void setChancecard (String text) {
+    public void setChanceCard (String text) {
 
         // Ready the next Chancecard
         gui.setChanceCard(text);
