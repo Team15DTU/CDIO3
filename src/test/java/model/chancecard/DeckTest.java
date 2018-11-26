@@ -32,11 +32,9 @@ public class DeckTest {
         if (cardIndex1.text.equals(cardIndex2.text)) {
             deck.shuffleDeck(1);
             cardIndex2 = deck.getChanceDeck().get(0);
-            assertNotEquals(cardIndex1.text, cardIndex2.text);
         }
-        else {
-            assertNotEquals(cardIndex1.text, cardIndex2.text);
-        }
+
+        assertNotEquals(cardIndex1.text, cardIndex2.text);
 
     }
 
