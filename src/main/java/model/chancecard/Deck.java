@@ -3,6 +3,7 @@ package model.chancecard;
 import model.chancecard.cards.MovingAbs;
 import model.chancecard.cards.MovingRel;
 import model.chancecard.cards.Transfer;
+import model.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,9 +37,23 @@ public class Deck {
     ------------------------ Properties -------------------------
      */
 
+    public ArrayList<Card> getChanceDeck() {
+        return chanceDeck;
+    }
 
+    public void setChanceDeck(ArrayList<Card> chanceDeck) {
+        this.chanceDeck = chanceDeck;
+    }
 
-    /*
+    public int getTotalCardsInDeck() {
+        return totalCardsInDeck;
+    }
+
+    public void setTotalCardsInDeck(int totalCardsInDeck) {
+        this.totalCardsInDeck = totalCardsInDeck;
+    }
+
+/*
     ---------------------- Public Methods -----------------------
      */
 
@@ -70,11 +85,13 @@ public class Deck {
 
     }
 
-    public void drawCard () {
+    public Card drawCard () {
 
-        Card drawedCard = chanceDeck.get(0);
-        chanceDeck.set(totalCardsInDeck-1, drawedCard);
+        Card drawCard = chanceDeck.get(0);
+        chanceDeck.remove(0);
+        chanceDeck.add(drawCard);
 
+        return drawCard;
     }
 
     /*
@@ -87,12 +104,12 @@ public class Deck {
     }
 
     private void addMovingRel (String text, String description, int movementRel) {
-        MovingRel movingRel;
-        chanceDeck.add(movingRel = new MovingRel(text,description,movementRel));
+        chanceDeck.add(new MovingRel(text,description,movementRel));
     }
 
     private void addTransfer(String text, String description, int money) {
         chanceDeck.add( new Transfer(text, description, money));
     }
+
 
 }
