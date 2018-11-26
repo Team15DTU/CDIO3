@@ -114,7 +114,7 @@ public class Gui {
      * or you can press the deck to see it.
      * @param text The text to the Chancecard
      */
-    public void setChancecard (String text) {
+    public void setChanceCard (String text) {
 
         // Ready the next Chancecard
         gui.setChanceCard(text);
@@ -125,7 +125,7 @@ public class Gui {
      * Requires the setChancecard() method to be called
      * before, to show the desired card.
      */
-    public void displayChancecard () {
+    public void displayChanceCard () {
 
         // Display the card
         gui.displayChanceCard();
