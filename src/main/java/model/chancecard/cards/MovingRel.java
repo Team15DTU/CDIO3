@@ -1,5 +1,6 @@
 package model.chancecard.cards;
 
+import controller.Controller;
 import model.chancecard.Card;
 import model.player.Player;
 
@@ -20,8 +21,8 @@ public class MovingRel extends Card {
     ----------------------- Constructor -------------------------
      */
 
-    public MovingRel(int cardNumber, String text, String description, int movementRel) {
-        super(cardNumber, text, description);
+    public MovingRel(String text, String description, int movementRel) {
+        super(text, description);
         this.movementRel=movementRel;
     }
     
@@ -40,13 +41,12 @@ public class MovingRel extends Card {
     /*
     ---------------------- Public Methods -----------------------
      */
-    @Override
-    public void action (Player player) {
 
-        int prePosition = player.getPosition();
-        int currentPosition;
+    public void action(Player player) {
 
-        currentPosition = prePosition+ movementRel;
+        int prePosition = player.getPosition(), currentPosition;
+
+        currentPosition = prePosition + movementRel;
         player.setPosition(currentPosition);
 
     }

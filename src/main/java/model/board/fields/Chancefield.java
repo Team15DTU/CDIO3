@@ -1,6 +1,8 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.chancecard.Card;
+import model.chancecard.Deck;
 import model.player.Player;
 
 import java.awt.*;
@@ -17,9 +19,9 @@ public class Chancefield extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public Chancefield (int fieldNumber, String title, String description, int rent) {
+    public Chancefield (int fieldNumber, String title, String description, int rent, Color color) {
 
-        super(fieldNumber, title, description, rent);
+        super(fieldNumber, title, description, rent, color);
 
     }
 
@@ -31,9 +33,10 @@ public class Chancefield extends Field {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action (Player player) {
+    public void action (Player player, Deck deck) {
 
-        //implement draw card action to player.
+        Card drawCard= deck.drawCard();
+        drawCard.action(player);
 
     }
 
