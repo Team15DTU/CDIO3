@@ -120,7 +120,7 @@ public class Controller {
     //<editor-fold desc="User Input">
 
     /**
-     * Shows a message and a dropdown menu, and return the
+     * Shows a message and a dropdown menu, and returns the
      * choosen String
      * @param message The information to the user
      * @param options The available options as Strings
@@ -133,7 +133,7 @@ public class Controller {
     }
 
     /**
-     * Shows a message and a dropdown menu, and return the
+     * Shows a message and a dropdown menu, and returns the
      * choosen String.
      * @param message The information to the user
      * @param options The available options as String[]
