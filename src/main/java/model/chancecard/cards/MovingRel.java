@@ -41,13 +41,12 @@ public class MovingRel extends Card {
     /*
     ---------------------- Public Methods -----------------------
      */
-    @Override
-    public void action(Player player, Controller controller) {
 
-        int prePosition = player.getPosition();
-        int currentPosition;
+    public void action(Player player) {
 
-        currentPosition = prePosition+ movementRel;
+        int prePosition = player.getPosition(), currentPosition;
+
+        currentPosition = prePosition + movementRel;
         player.setPosition(currentPosition);
 
     }

@@ -28,10 +28,10 @@ public class Controller {
      * in the game
      * @param fields An Array of Field's
      */
-    public Controller ( Field[] fields ) {
+    public Controller (Field [] fields ) {
 
         // Create the Gui
-        gui = new Gui( fields );
+        gui = new Gui(fields);
     }
 
     /**

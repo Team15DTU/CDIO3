@@ -1,6 +1,8 @@
 package model.board.fields;
 
 import model.board.Field;
+import model.chancecard.Card;
+import model.chancecard.Deck;
 import model.player.Player;
 
 import java.awt.*;
@@ -31,9 +33,9 @@ public class Chancefield extends Field {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action (Player player) {
+    public void action (Player player, Deck deck) {
 
-        //implement draw card action to player.
+        deck.drawCard(player);
 
     }
 
