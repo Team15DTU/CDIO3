@@ -136,15 +136,15 @@ public class Controller {
      * Shows a message and a dropdown menu, and returns the
      * choosen String.
      * @param message The information to the user
-     * @param options The available options as String[]
+     * @param options The available options as ArrayList<String></String>
      * @return the choosen String as String
      */
     public String getUserChoice (String message, ArrayList<String> options) {
 
-        String[] hej = options.toArray( new String [options.size()]);
+        String[] optionList = options.toArray( new String [options.size()]);
 
         // Return the String
-        return gui.getUserChoice(message, hej);
+        return gui.getUserChoice(message, optionList);
     }
 
     /**
