@@ -286,9 +286,12 @@ public class Gui {
         return playerToFind;
     }
 
+    //<editor-fold desc="GUI_Player creation"
     /**
-     *
-     * @param player
+     * This method helps with the creation of a GUI_Player.
+     * Primarily has the responsibility for given the Player
+     * the correct Car type
+     * @param player The Player which shall be created as a GUI_Player
      */
     private GUI_Player setPlayer ( Player player ) {
 
@@ -329,6 +332,7 @@ public class Gui {
                 break;
         }
 
+        // Return the newly created GUI_Player
         return newPlayer;
 
     }
@@ -345,6 +349,33 @@ public class Gui {
         // Add the GUI_Player to the visual gui
         gui.addPlayer(player);
     }
+    /**
+     * This method helps the constructor create an Array of GUI_Player's
+     * @param players An ArrayList<Player>
+     * @return Return an ArrayList<GUI_Player>
+     */
+    private ArrayList<GUI_Player> createPlayers (ArrayList<Player> players) {
+
+        // Create the players arraylist as the right size
+        ArrayList<GUI_Player> guiPlayers = new ArrayList<>(players.size());
+
+        // Iterate over the players list and create a GUI_Player for each
+        for ( int i=0 ; i < players.size() ; i++ ) {
+            GUI_Player newPlayer = new GUI_Player(  players.get(i).getName(),
+                    players.get(i).getAccount().getBalance(),
+                    new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
+            );
+
+            // Add the created player to the player array and set the player on the start field
+            guiPlayers.add(newPlayer);
+            fields[players.get(i).getPosition()].setCar(newPlayer, true);
+        }
+
+        // Return the GUI_Player array
+        return guiPlayers;
+    }
+
+    //</editor-fold>
 
     /**
      * This method helps the constructor create an Array of GUI_Field's
@@ -422,31 +453,5 @@ public class Gui {
 
         // Return the newly created array
         return newFields;
-    }
-
-    /**
-     * This method helps the constructor create an Array of GUI_Player's
-     * @param players An ArrayList<Player>
-     * @return Return an ArrayList<GUI_Player>
-     */
-    private ArrayList<GUI_Player> createPlayers (ArrayList<Player> players) {
-
-        // Create the players arraylist as the right size
-        ArrayList<GUI_Player> guiPlayers = new ArrayList<>(players.size());
-
-        // Iterate over the players list and create a GUI_Player for each
-        for ( int i=0 ; i < players.size() ; i++ ) {
-            GUI_Player newPlayer = new GUI_Player(  players.get(i).getName(),
-                                                    players.get(i).getAccount().getBalance(),
-                                                    new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
-                                                    );
-
-            // Add the created player to the player array and set the player on the start field
-            guiPlayers.add(newPlayer);
-            fields[players.get(i).getPosition()].setCar(newPlayer, true);
-        }
-
-        // Return the GUI_Player array
-        return guiPlayers;
     }
 }
