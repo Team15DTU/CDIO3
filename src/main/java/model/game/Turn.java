@@ -31,7 +31,6 @@ public class Turn {
 
         // Initialize object variable
         int turnEndingBalance=player.getAccount().getBalance();
-        String chanceActionText;
 
         // Press to roll message printed and waiting for input
         controller.showMessage("Tryk for at slå med terningene for " + player.getName());
@@ -47,8 +46,8 @@ public class Turn {
         cup.cupRoll();
         rollValue = cup.getCupValue();
 
-        StringBuilder builderStr = new StringBuilder();
-        builderStr.append("Du slog " + rollValue + "\n");
+        StringBuilder builderRollAndMove = new StringBuilder();
+        builderRollAndMove.append("Du slog " + rollValue + "\n");
 
         // Moves player on GUI and set player position
         movingPlayer(player,controller, rollValue);
@@ -65,30 +64,28 @@ public class Turn {
         turnField=playingBoard.getTurnfield(turnPosition);
         fieldName=turnField.getTitle();
         fieldDescription =turnField.getDescription();
-        builderStr.append("Og landede på feltet: " + boardPosition+ " - " + fieldName + "\n");
+        builderRollAndMove.append("Og landede på feltet: " + boardPosition+ " - " + fieldName + "\n");
 
-        // Jeg kan ikke få fieldsDescription ud på GUI
-        turnField.getDescription();
+        String rollAndMoveDesc = builderRollAndMove.toString();
+        controller.showMessage(rollAndMoveDesc);
+
+        StringBuilder builderResult = new StringBuilder();
         if (!turnField.getTitle().equals("Chance felt")){
             turnField.action(player);
-            //builderStr.append(fieldDescription+"\n"); TODO: Er description ikke ret redundant?
+            builderResult.append(turnField.getActionText());
+            //builderRollAndMove.append(fieldDescription+"\n"); TODO: Er description ikke ret redundant?
 
         } else {
             turnField.action(player,deck);
-            chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
-            controller.setAndDisplayChanceCard(chanceActionText);
-            Field chancefield;
-            chancefield = playingBoard.getTurnfield(player.getPosition());
-            chancefield.action(player);
+            builderResult.append(turnField.getActionText());
+            showChancecard(controller,deck);
         }
 
-        builderStr.append(turnField.getActionText()+"\n");
         turnEndingBalance = player.getAccount().getBalance();
         resultOfTurn(player, controller, turnEndingBalance);
 
-
-        String turnFieldString = builderStr.toString();
-        controller.showMessage(turnFieldString);
+        String turnResult = builderResult.toString();
+        controller.showMessage(turnResult);
 
 
 
@@ -124,5 +121,17 @@ public class Turn {
         controller.movePlayer(player);
         controller.updatePlayerBalance(player,playerBalance);
     }
+    public void showChancecard (Controller controller, Deck deck) {
+        String chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
+        controller.setAndDisplayChanceCard(chanceActionText);
+    }
 
+    public void actionAsResultOfChancecard (Player player) {
+        int positionAfterChancecard = player.getPosition();
+
+        if (positionAfterChancecard != turnPosition) {
+            Field newFieldOfChancecard = playingBoard.getTurnfield(player.getPosition());
+            newFieldOfChancecard.action(player);
+        }
+    }
 }
