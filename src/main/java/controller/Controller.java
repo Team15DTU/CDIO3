@@ -186,12 +186,8 @@ public class Controller {
      * This method moves the given player to the Field with the
      * corresponding index.
      * @param player The Player object
-     * @param rollValue The value of the dice
      */
-    public void movePlayer ( Player player, int rollValue ) {
-
-        // Update the players position
-        player.updatePosition(rollValue);
+    public void movePlayer ( Player player ) {
 
         // Move the Player in the gui
         gui.movePlayer ( player, player.getPosition() );
