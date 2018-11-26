@@ -28,6 +28,7 @@ public class Player {
         this.name = name;
         this.token = token;
         account = new Account();
+        propertyCost = new ArrayList<>();
     }
   
     public Player ( String name) {
@@ -36,7 +37,7 @@ public class Player {
         account = new Account();
         position = 0;
         hasLost = false;
-
+        propertyCost = new ArrayList<>();
     }
 
     /**
@@ -48,7 +49,8 @@ public class Player {
         // Initialize
         this.name = name;
         account = new Account(initialBalance);
-        position = 1;
+        position = 0;
+        propertyCost = new ArrayList<>();
     }
 
     public Player ( String name, int initialBalance, int startingPosition ) {
@@ -56,6 +58,7 @@ public class Player {
         this.name = name;
         account = new Account(initialBalance);
         position=startingPosition;
+        propertyCost = new ArrayList<>();
     }
 
     public Player (String name, String token, int initialBalance, int startingPosition){
@@ -64,7 +67,7 @@ public class Player {
         this.token=token;
         account = new Account(initialBalance);
         position=startingPosition;
-
+        propertyCost = new ArrayList<>();
     }
 
 

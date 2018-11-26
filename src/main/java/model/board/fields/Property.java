@@ -58,11 +58,8 @@ public class Property extends Field {
     }
 
 
-
     /*
     ---------------------- Support Methods ----------------------
      */
-
-
 
 }
