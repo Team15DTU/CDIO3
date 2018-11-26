@@ -33,7 +33,7 @@ public class Start extends Field { //start could be an instance of 'visiting'
 
     public void action (Player player) {
 
-        System.out.println(description);
+        actionText = "Du er landet på startfeltet og har modtaget 2 penge.";
         //payment of startline is handled elsewhere.
 
     }

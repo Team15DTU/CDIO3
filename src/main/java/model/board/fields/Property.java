@@ -46,10 +46,12 @@ public class Property extends Field {
     public void action (Player player) {
 
         if (owner == null) {
+            actionText = "Du køber dette felt for "+cost + " pengeseddel\n";
             setOwner(player);
             player.getAccount().update(-cost);
             player.getPropertyCost().add(cost);
         } else {
+            actionText = "Du er landet på "+owner.getName()+"'s felt, hvilket koster "+cost+ " pengesedler";
             player.getAccount().update(-cost);
             owner.getAccount().update(cost);
         }

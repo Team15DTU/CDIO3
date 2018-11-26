@@ -74,18 +74,15 @@ public class Turn {
         turnField.getDescription();
         if (!turnField.getTitle().equals("Chance felt")){
             turnField.action(player);
-            //builderStr.append(fieldDescription+"\n"); TODO: KARL: Er description ikke ret redundant?
-            if (turnField.getOwner() == null) {
-                builderStr.append("Du køber dette felt for "+turnField.getCost() + " pengeseddel\n");
-            } else {
-                builderStr.append("Du er landet på "+turnField.getOwner().getName()+"'s felt, hvilket koster "+turnField.getCost()+ " pengesedler");
-            }
+            //builderStr.append(fieldDescription+"\n"); TODO: Er description ikke ret redundant?
 
         } else {
             turnField.action(player,deck);
             chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
             controller.setAndDisplayChanceCard(chanceActionText);
         }
+
+        builderStr.append(turnField.getActionText()+"\n");
 
         resultOfTurn(player, controller, turnPosition);
 

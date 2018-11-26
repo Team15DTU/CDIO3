@@ -34,7 +34,7 @@ public class Prison extends Field {
 
     public void action (Player player) {
 
-        System.out.println(description);
+        actionText = "Du er landet på fængslet og du bliver sendt tilbage til felt 7";
         player.setPosition(7);
 
     }
