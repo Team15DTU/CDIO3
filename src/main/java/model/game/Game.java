@@ -23,10 +23,10 @@ public class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-    static int STARTPOINT = 20;
-    final static int STARTINGPOSITION=0;
-    boolean someoneLost = false;
-    int tokenNo;
+    private static int STARTPOINT = 20;
+    private final static int STARTINGPOSITION=0;
+    private boolean someoneLost = false;
+    private int tokenNo;
 
     /*
     -------- Public Methods -------

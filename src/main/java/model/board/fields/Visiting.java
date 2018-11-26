@@ -33,7 +33,7 @@ public class Visiting extends Field { //this class is used for visiting prison a
 
     public void action (Player player) {
 
-        System.out.println(description);
+        actionText = "Du er landet på et besøgsfelt og din pengebeholdning er konstant";
 
     }
 

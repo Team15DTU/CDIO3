@@ -16,6 +16,7 @@ public abstract class Field {
     protected String description;
     protected Player owner;
     protected Color color;
+    protected String actionText;
 
     /*
     ----------------------- Constructor -------------------------
@@ -62,6 +63,10 @@ public abstract class Field {
     public int getCost() { return cost; }
 
     public void setCost(int cost) { this.cost = cost; }
+
+    public String getActionText() {        return actionText;    }
+
+    public void setActionText(String actionText) {        this.actionText = actionText;    }
 
     //</editor-fold>
 

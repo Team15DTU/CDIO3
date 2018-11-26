@@ -15,13 +15,10 @@ public class Turn {
     ------------ Fields ------------------
     */
 
-    Board playingBoard = new Board();
-    Field turnField;
-
+    private Board playingBoard = new Board();
+    private Field turnField;
     private int rollValue, turnPosition, boardPosition;
-    private String fieldName, fieldDescription;
-
-    String input;
+    private String fieldName, fieldDescription, input;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -44,7 +41,7 @@ public class Turn {
         // teksten "exit" afslutter spillet
         if (input.equals("exit")) {
             System.exit(666);
-        }
+        } TODO: Dette er unødvendigt med GUI?
 */
         // Cup is rolled and result is assigned to rollValue
         cup.cupRoll();
@@ -59,7 +56,7 @@ public class Turn {
         // Moves player on GUI
         movingPlayer(player,controller);
 
-        /*
+        /* TODO: Rasmus skal dette fixes?
         turnPosition=player.getPosition();
         controller.movePlayer(player);
         */
@@ -77,13 +74,15 @@ public class Turn {
         turnField.getDescription();
         if (!turnField.getTitle().equals("Chance felt")){
             turnField.action(player);
-            builderStr.append(fieldDescription+"\n");
+            //builderStr.append(fieldDescription+"\n"); TODO: Er description ikke ret redundant?
 
         } else {
             turnField.action(player,deck);
             chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
             controller.setAndDisplayChanceCard(chanceActionText);
         }
+
+        builderStr.append(turnField.getActionText()+"\n");
 
         resultOfTurn(player, controller, turnPosition);
 
