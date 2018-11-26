@@ -106,6 +106,33 @@ public class Gui {
         gui.setDie(faceValue);
     }
 
+    //<editor-fold desc="Chancecard Methods"
+
+    /**
+     * This method sets the next Chancecard, so that
+     * the displayChancecard method can show the card,
+     * or you can press the deck to see it.
+     * @param text The text to the Chancecard
+     */
+    public void setChancecard (String text) {
+
+        // Ready the next Chancecard
+        gui.setChanceCard(text);
+    }
+
+    /**
+     * This method displays the next Chancecard.
+     * Requires the setChancecard() method to be called
+     * before, to show the desired card.
+     */
+    public void displayChancecard () {
+
+        // Display the card
+        gui.displayChanceCard();
+    }
+
+    //</editor-fold>
+
     //<editor-fold desc="User Input">
 
     public String getUserChoice (String message, String ... options) {
