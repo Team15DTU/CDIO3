@@ -111,4 +111,5 @@ public class Deck {
         chanceDeck.add( new Transfer(text, description, money));
     }
 
+
 }
