@@ -106,7 +106,40 @@ public class Gui {
         gui.setDie(faceValue);
     }
 
+    //<editor-fold desc="Chancecard Methods"
+
+    /**
+     * This method sets the next Chancecard, so that
+     * the displayChancecard method can show the card,
+     * or you can press the deck to see it.
+     * @param text The text to the Chancecard
+     */
+    public void setChanceCard (String text) {
+
+        // Ready the next Chancecard
+        gui.setChanceCard(text);
+    }
+
+    /**
+     * This method displays the next Chancecard.
+     * Requires the setChancecard() method to be called
+     * before, to show the desired card.
+     */
+    public void displayChanceCard () {
+
+        // Display the card
+        gui.displayChanceCard();
+    }
+
+    //</editor-fold>
+
     //<editor-fold desc="User Input">
+
+    public String getUserChoice (String message, String ... options) {
+
+        // Return the String
+        return gui.getUserSelection(message, options);
+    }
 
     /**
      * Gets an Integer from the user in a specified range.
@@ -210,6 +243,23 @@ public class Gui {
         fields[player.getPosition()].setCar(newPlayer, true);
     }
     //</editor-fold>
+
+    //<editor-fold desc="Field Methods"
+
+    /**
+     * This method changes the owner of the given field
+     * to the given Player.
+     * @param player The player which shall own the field
+     * @param theField The field in focus
+     */
+    public void setFieldOwner (Player player, Field theField) {
+
+        // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
+        ((GUI_Street)fields[theField.getFieldNumber()]).setOwnerName(player.getName());
+
+    }
+
+    //</editor-fold>
     
     /*
     ----------------------------- Support Methods ------------------------------
@@ -268,18 +318,21 @@ public class Gui {
             if ( fields[i] instanceof Property ) {
 
                 // Create new GUI_Street
-                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
+                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "Beløb: " + fields[i].getCost(),
+                        fields[i].getDescription(),
                         Integer.toString(fields[i].getCost()), fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = ownable;
             }
 
             else if ( fields[i] instanceof Chancefield ) {
 
                 // Create new Field
-                GUI_Chance chance = new GUI_Chance(fields[i].getTitle(), "subtext", fields[i].getDescription(),
+                GUI_Chance chance = new GUI_Chance("C", "Chance Felt", fields[i].getDescription(),
                                                     fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = chance;
             }
 
@@ -288,6 +341,11 @@ public class Gui {
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();
 
+                // Change the text of the field
+                jail.setSubText("Fængsel");
+                jail.setDescription(fields[i].getDescription());
+
+                // Put the GUI_Field into the newFields array
                 newFields[i] = jail;
 
             }
@@ -297,6 +355,12 @@ public class Gui {
                 // Create new Field
                 GUI_Refuge refuge = new GUI_Refuge();
 
+                // Change the text of the field
+                refuge.setTitle(fields[i].getTitle());
+                refuge.setDescription(fields[i].getDescription());
+                refuge.setSubText("Gratis");
+
+                // Put the GUI_Field into the newFields array
                 newFields[i] = refuge;
 
             }
@@ -307,6 +371,7 @@ public class Gui {
                 GUI_Start start = new GUI_Start(fields[i].getTitle(), "Subtext", fields[i].getDescription(),
                                                 fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = start;
             }
         }

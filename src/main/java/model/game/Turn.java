@@ -33,7 +33,6 @@ public class Turn {
         // Initialize object variable
 
         // Press to roll message printed and waiting for input
-
         controller.showMessage("Tryk for at slå med terningene for " + player.getName());
         /*System.out.println("Tryk for at slå med terninger for "+ player.getName());
         input = scanner.nextLine();

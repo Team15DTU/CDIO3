@@ -76,7 +76,61 @@ public class Controller {
         gui.setDie(faceValue);
     }
 
+    //<editor-fold desc="Chancecard Methods"
+
+    /**
+     * This method sets the next ChanceCard and
+     * displays it right away.
+     * @param text The text to the ChanceCard.
+     */
+    public void setAndDisplayChanceCard (String text) {
+
+        // Set the ChanceCard
+        setChanceCard(text);
+
+        // Then display the ChanceCard
+        displayChanceCard();
+    }
+
+    /**
+     * This method sets the next Chancecard, so that
+     * the displayChancecard method can show the card,
+     * or you can press the deck to see it.
+     * @param text The text to the Chancecard
+     */
+    public void setChanceCard (String text) {
+
+        // Ready the next Chancecard
+        gui.setChanceCard(text);
+    }
+
+    /**
+     * This method displays the next Chancecard.
+     * Requires the setChancecard() method to be called
+     * before, to show the desired card.
+     */
+    public void displayChanceCard () {
+
+        // Display the card
+        gui.displayChanceCard();
+    }
+
+    //</editor-fold>
+
     //<editor-fold desc="User Input">
+
+    /**
+     * Shows a message and a dropdown menu, and return the
+     * choosen String
+     * @param message The information to the user
+     * @param options The available options as Strings
+     * @return Returns the choosen String as String
+     */
+    public String getUserChoice (String message, String ... options) {
+
+        // Return the String
+        return gui.getUserChoice(message, options);
+    }
     /**
      * This method prompts the user to input an Integer
      * in range min - max, and prints the message
@@ -163,6 +217,22 @@ public class Controller {
         // Add the player to the gui
         gui.addPlayer(player);
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Field Methods">
+
+    /**
+     * This method changes the owner of the field and
+     * displays it.
+     * @param player The Player which shall own the field
+     * @param field The field to be owned
+     */
+    public void setFieldOwner (Player player, Field field) {
+
+        // Set the new owner of the field
+        gui.setFieldOwner(player, field);
+    }
+
     //</editor-fold>
 
     /*
