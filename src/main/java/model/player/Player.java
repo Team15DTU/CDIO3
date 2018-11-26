@@ -1,5 +1,7 @@
 package model.player;
 
+import java.util.ArrayList;
+
 public class Player {
 
     /*
@@ -11,6 +13,8 @@ public class Player {
     private boolean hasLost;
     private int position;
     private String token;
+    private ArrayList<Integer> propertyCost;
+    private int totalPropertyValue = 0;
 
     /*
      ------- Constructors ------------
@@ -86,6 +90,15 @@ public class Player {
         position = (position + value) % 24;
     }
 
+    public void updateTotalProoertyValue () {
+
+        int totalPropertys = propertyCost.size();
+        for (int p = 0; p < totalPropertys; p++) {
+                int propertyValueIndex=propertyCost.get(p);
+                totalPropertyValue = totalPropertyValue + propertyValueIndex;
+        }
+    }
+
     /*
     ------- Support Methods ----------
      */
@@ -126,4 +139,19 @@ public class Player {
 
     public void setPosition(int position) {this.position = position;}
 
+    public ArrayList<Integer> getPropertyCost() {
+        return propertyCost;
+    }
+
+    public void setPropertyCost(ArrayList<Integer> propertyCost) {
+        this.propertyCost = propertyCost;
+    }
+
+    public int getTotalPropertyValue() {
+        return totalPropertyValue;
+    }
+
+    public void setTotalPropertyValue(int totalPropertyValue) {
+        this.totalPropertyValue = totalPropertyValue;
+    }
 }

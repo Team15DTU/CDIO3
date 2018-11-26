@@ -57,20 +57,29 @@ public class Turn {
 
         // Does field action
         turnField=playingBoard.getTurnfield(turnPosition);
-        builderStr.append("Og landede på feltet: " + boardPosition+ " - " + turnField.getTitle() + "\n");
+        fieldName=turnField.getTitle();
+        fieldDescription =turnField.getDescription();
+        builderStr.append("Og landede på feltet: " + boardPosition+ " - " + fieldName + "\n");
+
+        // Jeg kan ikke få fieldsDescription ud på GUI
+        turnField.getDescription();
+        if (!turnField.getTitle().equals("Chance felt")){
+            turnField.action(player);
+            builderStr.append(fieldDescription+"\n");
+        } else {
+            turnField.action(player,deck);
+            builderStr.append(fieldDescription+"\n");
+        }
+
         String turnFieldString = builderStr.toString();
         controller.showMessage(turnFieldString);
 
-        // Jeg kan ikke få fieldsDescription ud på GUI
-        if (!turnField.getTitle().equals("Chance felt")){
-            turnField.action(player);
-        } else {
-            turnField.action(player,deck);
-        }
-
         turnEndingBalance = player.getAccount().getBalance();
-        controller.showMessage("Du har nu: "+turnEndingBalance + " Pengesedler");
-
+        if(turnEndingBalance<=0) {
+            controller.showMessage("Du har ikke flere penge tilbage og erklæres fallit");
+        } else {
+            controller.showMessage("Du har nu: " + turnEndingBalance + " Pengesedler");
+        }
 
         // Check if totalScore is so low that the player lost. If yes, players boolean hasLost is set to true.
         if (turnEndingBalance<= 0) {
