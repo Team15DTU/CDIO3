@@ -131,6 +131,22 @@ public class Controller {
         // Return the String
         return gui.getUserChoice(message, options);
     }
+
+    /**
+     * Shows a message and a dropdown menu, and return the
+     * choosen String
+     * @param message The information to the user
+     * @param options The available options as Strings
+     * @return Returns the choosen String as String
+     */
+    public String getUserChoice (String message, ArrayList<String> options) {
+
+        String[] hej = options.toArray( new String [options.size()]);
+
+        // Return the String
+        return gui.getUserChoice(message, hej);
+    }
+
     /**
      * This method prompts the user to input an Integer
      * in range min - max, and prints the message
@@ -139,6 +155,7 @@ public class Controller {
      * @param max the maximum allowable int
      * @return Return the input as an int
      */
+
     public int getUserInteger (String message, int min, int max) {
 
         // Get the user integer in range min - max
@@ -186,12 +203,9 @@ public class Controller {
      * This method moves the given player to the Field with the
      * corresponding index.
      * @param player The Player object
-     * @param rollValue The value of the dice
      */
-    public void movePlayer ( Player player, int rollValue ) {
+    public void movePlayer ( Player player ) {
 
-        // Update the players position
-        player.updatePosition(rollValue);
 
         // Move the Player in the gui
         gui.movePlayer ( player, player.getPosition() );
