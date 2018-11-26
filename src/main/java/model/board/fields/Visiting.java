@@ -16,9 +16,9 @@ public class Visiting extends Field { //this class is used for visiting prison a
     ----------------------- Constructor -------------------------
      */
 
-    public Visiting(int fieldNumber, String title, String description, int rent) {
+    public Visiting(int fieldNumber, String title, String description, int rent, Color color) {
 
-        super(fieldNumber, title, description, rent);
+        super(fieldNumber, title, description, rent, color);
 
     }
 
@@ -33,7 +33,7 @@ public class Visiting extends Field { //this class is used for visiting prison a
 
     public void action (Player player) {
 
-        System.out.printf(description);
+        System.out.println(description);
 
     }
 

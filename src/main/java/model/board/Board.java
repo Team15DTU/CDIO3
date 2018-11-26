@@ -12,6 +12,7 @@ public class Board {
      */
 
     private Field[] board;
+    private int totalFieldsOnBoard;
 
 
     /*
@@ -29,40 +30,54 @@ public class Board {
     ------------------------ Properties -------------------------
      */
 
+    public Field[] getBoard() {
+        return board;
+    }
 
+    public void setBoard(Field[] board) {
+        this.board = board;
+    }
 
-    /*
+    public int getTotalFieldsOnBoard() {
+        return totalFieldsOnBoard;
+    }
+
+    public void setTotalFieldsOnBoard(int totalFieldsOnBoard) {
+        this.totalFieldsOnBoard = totalFieldsOnBoard;
+    }
+
+/*
     ---------------------- Public Methods -----------------------
      */
 
     public void createBoard () {
 
-        board[0] = new Start(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 0);
-        board[1] = new Property(2, "Burgerbar", "Du er landet på burgerbaren", 20, Color.BLUE, 200);
-        board[2] = new Property(3, "Pizzeria", "Du er landet på pizzeriaet", 20, Color.BLUE, 200);
-        board[3] = new Chancefield(4, "Chance felt", "Du har chancen ved et kort", 0);
-        board[4] = new Property(5, "Slikbutik", "Du er landet på slikbutikken", 10, Color.BLUE, 200);
-        /*
-        board[5] = new Property(6, "Iskiosk", "Du er landet på iskiosken", "Lyseblå", 1);
-        board[6] = new Visiting(7, "På besøg i fængslet", "Du er på besøg i fængslet");
-        board[7] = new Property(8, "Museum", "Du er landet på museet", "Pink", 2);
-        board[8] = new Property(9, "Bibliotek", "Du er landet på biblioteket", "Pink", 2);
-        board[9] = new Chancefield(10, "Chance felt", "Du har chancen med et kort!");
-        board[10] = new Property(11, "Skaterpark", "Du er landet på skaterparken", "Orange", 2);
-        board[11] = new Property(12, "Swimmingpool", "Du er landet på swimmingpoolen", "Orange", 2);
-        board[12] = new Visiting(13, "Gratis parkering", "Du får gratis parkering, tag en pause");
-        board[13] = new Property(14, "Spillehal", "Du er landet på spillehallen", "Rød", 3);
-        board[14] = new Property(15, "Biograf", "Du er landet på biografen", "Rød", 3);
-        board[15] = new Chancefield(16, "Chance felt", "Du har chancen ved et kort");
-        board[16] = new Property(17, "Legetøjsbutik", "Du er landet på legetøjsbutikken", "Gul", 3);
-        board[17] = new Property(18, "Dyrehandel", "Du er landet på dyrehandlen", "Gul", 3);
-        board[18] = new Prison(19, "Gå i fængsel", "Du skal i fængsel og bliver rykket til felt 7");
-        board[19] = new Property(20, "Bowlinghal", "Du er landet på bowlinghallen", "Grøn", 4);
-        board[20] = new Property(21, "Zoo", "Du er landet på zoologisk have", "Grøn", 4);
-        board[21] = new Chancefield(22, "Chance felt", "Du har chancen ved et kort");
-        board[22] = new Property(23, "Vandland", "Du er landet på vandland", "Mørkeblå", 5);
-        board[23] = new Property(24, "Strandpromenade", "Du er landet på strandpromenaden", "Mørkeblå", 5);
-        */
+        addStart(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 20, Color.GREEN);
+        addProperty(2, "Burgerbar", "Du er landet på burgerbaren", 1, Color.ORANGE);
+        addProperty(3, "Pizzeria", "Du er landet på pizzeriaet", 1, Color.orange);
+        addChancefield(4, "Chance felt", "Du har chancen ved et kort", 0, Color.WHITE);
+        addProperty(5, "Slikbutik", "Du er landet på slikbutikken", 1, Color.cyan);
+        addProperty(6, "Iskiosk", "Du er landet på iskiosken",1, Color.cyan);
+        addVisitin(7, "På besøg i fængslet", "Du er på besøg i fængslet",0,Color.GRAY);
+        addProperty(8, "Museum", "Du er landet på museet",2,Color.pink);
+        addProperty(9, "Bibliotek", "Du er landet på biblioteket", 2, Color.pink);
+        addChancefield(10, "Chance felt", "Du har chancen med et kort!",0,Color.white);
+        addProperty(11, "Skaterpark", "Du er landet på skaterparken", 2, Color.orange);
+        addProperty(12, "Swimmingpool", "Du er landet på swimmingpoolen", 2, Color.orange);
+        addVisitin(13, "Gratis parkering", "Du får gratis parkering, tag en pause",0,Color.GRAY  );
+        addProperty(14, "Spillehal", "Du er landet på spillehallen", 3, Color.red);
+        addProperty(15, "Biograf", "Du er landet på biografen", 3, Color.red);
+        addChancefield(16, "Chance felt", "Du har chancen ved et kort",0,Color.white);
+        addProperty(17, "Legetøjsbutik", "Du er landet på legetøjsbutikken", 3, Color.yellow);
+        addProperty(18, "Dyrehandel", "Du er landet på dyrehandlen", 3, Color.yellow);
+        addPrison(19, "Gå i fængsel", "Du skal i fængsel og bliver rykket til felt 7",0,Color.gray);
+        addProperty(20, "Bowlinghal", "Du er landet på bowlinghallen", 4,Color.green);
+        addProperty(21, "Zoo", "Du er landet på zoologisk have", 4,Color.green);
+        addChancefield(22, "Chance felt", "Du har chancen ved et kort",0,Color.white);
+        addProperty(23, "Vandland", "Du er landet på vandland", 5,Color.blue);
+        addProperty(24, "Strandpromenade", "Du er landet på strandpromenaden", 5, Color.blue);
+
+        totalFieldsOnBoard= board.length;
 
     }
 
@@ -70,6 +85,37 @@ public class Board {
     ---------------------- Support Methods ----------------------
      */
 
+    public void addProperty (int fieldNumber, String title, String description, int rent, Color color) {
+        int index = fieldNumber-1;
+        board[index] = new Property(fieldNumber,title,description,rent,color);
+    }
 
+    public void addChancefield ( int fieldNumber, String title, String description, int rent, Color color) {
+        int index = fieldNumber-1;
+        board[index] = new  Chancefield(fieldNumber,title,description,rent,color);
+    }
 
+    public void addPrison(int fieldNumber, String title, String description, int rent, Color color) {
+        int index = fieldNumber-1;
+        board[index] = new Prison(fieldNumber,title,description,rent,color);
+
+    }
+    public void addStart(int fieldNumber, String title, String description, int rent, Color color) {
+        int index = fieldNumber-1;
+        board[index] = new Start(fieldNumber,title,description,rent,color);
+
+    }
+
+    public void addVisitin(int fieldNumber, String title, String description, int rent, Color color) {
+        int index = fieldNumber-1;
+        board[index] = new Visiting(fieldNumber,title,description,rent,color);
+
+    }
+
+    public Field getTurnfield(int turnPosition) {
+        Field turnField;
+        turnField = board[turnPosition];
+
+        return turnField;
+    }
 }

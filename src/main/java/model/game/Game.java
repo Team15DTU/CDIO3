@@ -1,9 +1,11 @@
 package model.game;
 
+import controller.Controller;
 import model.board.Board;
 import model.chancecard.Deck;
 import model.player.Player;
 import model.die.Cup;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,7 +23,8 @@ public class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-    final static int STARTPOINT = 12000;
+    static int STARTPOINT = 20;
+    final static int STARTINGPOSITION=0;
     boolean someoneLost = false;
     int tokenNo;
 
@@ -35,47 +38,45 @@ public class Game {
 
     public void launch() {
 
-        System.out.println("Welcome to the game of Matador Junior");
+        Board playingboard = new Board();
+        Controller controller = new Controller(playingboard.getBoard());
 
-        System.out.println("The game can be played by 2 - 4 players. Please enter number of players: ");
+        int noOfPlayers = controller.getUserInteger("Spillet kan spilles af 2 - 4 spillere. Hvor mange skal spille med?", 2, 4);
 
-        int noOfPlayers = scanner.nextInt();
-        while (noOfPlayers < 2 || noOfPlayers > 4) {
-            System.out.println("The game can be played by 2 - 4 players. Please enter number of players: ");
-            noOfPlayers = scanner.nextInt();
-        }
+        // Set Starting points from number of players playing the game.
+        setStartPointsFromNoOfPlayer(noOfPlayers);
 
         // this ArrayList contains tokens but they may be changed to obejcts Token instead of Strings
 
-
         ArrayList<String> tokens = new ArrayList<>();
-        tokens.add("Car"); tokens.add("Dog"); tokens.add("Cat"); tokens.add("Boat");
+        tokens.add("Bil"); tokens.add("Racerbil"); tokens.add("UFO"); tokens.add("Traktor");
 
         ArrayList<Player> players = new ArrayList<>();
 
         //For numbers of players enter name, choose a token, pass these info to new instance of Player in ArrayList
 
         for (int i = 0; i < noOfPlayers; i++) {
-            System.out.println("Enter name of player " + (i+1));
-            String name = scanner.next();
-            System.out.println("Now choose a token among ");
-            tokens.forEach((a) -> System.out.println(a));
-            System.out.println("Press the number corresponding to your desired token ");
-            while (true) {
-                tokenNo = (scanner.nextInt() - 1);
-                if (tokenNo > (-1) && tokenNo < tokens.size()){break;}
+            String name = controller.getUserString("Indtast navn på spiller " + Integer.toString(i + 1));
+
+            String choosenToken = controller.getUserChoice("Vælg en spillerbrik:", tokens);
+            for (int j = 0; j < tokens.size(); j++) {
+                if (tokens.get(j).equals(choosenToken)) {
+                    tokens.remove(j);
+
+                }
             }
-            String token = tokens.get(tokenNo);
-            Player p = new Player(name, token);
+            Player p = new Player(name, choosenToken, STARTPOINT, STARTINGPOSITION);
             players.add(p);
-            tokens.remove(tokenNo);
+            controller.showMessage("Du valgt: " + choosenToken);
         }
 
-        System.out.println("welcome to the game ");
 
-        model.die.Cup cup = new model.die.Cup();
-        Deck chancedeck = new Deck(10);
-        Board playingboard = new Board();
+        controller.showMessage("Velkommen til Monopoly Junior");
+        controller.addPlayers(players);
+
+        Cup cup = new Cup(1,6);
+        Deck chancedeck = new Deck(1);
+        chancedeck.shuffleDeck(10);
 
         // turn needs to only take in player and cup
         Turn GameTurn = new Turn();
@@ -83,11 +84,14 @@ public class Game {
         //As long as no one has lost loop through players list and do a turn
 
         int i = 0;
-        int k = 0;
+        int k;
         while (!someoneLost) {
             k = i % noOfPlayers;
             Player currPlayer = players.get(k);
-            GameTurn.turn(currPlayer, cup);
+            GameTurn.turn(currPlayer, cup, controller,chancedeck);
+            if (currPlayer.isHasLost()){
+                someoneLost=true;
+            }
             i++;
         }
 
@@ -104,8 +108,7 @@ public class Game {
             i++;
         }
 
-        System.out.println("The winner is "+winner+" with an amount of "+amount);
-
+        controller.showMessage("The winner is "+winner+" with an amount of "+amount);
     }
 
         public static int getSTARTPOINT () {
@@ -113,4 +116,22 @@ public class Game {
         }
 
 
+        /*
+        ---------------- Support Method --------------------
+         */
+
+        public void setStartPointsFromNoOfPlayer (int totalNoOfPlayer) {
+            switch (totalNoOfPlayer) {
+                case 2:
+                    STARTPOINT = 20;
+                    break;
+                case 3:
+                    STARTPOINT = 18;
+                    break;
+                case 4:
+                    STARTPOINT = 16;
+                default:
+                    break;
+            }
+        }
 }

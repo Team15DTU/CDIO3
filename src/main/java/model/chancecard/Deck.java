@@ -3,6 +3,7 @@ package model.chancecard;
 import model.chancecard.cards.MovingAbs;
 import model.chancecard.cards.MovingRel;
 import model.chancecard.cards.Transfer;
+import model.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,9 +37,23 @@ public class Deck {
     ------------------------ Properties -------------------------
      */
 
+    public ArrayList<Card> getChanceDeck() {
+        return chanceDeck;
+    }
 
+    public void setChanceDeck(ArrayList<Card> chanceDeck) {
+        this.chanceDeck = chanceDeck;
+    }
 
-    /*
+    public int getTotalCardsInDeck() {
+        return totalCardsInDeck;
+    }
+
+    public void setTotalCardsInDeck(int totalCardsInDeck) {
+        this.totalCardsInDeck = totalCardsInDeck;
+    }
+
+/*
     ---------------------- Public Methods -----------------------
      */
 
@@ -46,11 +61,16 @@ public class Deck {
 
         for (int i =0; i<numberOfSetsInDeck; i++) {
 
-            addMovingAbs(1,"Lyngbyvejen", "Ryk til Lyngbyvejen", 12);
-            addMovingAbs(2, "Slikbutikken", "Ryk direkte til Slikbutikken", 6);
-            addMovingRel(3, "Trappen", "Du falder ned af en trappe, ryk 2 felter tilbage", -2);
-            addMovingRel(4,"Motorvejen", "Du kører på motorvejen, ryk 3 felter frem", 3);
-            addTransfer(5, "Oddset", "Du har vundet i oddset og får 200 kroner", 200);
+            addMovingAbs("Start", "Ryk frem til Start", 0);
+            addMovingAbs("Sommerdag", "Det er 30 grader og du trænger til en dukkert. Ryk til Svømmningpoolen",11);
+            addMovingRel("Motorvej", "Du har fart på, Ryk 5 felter fren", 5);
+            addMovingRel("Kæden faldt af", "Kæden på din cykel faldt af. Ryk 2 felter tilbage", 2);
+            addMovingRel("Forlomme", "Du får en forlomme i køen", 1);
+            addTransfer("For meget slik", "Du har spist for meget slik. Betal 2 pengesedler til banken", -2);
+            addTransfer("Lommepenge", "Du har taget opvasken i en uge. Modtag 1 pengesedler", 1);
+            addMovingAbs("Strandpromenaden", "Ryk frem til Strandpromenaden", 23);
+            addTransfer("Lektier", "Du har lavet alle dine lektier. Modtag 2 pengesedler fra Banken", 2);
+            addTransfer("Biografen", "Du skal i biografen med dine venner. Betal 1 pengesedler", -1);
 
         }
 
@@ -65,29 +85,31 @@ public class Deck {
 
     }
 
-    public void drawCard () {
+    public Card drawCard () {
 
-        Card drawedCard = chanceDeck.get(0);
-        chanceDeck.set(totalCardsInDeck-1, drawedCard);
+        Card drawCard = chanceDeck.get(0);
+        chanceDeck.remove(0);
+        chanceDeck.add(drawCard);
 
+        return drawCard;
     }
 
     /*
     ---------------------- Support Methods ----------------------
      */
 
-    private void addMovingAbs (int cardNumber, String text, String description, int positionAbs) {
-        chanceDeck.add(new MovingAbs(cardNumber,text,description,positionAbs));
+    private void addMovingAbs ( String text, String description, int positionAbs) {
+        chanceDeck.add(new MovingAbs(text,description,positionAbs));
 
     }
 
-    private void addMovingRel (int cardNumber, String text, String description, int movementRel) {
-        MovingRel movingRel;
-        chanceDeck.add(movingRel = new MovingRel(cardNumber,text,description,movementRel));
+    private void addMovingRel (String text, String description, int movementRel) {
+        chanceDeck.add(new MovingRel(text,description,movementRel));
     }
 
-    private void addTransfer(int cardNumber, String text, String description, int money) {
-        chanceDeck.add( new Transfer(cardNumber, text, description, money));
+    private void addTransfer(String text, String description, int money) {
+        chanceDeck.add( new Transfer(text, description, money));
     }
+
 
 }

@@ -24,6 +24,7 @@ public class Gui {
     private GUI_Field[] fields;
     private ArrayList<GUI_Player> players;
     private Color backgroundColor;
+    private Color textColor = Color.BLACK;
     //</editor-fold>
 
     /*
@@ -62,27 +63,107 @@ public class Gui {
         // Create the GUI_Field array
         this.fields = createFields(fields);
 
-        // Create the GUI_Player array
-        this.players = createPlayers(players);
-
         // Set Color
         backgroundColor = Color.GRAY;
 
         // Start GUI
         gui = new GUI(this.fields, backgroundColor);
-        for (GUI_Player player : this.players) {
-            gui.addPlayer(player);
-        }
+
+        // Create the GUI_Player array
+        this.players = createPlayers(players);
+
+        for (GUI_Player player : this.players) { gui.addPlayer(player); }
     }
     //</editor-fold>
-    
+
+
     /*
     ------------------------------ Properties ----------------------------------
      */
-    
+
     /*
     ---------------------------- Public Methods --------------------------------
      */
+
+    /**
+     * Shows a message to the players
+     * @param message The message to show as String
+     */
+    public void showMessage (String message) {
+
+        // Show the message in the gui
+        gui.showMessage(message);
+    }
+
+    /**
+     * This method sets a Die on the board with the
+     * given facevalue.
+     * @param faceValue The value of the face on the Die
+     */
+    public void setDie (int faceValue) {
+
+        // Set the dice on the board
+        gui.setDie(faceValue);
+    }
+
+    //<editor-fold desc="Chancecard Methods"
+
+    /**
+     * This method sets the next Chancecard, so that
+     * the displayChancecard method can show the card,
+     * or you can press the deck to see it.
+     * @param text The text to the Chancecard
+     */
+    public void setChanceCard (String text) {
+
+        // Ready the next Chancecard
+        gui.setChanceCard(text);
+    }
+
+    /**
+     * This method displays the next Chancecard.
+     * Requires the setChancecard() method to be called
+     * before, to show the desired card.
+     */
+    public void displayChanceCard () {
+
+        // Display the card
+        gui.displayChanceCard();
+    }
+
+    //</editor-fold>
+
+    //<editor-fold desc="User Input">
+
+    public String getUserChoice (String message, String ... options) {
+
+        // Return the String
+        return gui.getUserSelection(message, options);
+    }
+
+    /**
+     * Gets an Integer from the user in a specified range.
+     * @param message The message to inform the user
+     * @param min The minimum possible valid Integer
+     * @param max The maximum possible valid Integer
+     * @return Returns an Integer between min and max
+     */
+    public int getUserInteger (String message, int min, int max) {
+
+        // Get the Integer and Return
+        return gui.getUserInteger(message, min, max);
+    }
+
+    /**
+     * Getting an Integer from the user, and displays a message.
+     * @param message The message to inform the user
+     * @return Returns the inputted Integer
+     */
+    public int getUserInteger (String message) {
+
+        // Get the Integer and Return
+        return gui.getUserInteger(message);
+    }
 
     /**
      * This method prompts the user to input a String into
@@ -96,15 +177,7 @@ public class Gui {
         return gui.getUserString(message);
     }
 
-    /**
-     * Shows a message to the players
-     * @param message The message to show as String
-     */
-    public void showMessage (String message) {
-
-        // Show the message in the gui
-        gui.showMessage(message);
-    }
+    //</editor-fold>
 
     //<editor-fold desc="Player Methods">
     /**
@@ -132,6 +205,11 @@ public class Gui {
         // Find the player in the GUI_Player list
         GUI_Player playerToMove = findPlayer(player);
 
+        // First remove the player from its current field
+        for ( GUI_Field field : fields ) {
+            field.setCar(playerToMove, false);
+        }
+
         // Move the player on the board
         fields[theFieldIndex].setCar (playerToMove, true);
     }
@@ -155,15 +233,29 @@ public class Gui {
     public void addPlayer ( Player player ) {
 
         // Create the GUI_Player
-        GUI_Player newPlayer = new GUI_Player(  player.getName(),
-                player.getAccount().getBalance(),
-                new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
-                );
+        GUI_Player newPlayer = setPlayer(player);
 
         // Add the player to the gui and set them on the start field
         addGUIPlayer(newPlayer);
-        fields[0].setCar(newPlayer, true);
+        fields[player.getPosition()].setCar(newPlayer, true);
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Field Methods"
+
+    /**
+     * This method changes the owner of the given field
+     * to the given Player.
+     * @param player The player which shall own the field
+     * @param theField The field in focus
+     */
+    public void setFieldOwner (Player player, Field theField) {
+
+        // Cast the GUI_Field to a GUI_Street as we know it will be a GUI_Street object
+        ((GUI_Street)fields[theField.getFieldNumber()]).setOwnerName(player.getName());
+
+    }
+
     //</editor-fold>
     
     /*
@@ -194,6 +286,62 @@ public class Gui {
         return playerToFind;
     }
 
+    //<editor-fold desc="GUI_Player creation"
+    /**
+     * This method helps with the creation of a GUI_Player.
+     * Primarily has the responsibility for given the Player
+     * the correct Car type
+     * @param player The Player which shall be created as a GUI_Player
+     */
+    private GUI_Player setPlayer ( Player player ) {
+
+        // Declare GUI_Player variable
+        GUI_Player newPlayer;
+
+        // Create the player with the correct Car type
+        switch (player.getToken()) {
+
+            case "Bil":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "Racerbil":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "Traktor":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "UFO":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED));
+                break;
+
+            /*
+            The Code will default to a Yellow car with a Zebra pattern
+            which indicates that there's a fault in Token String in the
+            player.
+             */
+            default:
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.YELLOW, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA));
+                break;
+        }
+
+        // Return the newly created GUI_Player
+        return newPlayer;
+
+    }
+
     /**
      * This method has the responsibility to add a new player to
      * this objects GUI_Player list and to the visual board.
@@ -206,6 +354,33 @@ public class Gui {
         // Add the GUI_Player to the visual gui
         gui.addPlayer(player);
     }
+    /**
+     * This method helps the constructor create an Array of GUI_Player's
+     * @param players An ArrayList<Player>
+     * @return Return an ArrayList<GUI_Player>
+     */
+    private ArrayList<GUI_Player> createPlayers (ArrayList<Player> players) {
+
+        // Create the players arraylist as the right size
+        ArrayList<GUI_Player> guiPlayers = new ArrayList<>(players.size());
+
+        // Iterate over the players list and create a GUI_Player for each
+        for ( int i=0 ; i < players.size() ; i++ ) {
+            GUI_Player newPlayer = new GUI_Player(  players.get(i).getName(),
+                    players.get(i).getAccount().getBalance(),
+                    new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
+            );
+
+            // Add the created player to the player array and set the player on the start field
+            guiPlayers.add(newPlayer);
+            fields[players.get(i).getPosition()].setCar(newPlayer, true);
+        }
+
+        // Return the GUI_Player array
+        return guiPlayers;
+    }
+
+    //</editor-fold>
 
     /**
      * This method helps the constructor create an Array of GUI_Field's
@@ -223,26 +398,34 @@ public class Gui {
             if ( fields[i] instanceof Property ) {
 
                 // Create new GUI_Street
-                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "subtext", fields[i].getDescription(),
-                        Integer.toString(fields[i].getRent()), Color.BLACK, Color.RED);
+                GUI_Street ownable = new GUI_Street(fields[i].getTitle(), "Beløb: " + fields[i].getCost(),
+                        fields[i].getDescription(),
+                        Integer.toString(fields[i].getCost()), fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = ownable;
             }
 
             else if ( fields[i] instanceof Chancefield ) {
 
                 // Create new Field
-                GUI_Chance chance = new GUI_Chance(fields[i].getTitle(), "subtext", fields[i].getDescription(),
-                                                    Color.orange, Color.RED);
+                GUI_Chance chance = new GUI_Chance("C", "Chance Felt", fields[i].getDescription(),
+                                                    fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = chance;
             }
 
-            else if ( fields[i] instanceof Prison) {
+            else if ( fields[i] instanceof Prison ) {
 
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();
 
+                // Change the text of the field
+                jail.setSubText("Fængsel");
+                jail.setDescription(fields[i].getDescription());
+
+                // Put the GUI_Field into the newFields array
                 newFields[i] = jail;
 
             }
@@ -252,6 +435,12 @@ public class Gui {
                 // Create new Field
                 GUI_Refuge refuge = new GUI_Refuge();
 
+                // Change the text of the field
+                refuge.setTitle(fields[i].getTitle());
+                refuge.setDescription(fields[i].getDescription());
+                refuge.setSubText("Gratis");
+
+                // Put the GUI_Field into the newFields array
                 newFields[i] = refuge;
 
             }
@@ -260,39 +449,14 @@ public class Gui {
 
                 // Create new Field
                 GUI_Start start = new GUI_Start(fields[i].getTitle(), "Subtext", fields[i].getDescription(),
-                                                Color.GREEN, Color.RED);
+                                                fields[i].getColor(), textColor);
 
+                // Put the GUI_Field into the newFields array
                 newFields[i] = start;
             }
         }
 
         // Return the newly created array
         return newFields;
-    }
-
-    /**
-     * This method helps the constructor create an Array of GUI_Player's
-     * @param players An ArrayList<Player>
-     * @return Return an ArrayList<GUI_Player>
-     */
-    private ArrayList<GUI_Player> createPlayers (ArrayList<Player> players) {
-
-        // Create the players arraylist as the right size
-        ArrayList<GUI_Player> guiPlayers = new ArrayList<>(players.size());
-
-        // Iterate over the players list and create a GUI_Player for each
-        for ( int i=0 ; i < players.size() ; i++ ) {
-            GUI_Player newPlayer = new GUI_Player(  players.get(i).getName(),
-                                                    players.get(i).getAccount().getBalance(),
-                                                    new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
-                                                    );
-
-            // Add the created player to the player array and set the player on the start field
-            guiPlayers.add(newPlayer);
-            // fields[0].setCar(newPlayer, true);
-        }
-
-        // Return the GUI_Player array
-        return guiPlayers;
     }
 }
