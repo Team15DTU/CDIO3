@@ -1,5 +1,6 @@
 package model.chancecard;
 
+import controller.Controller;
 import model.player.Player;
 
 /**
@@ -13,7 +14,6 @@ public abstract class Card {
     -------------------------- Fields --------------------------
      */
 
-    protected int cardNumber;
     protected String text;
     protected String description;
 
@@ -21,9 +21,8 @@ public abstract class Card {
     ----------------------- Constructor -------------------------
      */
 
-    protected Card (int cardNumber,String text, String description) {
+    protected Card (String text, String description) {
 
-        this.cardNumber=cardNumber;
         this.text=text;
         this.description=description;
 
@@ -34,9 +33,7 @@ public abstract class Card {
      */
 
     //<editor-fold desc="Properties">
-    public int getCardNumber()                      { return cardNumber; }
 
-    public void setCardNumber(int cardNumber)       { this.cardNumber = cardNumber; }
 
     public String getText()                         { return text; }
 
@@ -51,10 +48,8 @@ public abstract class Card {
     ---------------------- Public Methods -----------------------
      */
 
-    protected abstract void action (Player player);
-    
-    
-    
+    protected abstract void action(Player player, Controller controller);
+
     /*
     ---------------------- Support Methods ----------------------
      */

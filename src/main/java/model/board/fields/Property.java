@@ -12,7 +12,6 @@ public class Property extends Field {
     -------------------------- Fields --------------------------
      */
 
-    private int cost;
     private Color color;
 
 
@@ -20,11 +19,9 @@ public class Property extends Field {
     ----------------------- Constructor -------------------------
      */
 
-    public Property (int fieldNumber, String title, String description, int rent, Color color, int cost) {
+    public Property (int fieldNumber, String title, String description, int rent, Color color) {
 
-        super(fieldNumber, title, description,rent);
-        this.cost=cost;
-        this.color=color;
+        super(fieldNumber, title, description,rent, color);
 
     }
 
@@ -49,11 +46,11 @@ public class Property extends Field {
     public void action (Player player) {
 
         if (owner == null) {
-            System.out.println("You bought this field for "+cost);
+            System.out.println("Du køber dette felt for "+cost);
             setOwner(player);
             player.getAccount().update(-cost);
         } else {
-            System.out.println("You are staying at "+owner.getName()+"'s place at a cost of "+cost);
+            System.out.println("Du er landet på "+owner.getName()+"'s felt, hvilket koster "+cost);
             player.getAccount().update(-cost);
             owner.getAccount().update(cost);
         }
