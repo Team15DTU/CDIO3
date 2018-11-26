@@ -290,6 +290,53 @@ public class Gui {
     }
 
     /**
+     *
+     * @param player
+     */
+    private GUI_Player setPlayer ( Player player ) {
+
+        // Declare GUI_Player variable
+        GUI_Player newPlayer;
+
+        // Create the player with the correct Car type
+        switch (player.getToken()) {
+
+            case "Bil":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "Racerbil":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "Traktor":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "UFO":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED));
+                break;
+
+            default:
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.YELLOW, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA));
+                break;
+        }
+
+        return newPlayer;
+
+    }
+
+    /**
      * This method has the responsibility to add a new player to
      * this objects GUI_Player list and to the visual board.
      * @param player A GUI_Player to add
