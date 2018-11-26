@@ -1,5 +1,6 @@
 package model.chancecard;
 
+import model.player.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +10,7 @@ public class DeckTest {
     @Test
     public void createDeck() {
         Deck deck = new Deck(3);
-        assertEquals(15, deck.getTotalCardsInDeck());
+        assertEquals(30, deck.getTotalCardsInDeck());
 
     }
 
@@ -45,7 +46,8 @@ public class DeckTest {
         Deck deck = new Deck(2);
         Card cardindex1;
         cardindex1 = deck.getChanceDeck().get(0);
-        deck.drawCard();
+        Player player = new Player("jens",10,1);
+        deck.drawCard(player);
         Card cardIndexLast;
         cardIndexLast = deck.getChanceDeck().get(deck.getChanceDeck().size()-1);
 

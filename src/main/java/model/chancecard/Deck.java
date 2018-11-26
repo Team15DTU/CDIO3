@@ -114,24 +114,6 @@ public class Deck {
         chanceDeck.add( new Transfer(text, description, money));
     }
 
-    /*
-    -------------- Getter and Setter --------------------
-     */
-    public int getTotalCardsInDeck() {
-        return totalCardsInDeck;
-    }
-
-    public void setTotalCardsInDeck(int totalCardsInDeck) {
-        this.totalCardsInDeck = totalCardsInDeck;
-    }
-
-    public ArrayList<Card> getChanceDeck() {
-        return chanceDeck;
-    }
-
-    public void setChanceDeck(ArrayList<Card> chanceDeck) {
-        this.chanceDeck = chanceDeck;
-    }
 
 
 }
