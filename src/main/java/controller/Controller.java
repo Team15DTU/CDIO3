@@ -131,6 +131,20 @@ public class Controller {
         // Return the String
         return gui.getUserChoice(message, options);
     }
+
+    /**
+     * Shows a message and a dropdown menu, and return the
+     * choosen String.
+     * @param message The information to the user
+     * @param options The available options as String[]
+     * @return the choosen String as String
+     */
+    public String getUserChoice (String message, ArrayList<String> options) {
+
+        // Return the String
+        return gui.getUserChoice ( message, (String[]) options.toArray() );
+    }
+
     /**
      * This method prompts the user to input an Integer
      * in range min - max, and prints the message

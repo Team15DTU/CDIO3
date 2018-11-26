@@ -325,6 +325,11 @@ public class Gui {
                         new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED));
                 break;
 
+            /*
+            The Code will default to a Yellow car with a Zebra pattern
+            which indicates that there's a fault in Token String in the
+            player.
+             */
             default:
                 newPlayer = new GUI_Player( player.getName(),
                         player.getAccount().getBalance(),
