@@ -233,10 +233,7 @@ public class Gui {
     public void addPlayer ( Player player ) {
 
         // Create the GUI_Player
-        GUI_Player newPlayer = new GUI_Player(  player.getName(),
-                player.getAccount().getBalance(),
-                new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
-                );
+        GUI_Player newPlayer = setPlayer(player);
 
         // Add the player to the gui and set them on the start field
         addGUIPlayer(newPlayer);
