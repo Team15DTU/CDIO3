@@ -18,7 +18,7 @@ public class Turn {
     Board playingBoard = new Board();
     Field turnField;
 
-    private int rollValue, turnPosition, boardPosition, turnEndingBalance;
+    private int rollValue, turnPosition, boardPosition;
     private String fieldName, fieldDescription;
 
     String input;
@@ -30,7 +30,11 @@ public class Turn {
     */
 
     public void turn(Player player, Cup cup, Controller controller, Deck deck) {
+
+
         // Initialize object variable
+        int turnEndingBalance=player.getAccount().getBalance();
+        String chanceActionText;
 
         // Press to roll message printed and waiting for input
         controller.showMessage("Tryk for at slå med terningene for " + player.getName());
@@ -51,7 +55,16 @@ public class Turn {
 
         // Moving Player
         player.updatePosition(rollValue);
+
+        // Moves player on GUI
+        movingPlayer(player,controller);
+
+        /*
         turnPosition=player.getPosition();
+        controller.movePlayer(player);
+        */
+
+        // Placement on board.
         boardPosition = turnPosition+1;
 
         // Does field action
@@ -65,10 +78,15 @@ public class Turn {
         if (!turnField.getTitle().equals("Chance felt")){
             turnField.action(player);
             builderStr.append(fieldDescription+"\n");
+
         } else {
             turnField.action(player,deck);
-            builderStr.append(fieldDescription+"\n");
+            chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
+            controller.setAndDisplayChanceCard(chanceActionText);
         }
+
+        resultOfTurn(player, controller, turnPosition);
+
 
         String turnFieldString = builderStr.toString();
         controller.showMessage(turnFieldString);
@@ -76,9 +94,12 @@ public class Turn {
         turnEndingBalance = player.getAccount().getBalance();
         if(turnEndingBalance<=0) {
             controller.showMessage("Du har ikke flere penge tilbage og erklæres fallit");
+            controller.updatePlayerBalance(player,turnEndingBalance);
         } else {
             controller.showMessage("Du har nu: " + turnEndingBalance + " Pengesedler");
+            controller.updatePlayerBalance(player,turnEndingBalance);
         }
+
 
         // Check if totalScore is so low that the player lost. If yes, players boolean hasLost is set to true.
         if (turnEndingBalance<= 0) {
@@ -87,6 +108,20 @@ public class Turn {
 
         System.out.println();
 
+    }
+
+    /*
+    ----------- SUPPORT METHODS --------------
+     */
+
+    public void movingPlayer (Player player, Controller controller) {
+        turnPosition=player.getPosition();
+        controller.movePlayer(player);
+    }
+
+    public void resultOfTurn (Player player, Controller controller, int position) {
+        controller.movePlayer(player);
+        controller.updatePlayerBalance(player,position);
     }
 
 }

@@ -48,7 +48,6 @@ public class Game {
 
         // this ArrayList contains tokens but they may be changed to obejcts Token instead of Strings
 
-
         ArrayList<String> tokens = new ArrayList<>();
         tokens.add("Bil"); tokens.add("Racerbil"); tokens.add("UFO"); tokens.add("Traktor");
 
@@ -58,6 +57,7 @@ public class Game {
 
         for (int i = 0; i < noOfPlayers; i++) {
             String name = controller.getUserString("Indtast navn på spiller " + Integer.toString(i+1));
+
             StringBuilder str = new StringBuilder();
             str.append("Vælg en spillerbrik: \n");
             int j = 1;
@@ -78,6 +78,7 @@ public class Game {
         }
 
         controller.showMessage("Velkommen til Monopoly Junior");
+        controller.addPlayers(players);
 
         Cup cup = new Cup(1,6);
         Deck chancedeck = new Deck(1);

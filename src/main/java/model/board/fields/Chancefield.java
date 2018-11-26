@@ -35,7 +35,8 @@ public class Chancefield extends Field {
 
     public void action (Player player, Deck deck) {
 
-        deck.drawCard(player);
+        Card drawCard= deck.drawCard();
+        drawCard.action(player);
 
     }
 
