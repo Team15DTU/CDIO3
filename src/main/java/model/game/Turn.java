@@ -50,11 +50,8 @@ public class Turn {
         StringBuilder builderStr = new StringBuilder();
         builderStr.append("Du slog " + rollValue + "\n");
 
-        // Moving Player
-        player.updatePosition(rollValue);
-
-        // Moves player on GUI
-        movingPlayer(player,controller);
+        // Moves player on GUI and set player position
+        movingPlayer(player,controller, rollValue);
 
         /* TODO: Rasmus skal dette fixes?
         turnPosition=player.getPosition();
@@ -62,7 +59,7 @@ public class Turn {
         */
 
         // Placement on board.
-        boardPosition = turnPosition+1;
+        boardPosition = turnPosition + 1;
 
         // Does field action
         turnField=playingBoard.getTurnfield(turnPosition);
@@ -80,17 +77,21 @@ public class Turn {
             turnField.action(player,deck);
             chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
             controller.setAndDisplayChanceCard(chanceActionText);
+            Field chancefield;
+            chancefield = playingBoard.getTurnfield(player.getPosition());
+            chancefield.action(player);
         }
 
         builderStr.append(turnField.getActionText()+"\n");
-
-        resultOfTurn(player, controller, turnPosition);
+        turnEndingBalance = player.getAccount().getBalance();
+        resultOfTurn(player, controller, turnEndingBalance);
 
 
         String turnFieldString = builderStr.toString();
         controller.showMessage(turnFieldString);
 
-        turnEndingBalance = player.getAccount().getBalance();
+
+
         if(turnEndingBalance<=0) {
             controller.showMessage("Du har ikke flere penge tilbage og erklæres fallit");
             controller.updatePlayerBalance(player,turnEndingBalance);
@@ -113,14 +114,15 @@ public class Turn {
     ----------- SUPPORT METHODS --------------
      */
 
-    public void movingPlayer (Player player, Controller controller) {
+    public void movingPlayer (Player player, Controller controller, int rollValue) {
+        player.updatePosition(rollValue);
         turnPosition=player.getPosition();
         controller.movePlayer(player);
     }
 
-    public void resultOfTurn (Player player, Controller controller, int position) {
+    public void resultOfTurn (Player player, Controller controller, int playerBalance) {
         controller.movePlayer(player);
-        controller.updatePlayerBalance(player,position);
+        controller.updatePlayerBalance(player,playerBalance);
     }
 
 }

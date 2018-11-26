@@ -108,7 +108,7 @@ public class Game {
             i++;
         }
 
-        controller.showMessage("The winner is "+winner+" with an amount of "+amount);
+        controller.showMessage("Vinderen er "+winner+" med "+amount +" pengesedler");
     }
 
         public static int getSTARTPOINT () {
