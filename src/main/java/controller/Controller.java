@@ -141,8 +141,10 @@ public class Controller {
      */
     public String getUserChoice (String message, ArrayList<String> options) {
 
+        String[] hej = options.toArray( new String [options.size()]);
+
         // Return the String
-        return gui.getUserChoice ( message, (String[]) options.toArray() );
+        return gui.getUserChoice(message, hej);
     }
 
     /**

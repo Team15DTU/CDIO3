@@ -85,11 +85,9 @@ public class Deck {
 
     }
 
-    public Card drawCard (Player player) {
+    public Card drawCard () {
 
         Card drawCard = chanceDeck.get(0);
-        drawCard.getDescription();
-        drawCard.action(player);
         chanceDeck.remove(0);
         chanceDeck.add(drawCard);
 
@@ -106,8 +104,7 @@ public class Deck {
     }
 
     private void addMovingRel (String text, String description, int movementRel) {
-        MovingRel movingRel;
-        chanceDeck.add(movingRel = new MovingRel(text,description,movementRel));
+        chanceDeck.add(new MovingRel(text,description,movementRel));
     }
 
     private void addTransfer(String text, String description, int money) {
