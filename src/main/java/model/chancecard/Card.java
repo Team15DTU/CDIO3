@@ -48,7 +48,7 @@ public abstract class Card {
     ---------------------- Public Methods -----------------------
      */
 
-    protected abstract void action(Player player, Controller controller);
+    public void action(Player player){}
 
     /*
     ---------------------- Support Methods ----------------------

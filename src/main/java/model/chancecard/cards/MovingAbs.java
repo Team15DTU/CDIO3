@@ -42,8 +42,7 @@ public class MovingAbs extends Card {
     ---------------------- Public Methods -----------------------
      */
 
-    @Override
-    public void action(Player player, Controller controller) {
+    public void action(Player player) {
 
         player.setPosition(positionAbs);
 

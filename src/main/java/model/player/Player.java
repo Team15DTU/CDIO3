@@ -1,5 +1,7 @@
 package model.player;
 
+import java.util.ArrayList;
+
 public class Player {
 
     /*
@@ -11,6 +13,8 @@ public class Player {
     private boolean hasLost;
     private int position;
     private String token;
+    private ArrayList<Integer> propertyCost;
+    private int totalPropertyValue = 0;
 
     /*
      ------- Constructors ------------
@@ -24,6 +28,7 @@ public class Player {
         this.name = name;
         this.token = token;
         account = new Account();
+        propertyCost = new ArrayList<>();
     }
   
     public Player ( String name) {
@@ -32,7 +37,7 @@ public class Player {
         account = new Account();
         position = 0;
         hasLost = false;
-
+        propertyCost = new ArrayList<>();
     }
 
     /**
@@ -44,7 +49,8 @@ public class Player {
         // Initialize
         this.name = name;
         account = new Account(initialBalance);
-        position = 1;
+        position = 0;
+        propertyCost = new ArrayList<>();
     }
 
     public Player ( String name, int initialBalance, int startingPosition ) {
@@ -52,6 +58,7 @@ public class Player {
         this.name = name;
         account = new Account(initialBalance);
         position=startingPosition;
+        propertyCost = new ArrayList<>();
     }
 
     public Player (String name, String token, int initialBalance, int startingPosition){
@@ -60,7 +67,7 @@ public class Player {
         this.token=token;
         account = new Account(initialBalance);
         position=startingPosition;
-
+        propertyCost = new ArrayList<>();
     }
 
 
@@ -84,6 +91,15 @@ public class Player {
     public void updatePosition ( int value ) {
         // Update the position with modulus
         position = (position + value) % 24;
+    }
+
+    public void updateTotalProoertyValue () {
+
+        int totalPropertys = propertyCost.size();
+        for (int p = 0; p < totalPropertys; p++) {
+                int propertyValueIndex=propertyCost.get(p);
+                totalPropertyValue = totalPropertyValue + propertyValueIndex;
+        }
     }
 
     /*
@@ -126,4 +142,19 @@ public class Player {
 
     public void setPosition(int position) {this.position = position;}
 
+    public ArrayList<Integer> getPropertyCost() {
+        return propertyCost;
+    }
+
+    public void setPropertyCost(ArrayList<Integer> propertyCost) {
+        this.propertyCost = propertyCost;
+    }
+
+    public int getTotalPropertyValue() {
+        return totalPropertyValue;
+    }
+
+    public void setTotalPropertyValue(int totalPropertyValue) {
+        this.totalPropertyValue = totalPropertyValue;
+    }
 }

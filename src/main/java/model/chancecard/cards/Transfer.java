@@ -45,9 +45,9 @@ public class Transfer extends Card {
     ---------------------- Public Methods -----------------------
      */
 
-    public void action(Player player1, Controller controller) {
+    public void action(Player player) {
 
-        player1.updateScore(moneyTransferred);
+        player.updateScore(moneyTransferred);
     }
     
     
