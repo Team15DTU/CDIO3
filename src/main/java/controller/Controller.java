@@ -4,6 +4,7 @@ import model.board.Field;
 import model.player.Player;
 import view.gui.Gui;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -243,6 +244,31 @@ public class Controller {
 
         // Set the new owner of the field
         gui.setFieldOwner(player, field);
+    }
+
+    //</editor-fold>
+
+    //<editor-fold desc="Board Colors"
+
+    /**
+     * This method will change the background color
+     * on the board.
+     * @param color An awt Color
+     */
+    public void setBackgroundColor (Color color) {
+
+        // Change the Color
+        gui.setBackgroundColor(color);
+    }
+
+    /**
+     * This method will change the text color.
+     * @param color An awt Color
+     */
+    public void setTextColor (Color color) {
+
+        // Change the Color
+        gui.setTextColor(color);
     }
 
     //</editor-fold>
