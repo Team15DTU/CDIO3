@@ -76,6 +76,47 @@ public class Controller {
         gui.setDie(faceValue);
     }
 
+    //<editor-fold desc="Chancecard Methods"
+
+    /**
+     * This method sets the next ChanceCard and
+     * displays it right away.
+     * @param text The text to the ChanceCard.
+     */
+    public void setAndDisplayChanceCard (String text) {
+
+        // Set the ChanceCard
+        setChanceCard(text);
+
+        // Then display the ChanceCard
+        displayChanceCard();
+    }
+
+    /**
+     * This method sets the next Chancecard, so that
+     * the displayChancecard method can show the card,
+     * or you can press the deck to see it.
+     * @param text The text to the Chancecard
+     */
+    public void setChanceCard (String text) {
+
+        // Ready the next Chancecard
+        gui.setChanceCard(text);
+    }
+
+    /**
+     * This method displays the next Chancecard.
+     * Requires the setChancecard() method to be called
+     * before, to show the desired card.
+     */
+    public void displayChanceCard () {
+
+        // Display the card
+        gui.displayChanceCard();
+    }
+
+    //</editor-fold>
+
     //<editor-fold desc="User Input">
 
     /**
