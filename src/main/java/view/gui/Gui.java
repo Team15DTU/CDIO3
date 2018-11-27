@@ -463,7 +463,7 @@ public class Gui {
             else if ( fields[i] instanceof model.board.fields.Start ) {
 
                 // Create new Field
-                GUI_Start start = new GUI_Start(fields[i].getTitle(), "Subtext", fields[i].getDescription(),
+                GUI_Start start = new GUI_Start(fields[i].getTitle(), "", fields[i].getDescription(),
                                                 fields[i].getColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
