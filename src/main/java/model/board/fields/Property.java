@@ -12,8 +12,6 @@ public class Property extends Field {
     -------------------------- Fields --------------------------
      */
 
-    private Color color;
-
 
     /*
     ----------------------- Constructor -------------------------
@@ -29,15 +27,7 @@ public class Property extends Field {
     ------------------------ Properties -------------------------
      */
 
-    //<editor-fold desc="Properties">
-    public int getCost() { return cost; }
 
-    public void setCost(int cost) { this.cost = cost; }
-
-    public Color getColor() { return color; }
-
-    public void setColor(Color color) { this.color = color; }
-    //</editor-fold>
 
     /*
     ---------------------- Public Methods -----------------------

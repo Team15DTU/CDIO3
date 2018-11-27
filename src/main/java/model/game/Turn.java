@@ -30,7 +30,7 @@ public class Turn {
 
 
         // Initialize object variable
-        int turnEndingBalance=player.getAccount().getBalance();
+        int turnEndingBalance;
 
         // Press to roll message printed and waiting for input
         controller.showMessage("Tryk for at slå med terningene for " + player.getName());
@@ -117,9 +117,9 @@ public class Turn {
         controller.movePlayer(player);
     }
 
-    public void resultOfTurn (Player player, Controller controller, int playerBalance) {
+    public void resultOfTurn (Player player, Controller controller, int turnBalance) {
         controller.movePlayer(player);
-        controller.updatePlayerBalance(player,playerBalance);
+        controller.updatePlayerBalance(player, turnBalance);
     }
     public void showChancecard (Controller controller, Deck deck) {
         String chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
