@@ -22,6 +22,27 @@ public class PlayerTest {
 
         assertEquals( STARTINGSCORE+EXTRAPOINT, player1.getAccount().getBalance() );
 
+        Player player2 = new Player("test","cat");
+        player2.updateScore(EXTRAPOINT);
+
+        assertEquals( 500, player2.getAccount().getBalance() );
+
+        Player player3 = new Player("test",100,1);
+        player3.updateScore(EXTRAPOINT);
+
+        assertEquals( 600, player3.getAccount().getBalance() );
+
+
+        Player player4 = new Player("test","cat",100,1);
+        player4.updateScore(EXTRAPOINT);
+
+        assertEquals( 600, player4.getAccount().getBalance() );
+
+
+        Player player5 = new Player("test");
+        player5.updateScore(EXTRAPOINT);
+
+        assertEquals( 500, player5.getAccount().getBalance() );
     }
 
     @Test
