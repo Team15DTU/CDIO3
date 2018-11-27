@@ -16,7 +16,7 @@ public class Turn {
     */
 
     private Board playingBoard = new Board();
-    private int turnEndingBalance;
+    private int playerBalance;
 
     private int rollValue, boardPosition;
     private String fieldName, fieldActionText;
@@ -29,8 +29,16 @@ public class Turn {
     */
 
     public void turn(Player player, Cup cup, Controller controller, Deck deck) {
+        // TODO: Der skal laves logic så spillerne får penge hvis de rykker over start
 
         // Initialize object variable
+        // TODO: Kan være der er nogle variable der skal rykkes her ned.
+
+        // Checks if player is on Prison and has to pay to get out.
+        checkIfInPrison(player,controller);
+
+        // Checks of player is fallit and sets player as loser if true.
+        checkIfFallitWMessage(player,controller, "Du har ikke flere penge tilbage og erklæres fallit");
 
         //  Press to roll message printed and and rolls cup.
         raffleCup(cup, player, controller);
@@ -38,30 +46,19 @@ public class Turn {
         // Present player with the result of the raffle.
         raffleResult(player,controller);
 
+        // Does action method on the respective field,
+        // and does all the actions on new field of player is moved as a result of a field.Action.
         turnFieldAction(player,deck,controller,turnPosition);
 
+        // Updates player score on GUI. Is already done in turnFieldAction but better save than sorry.
         updatePlayersGUIBalance(controller, player);
 
+        // Check if totalScore is so low that the player lost.
+        // If yes, players boolean hasLost is set to true and Player score on GUI is set to 0.
+        checkIfFallit(player,controller);
 
-
-
-        turnEndingBalance = player.getAccount().getBalance();
-
-        if(turnEndingBalance<=0) {
-            controller.showMessage("Du har ikke flere penge tilbage og erklæres fallit");
-            controller.updatePlayerBalance(player,turnEndingBalance);
-        } else {
-            controller.showMessage("Du har nu: " + turnEndingBalance + " Pengesedler");
-            controller.updatePlayerBalance(player,turnEndingBalance);
-        }
-
-
-        // Check if totalScore is so low that the player lost. If yes, players boolean hasLost is set to true.
-        if (turnEndingBalance<= 0) {
-            player.setHasLost(true);
-        }
-
-        System.out.println();
+        // Check balance is
+        printBalance(player,controller);
 
     }
 
@@ -77,41 +74,48 @@ public class Turn {
      * @param controller a Controller object to handle GUI.
      */
     public void raffleCup (Cup cup,Player player, Controller controller) {
+        // Needs to check if player.hasLost is true,
+        // as player could go to 0 when paying to get out of Prison in beginning of turn.
+        if (!player.isHasLost()) {
 
-    controller.showMessage("Tryk for at slå med terningene for " + player.getName());
+            controller.showMessage("Tryk for at slå med terningene for " + player.getName());
 
-    // Cup is rolled and result is assigned to rollValue
-    cup.cupRoll();
-    rollValue = cup.getCupValue();
+            // Cup is rolled and result is assigned to rollValue
+            cup.cupRoll();
+            rollValue = cup.getCupValue();
+        }
     }
 
     /**
      * Prints the result of the raffle in GUI.
-     * Uses method: fieldInfo to information of the field the player lands on.
+     * Uses method: updateFieldInfo to information of the field the player lands on.
      * @param player a Player object
      * @param controller a Controller object
      */
     public void raffleResult (Player player, Controller controller) {
+        // Needs to check if player.hasLost is true,
+        // as player could go to 0 when paying to get out of Prison in beginning of turn.
+        if (!player.isHasLost()) {
+            // Player position is update with value from raffleCup
+            // and moved on GUI
+            player.updatePosition(rollValue);
+            controller.movePlayer(player);
 
-        // Player position is update with value from raffleCup
-        // and moved on GUI
-        player.updatePosition(rollValue);
-        controller.movePlayer(player);
+            // turnPosition holds value of player position (array starting from 0) on the board
+            // boardPosition hold value of players fieldNumber position (field 1 -24) on board
+            turnPosition = player.getPosition();
+            boardPosition = turnPosition + 1;
 
-        // turnPosition holds value of player position (array starting from 0) on the board
-        // boardPosition hold value of players fieldNumber position (field 1 -24) on board
-        turnPosition=player.getPosition();
-        boardPosition = turnPosition + 1;
+            // Gets info of a field at at given position (Array index from 0)
+            updateFieldInfo(turnPosition);
 
-        // Gets info of a field at at given position (Array index from 0)
-        fieldInfo(turnPosition);
+            StringBuilder buildRaffleResult = new StringBuilder();
+            buildRaffleResult.append("Du slog " + rollValue + "\n");
+            buildRaffleResult.append("Og landede på feltet: " + boardPosition + " - " + fieldName);
 
-        StringBuilder buildRaffleResult = new StringBuilder();
-        buildRaffleResult.append("Du slog " + rollValue + "\n");
-        buildRaffleResult.append("Og landede på feltet: " + boardPosition + " - " + fieldName);
-
-        String raffleresultStr = buildRaffleResult.toString();
-        controller.showMessage(raffleresultStr);
+            String raffleresultStr = buildRaffleResult.toString();
+            controller.showMessage(raffleresultStr);
+        }
     }
 
     // </editor-folder >
@@ -120,7 +124,7 @@ public class Turn {
      * Gets information from the fields that the player lands on and set it to local variables
      * @param position Integer of the position i wishes to get information on.
      */
-    public  void fieldInfo (int position) {
+    public  void updateFieldInfo(int position) {
 
         turnField=playingBoard.getTurnfield(position);
         fieldName=turnField.getTitle();
@@ -139,22 +143,25 @@ public class Turn {
      * @param position an Integer of the players position for this turn
      */
     public void turnFieldAction (Player player, Deck deck, Controller controller, int position) {
-
-        if (!(turnField instanceof Chancefield)){
-            if ((turnField instanceof Property)) {
-                // ACtion for fields of type Property.
-                propertyFieldAction(player,controller,position);
+        // Needs to check if player.hasLost is true,
+        // as player could go to 0 when paying to get out of Prison in beginning of turn.
+        if (!player.isHasLost()) {
+            if (!(turnField instanceof Chancefield)) {
+                if ((turnField instanceof Property)) {
+                    // ACtion for fields of type Property.
+                    propertyFieldAction(player, controller, position);
+                } else {
+                    // Action for fields of types OTHER than Property and Chancefields.
+                    fieldAction(player, controller, position);
+                }
             } else {
-                // Action for fields of types OTHER than Property and Chancefields.
-                fieldAction(player,controller,position);
+                // Action for fields of type Chancefields
+                //Does action on new field if chancecard moves player.
+                chancefieldFieldAction(player, deck, controller, position);
             }
-        } else {
-            // Action for fields of type Chancefields
-            //Does action on new field if chancecard moves player.
-            chancefieldFieldAction(player,deck,controller,position);
-        }
 
-        updatePlayersGUIBalance(controller, player);
+            updatePlayersGUIBalance(controller, player);
+        }
 
     }
 
@@ -172,14 +179,14 @@ public class Turn {
 
         if (propertyOnPosition.getOwner()==null) {
             propertyOnPosition.action(player);
-            fieldInfo(position);
+            updateFieldInfo(position);
             controller.showMessage(fieldActionText);
             updatePlayersGUIBalance(controller,player);
             controller.movePlayer(player);
         } else {
             Player propertyOwner = propertyOnPosition.getOwner();
             propertyOnPosition.action(player);
-            fieldInfo(position);
+            updateFieldInfo(position);
             controller.showMessage(fieldActionText);
             updatePlayersGUIBalance(controller, player, propertyOwner);
         }
@@ -198,7 +205,7 @@ public class Turn {
      */
     public void chancefieldFieldAction (Player player, Deck deck, Controller controller, int position) {
         turnField.action(player,deck);
-        fieldInfo(position);
+        updateFieldInfo(position);
         controller.showMessage(turnField.getActionText());
         showChancecard(controller,deck);
         controller.movePlayer(player);
@@ -206,7 +213,7 @@ public class Turn {
         int positionAfterChancecard = player.getPosition();
         if (turnPosition != positionAfterChancecard) {
             // Updates fieldInformation so it fits the new position
-            fieldInfo(positionAfterChancecard);
+            updateFieldInfo(positionAfterChancecard);
             turnFieldAction(player,deck, controller, positionAfterChancecard);
         }
     }
@@ -220,7 +227,7 @@ public class Turn {
      */
     public void fieldAction (Player player, Controller controller, int position) {
         turnField.action(player);
-        fieldInfo(position);
+        updateFieldInfo(position);
         updatePlayersGUIBalance(controller, player);
         controller.showMessage(turnField.getActionText());
         controller.movePlayer(player);
@@ -228,7 +235,7 @@ public class Turn {
 
     //</editor-fold>
 
-    // <editor-folder desc="Methods of Player Updates">
+    // <editor-folder desc="Methods of GUI Player Updates">
     public void updatePlayersGUIBalance(Controller controller, Player player1, Player player2) {
         int player1Balance=player1.getAccount().getBalance();
         int player2Balance= player2.getAccount().getBalance();
@@ -245,22 +252,78 @@ public class Turn {
 
     // </editor-folder>
 
-    public void resultOfTurn (Player player, Controller controller, int turnBalance) {
-        controller.movePlayer(player);
-        controller.updatePlayerBalance(player, turnBalance);
+    // <editor-folder desc="Methods on Player" >
+
+    /**
+     * Method check if player balance is 0 or below. If yes, player is declared "fallit"
+     * Else player.score is printed
+     * @param player a Player object.
+     * @param controller a Controller object.
+     */
+    public void printBalance(Player player, Controller controller) {
+
+        playerBalance = player.getAccount().getBalance();
+
+        if(player.isHasLost()) {
+            controller.showMessage("Du har ikke flere penge tilbage og erklæres fallit");
+            controller.updatePlayerBalance(player,0);
+        } else {
+            controller.showMessage("Du har nu: " + playerBalance + " Pengesedler");
+            controller.updatePlayerBalance(player, playerBalance);
+        }
     }
+
+
+    /**
+     * Checks if player is on Prison. Is yes (player.isInPrison(true) player has to pay to get out of Prison
+     * @param player a Player object.
+     * @param controller a Controller object.
+     */
+    public void checkIfInPrison (Player player, Controller controller) {
+        if (player.isInPrison()) {
+            controller.showMessage("Du betaler 1 pengeseddel for at komme ud af fængslet og kan spille videre");
+            player.updateScore(-1);
+            player.setInPrison(false);
+        }
+    }
+
+    /**
+     * Checks if players is fallit (score is 0 or below).
+     * Sets player.hasLost till true of player is fallit.
+     * @param player a Player object.
+     * @param controller a Controller object
+     * @param fallitMessange message to be printed if fallit.
+     */
+    public void checkIfFallitWMessage (Player player, Controller controller, String fallitMessange) {
+        int playerBalance = player.getAccount().getBalance();
+        if(playerBalance <= 0) {
+            player.setHasLost(true);
+            controller.showMessage(fallitMessange);
+            controller.updatePlayerBalance(player,0);
+        }
+    }
+
+    /**
+     * Checks if players is fallit (score is 0 or below).
+     * Sets player.hasLost till true of player is fallit.
+     * @param player a Player object.
+     * @param controller a Controller object
+     */
+    public void checkIfFallit (Player player, Controller controller) {
+        int playerBalance = player.getAccount().getBalance();
+        if(playerBalance <= 0) {
+            player.setHasLost(true);
+            controller.updatePlayerBalance(player,0);
+        }
+    }
+
+
+    // </editor-folder >
+
+
     public void showChancecard (Controller controller, Deck deck) {
         String chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
         controller.setAndDisplayChanceCard(chanceActionText);
     }
 
-
-    public void actionAsResultOfChancecard (Player player) {
-        int positionAfterChancecard = player.getPosition();
-
-        if (positionAfterChancecard != turnPosition) {
-            Field newFieldOfChancecard = playingBoard.getTurnfield(player.getPosition());
-            newFieldOfChancecard.action(player);
-        }
-    }
 }
