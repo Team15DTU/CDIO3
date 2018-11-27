@@ -79,6 +79,7 @@ public class Turn {
             turnField.action(player,deck);
             builderResult.append(turnField.getActionText());
             showChancecard(controller,deck);
+
         }
 
         turnEndingBalance = player.getAccount().getBalance();
@@ -87,7 +88,12 @@ public class Turn {
         String turnResult = builderResult.toString();
         controller.showMessage(turnResult);
 
-
+        int turnEndingPosition= player.getPosition();
+        if (turnPosition != turnEndingPosition) {
+            Field turnEndingFields = playingBoard.getTurnfield(turnPosition);
+            turnEndingFields.action(player);
+            controller.showMessage(turnEndingFields.getActionText());
+        }
 
         if(turnEndingBalance<=0) {
             controller.showMessage("Du har ikke flere penge tilbage og erklæres fallit");
