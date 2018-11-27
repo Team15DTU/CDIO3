@@ -20,6 +20,8 @@ public class Start extends Field { //start could be an instance of 'visiting'
 
         super(fieldNumber, title, description, rent, color);
 
+        fieldType = "Start";
+
     }
 
     /*

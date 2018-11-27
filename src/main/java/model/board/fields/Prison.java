@@ -21,6 +21,7 @@ public class Prison extends Field {
 
         super(fieldNumber, title, description, rent, color);
 
+        fieldType = "Prison";
     }
 
     /*
