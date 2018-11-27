@@ -273,15 +273,18 @@ public class Turn {
         }
     }
 
-
     /**
      * Checks if player is on Prison. Is yes (player.isInPrison(true) player has to pay to get out of Prison
      * @param player a Player object.
      * @param controller a Controller object.
      */
     public void checkIfInPrison (Player player, Controller controller) {
+        String playerName = player.getName();
+        String prisonMessage = "Hov hov hov " + playerName + " du sidder i fængsel! \n"
+                + "Du betaler 1 pengeseddel for at komme ud af fængslet og kan spille videre";
+
         if (player.isInPrison()) {
-            controller.showMessage("Du betaler 1 pengeseddel for at komme ud af fængslet og kan spille videre");
+            controller.showMessage(prisonMessage);
             player.updateScore(-1);
             player.setInPrison(false);
         }
