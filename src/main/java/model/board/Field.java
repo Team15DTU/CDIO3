@@ -14,7 +14,7 @@ public abstract class Field {
     protected int fieldNumber, cost;
     protected String title;
     protected String description;
-    protected Player owner;
+    protected Player owner=null;
     protected Color color;
     protected String actionText;
 
