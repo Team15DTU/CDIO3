@@ -3,7 +3,10 @@ package model.game;
 import controller.Controller;
 import model.board.Board;
 import model.board.Field;
+import model.board.fields.Chancefield;
+import model.chancecard.Card;
 import model.chancecard.Deck;
+import model.chancecard.cards.MovingRel;
 import model.die.Cup;
 import model.player.Player;
 
@@ -80,7 +83,7 @@ public class Turn {
 
             // Cup is rolled and result is assigned to rollValue
             cup.cupRoll();
-            rollValue = cup.getCupValue();
+            rollValue =  3; //cup.getCupValue();
         }
     }
 
@@ -105,17 +108,15 @@ public class Turn {
             boardPosition = turnPosition + 1;
 
             controller.showMessage("Du slog " + rollValue + "\n");
-            movingPlayerGUI(player, controller, prePosition,turnPosition);
+            movingPlayerForwardGUI(player, controller, prePosition,turnPosition);
 
             // Gets info of a field at at given position (Array index from 0)
             updateFieldInfo(turnPosition);
 
             StringBuilder buildRaffleResult = new StringBuilder();
-            if (prePosition> turnPosition && !player.isInPrison()) {
-                buildRaffleResult.append("Du har paseret Start og modtager 2 pengesedler.\n");
-                player.updateScore(2);
-                updatePlayersGUIBalance(controller,player);
-            }
+
+            checkIfPassedStart(player, controller, buildRaffleResult,"Du har paseret Start og modtog 2 pengesedler.\n");
+
             buildRaffleResult.append("Og landede på feltet: " + boardPosition + " - " + fieldName);
 
             String raffleresultStr = buildRaffleResult.toString();
@@ -163,7 +164,7 @@ public class Turn {
             } else {
                 // Action for fields of type Chancefields
                 //Does action on new field if chancecard moves player.
-                chancefieldFieldAction(player, deck, controller, position);
+                TESTchancefieldFieldAction(player, deck, controller, position);
             }
 
             updatePlayersGUIBalance(controller, player);
@@ -209,7 +210,7 @@ public class Turn {
      * @param controller a Controller object.
      * @param position an Integer which holds the player position after first roll in this turn.
      */
-    public void chancefieldFieldAction (Player player, Deck deck, Controller controller, int position) {
+    public void WORKINGchancefieldFieldAction(Player player, Deck deck, Controller controller, int position) {
         prePosition = player.getPosition();
         turnField.action(player,deck);
         updateFieldInfo(position);
@@ -222,6 +223,52 @@ public class Turn {
             // Updates fieldInformation so it fits the new position
             updateFieldInfo(postPosition);
             controller.showMessage("Du bliver rykket til feltet: " + boardPosition + " - " + fieldName);
+            turnFieldAction(player,deck, controller, postPosition);
+        }
+    }
+
+    /**
+     * Method to fields of type: Chancefields.
+     * Mehod does field.action and show chancecard.
+     * If player is moved to a new fields, field.action is called on that field.
+     * @param player a Player Object.
+     * @param deck a deck Object.
+     * @param controller a Controller object.
+     * @param position an Integer which holds the player position after first roll in this turn.
+     */
+    public void TESTchancefieldFieldAction(Player player, Deck deck, Controller controller, int position) {
+        String cardTypeOnFirstCardInDeck = deck.getChanceDeck().get(0).getCardType();
+
+        if (cardTypeOnFirstCardInDeck.equals("movingRel")) {
+            Card movingRelCard =  deck.getChanceDeck().get(0);
+            int movementRel= ((MovingRel) movingRelCard).getMovementRel();
+            prePosition =player.getPosition();
+            turnField.action(player,deck);
+            updateFieldInfo(position);
+            postPosition = player.getPosition();
+            controller.showMessage(fieldActionText);
+            showChancecard(controller,deck);
+            if (prePosition+movementRel<=0) {
+                movingPlayerBackwardGUI(player, controller,prePosition,postPosition);
+            } else {
+                movingPlayerGUI(player, controller, prePosition, postPosition);
+            }
+
+        } else {
+            prePosition = player.getPosition();
+            turnField.action(player,deck);
+            updateFieldInfo(position);
+            postPosition = player.getPosition();
+            controller.showMessage(fieldActionText);
+            showChancecard(controller,deck);
+            updatePlayersGUIBalance(controller,player);
+            movingPlayerForwardGUI(player,controller,prePosition,postPosition);
+        }
+
+        if (turnPosition != postPosition) {
+            // Updates fieldInformation so it fits the new position
+            updateFieldInfo(postPosition);
+            controller.showMessage("Du bliver rykket til feltet: " + postPosition + " - " + fieldName);
             turnFieldAction(player,deck, controller, postPosition);
         }
     }
@@ -271,6 +318,27 @@ public class Turn {
 
 
     public void movingPlayerBackwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
+        if (prePosition<finalPosition) {
+            for (int i = prePosition-1; i>=0; i--) {
+                try {
+                    Thread.sleep(500);
+                    controller.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        for (int i=playingBoard.getBoard().length-1; i>=finalPosition; i--) {
+            try {
+                Thread.sleep(500);
+                controller.movePlayer(player, i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
 
         for (int i=prePosition-1; i>=finalPosition; i--) {
             try {
@@ -285,7 +353,25 @@ public class Turn {
 
 
     public void movingPlayerForwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
+        if (prePosition>finalPosition) {
+            for (int i = prePosition+1; i<playingBoard.getBoard().length; i++){
+                try {
+                    Thread.sleep(500);
+                    controller.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+            }
+            for (int i = 0; i<=finalPosition; i++) {
+                try {
+                    Thread.sleep(500);
+                    controller.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         for (int i=prePosition+1; i<=finalPosition; i++) {
             try {
                 Thread.sleep(500);
@@ -367,6 +453,14 @@ public class Turn {
         }
     }
 
+    public void checkIfPassedStart (Player player, Controller controller, StringBuilder stringBuilder, String builderString) {
+        if (prePosition> turnPosition && !player.isInPrison()) {
+            stringBuilder.append(builderString);
+            player.updateScore(2);
+            updatePlayersGUIBalance(controller,player);
+        }
+
+    }
 
     // </editor-folder >
 

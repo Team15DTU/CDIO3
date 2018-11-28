@@ -16,13 +16,15 @@ public abstract class Card {
 
     protected String text;
     protected String description;
+    protected String cardType;
 
     /*
     ----------------------- Constructor -------------------------
      */
 
-    protected Card (String text, String description) {
+    protected Card (String cardType,String text, String description) {
 
+        this.cardType=cardType;
         this.text=text;
         this.description=description;
 
@@ -42,6 +44,15 @@ public abstract class Card {
     public String getDescription()                  { return description; }
 
     public void setDescription(String description)  { this.description = description; }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
     //</editor-fold>
 
     /*
