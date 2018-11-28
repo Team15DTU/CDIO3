@@ -1,11 +1,13 @@
 package model.player;
 
+import model.board.Field;
 import model.board.fields.Property;
 import model.player.Account;
 import model.player.Player;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
