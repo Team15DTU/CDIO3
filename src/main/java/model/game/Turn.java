@@ -20,7 +20,7 @@ public class Turn {
     private String fieldName, fieldActionText;
     private Field turnField;
 
-    private int turnPosition;
+    private int prePosition, turnPosition;
 
     /*
     --------- Public Methods ----------
@@ -98,12 +98,15 @@ public class Turn {
             // and moved on GUI
             int prePosition = player.getPosition();
             player.updatePosition(rollValue);
-            controller.movePlayer(player);
 
             // turnPosition holds value of player position (array starting from 0) on the board
             // boardPosition hold value of players fieldNumber position (field 1 -24) on board
             turnPosition = player.getPosition();
             boardPosition = turnPosition + 1;
+
+            controller.movePlayer(player);
+
+
 
             // Gets info of a field at at given position (Array index from 0)
             updateFieldInfo(turnPosition);
@@ -252,6 +255,18 @@ public class Turn {
         int player1Balance=player1.getAccount().getBalance();
         controller.updatePlayerBalance(player1,player1Balance);
 
+    }
+
+    public void updatePlayerGUIPosition (Player player, Controller controller, int finalPosition) {
+        for (int i=prePosition+1; i<=turnPosition; i++) {
+            try {
+                Thread.sleep(100);
+                controller.movePlayer(player, i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     // </editor-folder>
