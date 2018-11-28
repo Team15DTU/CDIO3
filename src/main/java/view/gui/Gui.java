@@ -424,7 +424,7 @@ public class Gui {
             else if ( fields[i] instanceof Chancefield ) {
 
                 // Create new Field
-                GUI_Chance chance = new GUI_Chance("C", "Chance Felt", fields[i].getDescription(),
+                GUI_Chance chance = new GUI_Chance("?", fields[i].getTitle(), fields[i].getDescription(),
                                                     fields[i].getColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
