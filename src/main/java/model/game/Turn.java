@@ -27,7 +27,6 @@ public class Turn {
     */
 
     public void turn(Player player, Cup cup, Controller controller, Deck deck) {
-        // TODO: Der skal laves logic så spillerne får penge hvis de rykker over start
 
         // Initialize object variable
         // TODO: Kan være der er nogle variable der skal rykkes her ned.
