@@ -4,6 +4,7 @@ import model.board.Field;
 import model.player.Player;
 import view.gui.Gui;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -210,6 +211,12 @@ public class Controller {
 
     }
 
+    public void movePlayer (Player player, int newFieldIndex) {
+
+        // Move the Player in the gui
+        gui.movePlayer(player, newFieldIndex);
+    }
+
     /**
      * Adds the given list of Players to the gui
      * @param players The ArrayList<Player></Player>
@@ -243,6 +250,46 @@ public class Controller {
 
         // Set the new owner of the field
         gui.setFieldOwner(player, field);
+    }
+
+    /**
+     * This method will make all fields start
+     * blinking between gold and gray.
+     */
+    public void startWinnerMode () {
+
+        // Start the WinnerMode
+        try {
+            gui.partyMode();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //</editor-fold>
+
+    //<editor-fold desc="Board Colors"
+
+    /**
+     * This method will change the background color
+     * on the board.
+     * @param color An awt Color
+     */
+    public void setBackgroundColor (Color color) {
+
+        // Change the Color
+        gui.setBackgroundColor(color);
+    }
+
+    /**
+     * This method will change the text color.
+     * @param color An awt Color
+     */
+    public void setTextColor (Color color) {
+
+        // Change the Color
+        gui.setTextColor(color);
     }
 
     //</editor-fold>
