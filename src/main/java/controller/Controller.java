@@ -211,6 +211,12 @@ public class Controller {
 
     }
 
+    public void movePlayer (Player player, int newFieldIndex) {
+
+        // Move the Player in the gui
+        gui.movePlayer(player, newFieldIndex);
+    }
+
     /**
      * Adds the given list of Players to the gui
      * @param players The ArrayList<Player></Player>
