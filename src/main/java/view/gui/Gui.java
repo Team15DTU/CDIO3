@@ -23,7 +23,7 @@ public class Gui {
     private GUI gui;
     private GUI_Field[] fields;
     private ArrayList<GUI_Player> players;
-    private Color backgroundColor;
+    private Color backgroundColor = Color.GRAY;
     private Color textColor = Color.BLACK;
     //</editor-fold>
 
@@ -44,9 +44,6 @@ public class Gui {
         // Create the GUI_Field array
         this.fields = createFields(fields);
 
-        // Set Color
-        backgroundColor = Color.GRAY;
-
         // Start GUI
         gui = new GUI(this.fields, backgroundColor);
 
@@ -63,9 +60,6 @@ public class Gui {
         // Create the GUI_Field array
         this.fields = createFields(fields);
 
-        // Set Color
-        backgroundColor = Color.GRAY;
-
         // Start GUI
         gui = new GUI(this.fields, backgroundColor);
 
@@ -80,6 +74,26 @@ public class Gui {
     /*
     ------------------------------ Properties ----------------------------------
      */
+
+    //<editor-fold desc="BackgroundColor"
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="TextColor"
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
+    }
+    //</editor-fold>
 
     /*
     ---------------------------- Public Methods --------------------------------
@@ -382,6 +396,7 @@ public class Gui {
 
     //</editor-fold>
 
+    //<editor-fold desc="Field Creation"
     /**
      * This method helps the constructor create an Array of GUI_Field's
      * @param fields An Array of type Field
@@ -448,7 +463,7 @@ public class Gui {
             else if ( fields[i] instanceof model.board.fields.Start ) {
 
                 // Create new Field
-                GUI_Start start = new GUI_Start(fields[i].getTitle(), "Subtext", fields[i].getDescription(),
+                GUI_Start start = new GUI_Start(fields[i].getTitle(), "", fields[i].getDescription(),
                                                 fields[i].getColor(), textColor);
 
                 // Put the GUI_Field into the newFields array
@@ -459,4 +474,5 @@ public class Gui {
         // Return the newly created array
         return newFields;
     }
+    //</editor-fold>
 }
