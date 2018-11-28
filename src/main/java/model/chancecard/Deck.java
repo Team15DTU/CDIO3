@@ -29,7 +29,7 @@ public class Deck {
 
         chanceDeck = new ArrayList<>();
 
-        createDeck(numberOfSetsInDeck);
+        fixedDeck(numberOfSetsInDeck);
 
     }
 
@@ -75,6 +75,10 @@ public class Deck {
         }
 
         totalCardsInDeck = chanceDeck.size();
+    }
+
+    public void fixedDeck (int numberOfSetsInDeck) {
+        addMovingAbs("hejhej","Hejhej",14);
     }
 
     public void shuffleDeck(int totalShuffles) {
