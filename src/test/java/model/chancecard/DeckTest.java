@@ -45,7 +45,7 @@ public class DeckTest {
         Card cardindex1;
         cardindex1 = deck.getChanceDeck().get(0);
         Player player = new Player("jens",10,1);
-        deck.drawCard(player);
+        deck.drawCard();
         Card cardIndexLast;
         cardIndexLast = deck.getChanceDeck().get(deck.getChanceDeck().size()-1);
 

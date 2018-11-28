@@ -16,7 +16,7 @@ public class PrisonTest {
         Field field = new Prison(1,"32","chancefelt",0, Color.red);
         Player player = new Player("jens",100,1);
         field.action(player);
-        assertEquals(7,player.getPosition());
+        assertEquals(6,player.getPosition());
 
     }
 }
