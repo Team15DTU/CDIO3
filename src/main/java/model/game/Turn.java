@@ -3,8 +3,6 @@ package model.game;
 import controller.Controller;
 import model.board.Board;
 import model.board.Field;
-import model.board.fields.Chancefield;
-import model.board.fields.Property;
 import model.chancecard.Deck;
 import model.die.Cup;
 import model.player.Player;
@@ -146,8 +144,8 @@ public class Turn {
         // Needs to check if player.hasLost is true,
         // as player could go to 0 when paying to get out of Prison in beginning of turn.
         if (!player.isHasLost()) {
-            if (!(turnField instanceof Chancefield)) {
-                if ((turnField instanceof Property)) {
+            if (!(turnField.getFieldType().equals("Chancefield"))) {
+                if ((turnField.getFieldType().equals("Property"))) {
                     // ACtion for fields of type Property.
                     propertyFieldAction(player, controller, position);
                 } else {
