@@ -98,12 +98,24 @@ public class Game {
         //When someone lost, find the player with the biggest balance and crown as winner
 
         int amount = 0;
+        Player win;
         String winner = "noone";
         for (int j = 0; j < noOfPlayers; j++) {
             Player currPlayer = players.get(j);
             if (currPlayer.getAccount().getBalance() > amount) {
                 amount = currPlayer.getAccount().getBalance();
                 winner = currPlayer.getName();
+                win = currPlayer;
+            }
+            else if (currPlayer.getAccount().getBalance() == amount) {
+
+                if (win.getTotalPropertyValue()>currPlayer.getTotalPropertyValue()) {
+                    winner = win.getName();
+                } else if (win.getTotalPropertyValue()<currPlayer.getTotalPropertyValue()){
+                    winner = currPlayer.getName();
+                } else {
+                    winner = currPlayer.getName() + " and " + winner;
+                }
             }
             i++;
         }
