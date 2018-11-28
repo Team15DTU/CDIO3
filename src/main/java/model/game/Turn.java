@@ -104,15 +104,13 @@ public class Turn {
             turnPosition = player.getPosition();
             boardPosition = turnPosition + 1;
 
-            controller.movePlayer(player);
-
-
+            controller.showMessage("Du slog " + rollValue + "\n");
+            movingPlayerGUI(player, controller, prePosition,turnPosition);
 
             // Gets info of a field at at given position (Array index from 0)
             updateFieldInfo(turnPosition);
 
             StringBuilder buildRaffleResult = new StringBuilder();
-            buildRaffleResult.append("Du slog " + rollValue + "\n");
             if (prePosition> turnPosition && !player.isInPrison()) {
                 buildRaffleResult.append("Du har paseret Start og modtager 2 pengesedler.\n");
                 player.updateScore(2);
@@ -189,7 +187,7 @@ public class Turn {
             updateFieldInfo(position);
             controller.showMessage(fieldActionText);
             updatePlayersGUIBalance(controller,player);
-            controller.movePlayer(player);
+            // Skal ikke bruges: controller.movePlayer(player);
         } else {
             Player propertyOwner = propertyOnPosition.getOwner();
             propertyOnPosition.action(player);
@@ -211,17 +209,20 @@ public class Turn {
      * @param position an Integer which holds the player position after first roll in this turn.
      */
     public void chancefieldFieldAction (Player player, Deck deck, Controller controller, int position) {
+        prePosition = player.getPosition();
         turnField.action(player,deck);
         updateFieldInfo(position);
+        prePosition = player.getPosition();
         controller.showMessage(turnField.getActionText());
         showChancecard(controller,deck);
-        controller.movePlayer(player);
+        movingPlayerGUI(player,controller,prePosition,turnPosition);
 
         int positionAfterChancecard = player.getPosition();
         if (turnPosition != positionAfterChancecard) {
             // Updates fieldInformation so it fits the new position
             updateFieldInfo(positionAfterChancecard);
             turnFieldAction(player,deck, controller, positionAfterChancecard);
+            movingPlayerGUI(player,controller,positionAfterChancecard,turnPosition);
         }
     }
 
@@ -257,10 +258,37 @@ public class Turn {
 
     }
 
-    public void updatePlayerGUIPosition (Player player, Controller controller, int finalPosition) {
-        for (int i=prePosition+1; i<=turnPosition; i++) {
+
+    public void movingPlayerGUI (Player player, Controller controller, int prePosition, int finalPosition) {
+        if (prePosition<=finalPosition) {
+            movingPlayerForwardGUI(player,controller,prePosition,finalPosition);
+        } else {
+            movingPlayerBackwardGUI(player, controller, prePosition, finalPosition);
+        }
+
+
+    }
+
+
+    public void movingPlayerBackwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
+
+        for (int i=prePosition-1; i>=finalPosition; i--) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(500);
+                controller.movePlayer(player, i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+    public void movingPlayerForwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
+
+        for (int i=prePosition+1; i<=finalPosition; i++) {
+            try {
+                Thread.sleep(500);
                 controller.movePlayer(player, i);
             } catch (InterruptedException e) {
                 e.printStackTrace();

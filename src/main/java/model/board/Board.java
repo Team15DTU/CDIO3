@@ -56,8 +56,8 @@ public class Board {
         addProperty(2, "Burgerbar", "Du er landet på burgerbaren", 1, new Color(205,133,63));
         addProperty(3, "Pizzeria", "Du er landet på pizzeriaet", 1, new Color(205,133,63));
         addChancefield(4, "Chance felt", "Du har chancen ved et kort", 0, Color.WHITE);
-        addProperty(5, "Slikbutik", "Du er landet på slikbutikken", 1, Color.cyan);
-        addProperty(6, "Iskiosk", "Du er landet på iskiosken",1, Color.cyan);
+        addProperty(5, "Slikbutik", "Du er landet på slikbutikken", 1, new Color( 137, 207, 240));
+        addProperty(6, "Iskiosk", "Du er landet på iskiosken",1, new Color( 137, 207, 240));
         addPrison(7, "På besøg i fængslet", "Du er på besøg i fængslet",0,Color.GRAY);
         addProperty(8, "Museum", "Du er landet på museet",2,Color.pink);
         addProperty(9, "Bibliotek", "Du er landet på biblioteket", 2, Color.pink);
@@ -74,8 +74,8 @@ public class Board {
         addProperty(20, "Bowlinghal", "Du er landet på bowlinghallen", 4,Color.green);
         addProperty(21, "Zoo", "Du er landet på zoologisk have", 4,Color.green);
         addChancefield(22, "Chance felt", "Du har chancen ved et kort",0,Color.white);
-        addProperty(23, "Vandland", "Du er landet på vandland", 5,Color.blue);
-        addProperty(24, "Strandpromenade", "Du er landet på strandpromenaden", 5, Color.blue);
+        addProperty(23, "Vandland", "Du er landet på vandland", 5,new Color( 0, 128, 255));
+        addProperty(24, "Strandpromenade", "Du er landet på strandpromenaden", 5, new Color( 0, 128, 255));
 
         totalFieldsOnBoard= board.length;
 
