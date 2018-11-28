@@ -255,10 +255,7 @@ public class Turn {
                 movingPlayerForwardGUI(player, controller, prePosition, postPosition);
             }
 
-            //TODO: Løsningen der gøre at spilleren ikke får penge for at passere start
-            //if (prePosition>5 && postPosition>5) {
-
-           // if (!((Math.abs(movementRel)+postPosition>23))) {
+            // Make sure that negative movement doesn't count as "passedStart"
            if (((Math.abs(movementRel)+postPosition>23)))  {
 
                 checkIfPassedStart(prePosition, postPosition, player, controller, builderChancefield,
