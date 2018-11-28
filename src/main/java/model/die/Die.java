@@ -6,9 +6,9 @@ public class Die {
 
     // Fields
 
-    private int faceValue;          // Value of die after roll
-    private final int DIESIDES = 6; // Sides on die
-    private int sides;              // Sides for custom sides on die
+    private int faceValue;          // Value of model.die after roll
+    private final int DIESIDES = 6; // Sides on model.die
+    private int sides;              // Sides for custom sides on model.die
 
     // Constructors
 
@@ -35,7 +35,7 @@ public class Die {
 
         Random generator = new Random();
 
-        faceValue = generator.nextInt(sides)+1; // Random number om die with DIESIDES
+        faceValue = generator.nextInt(sides)+1; // Random number om model.die with DIESIDES
 
     }
 

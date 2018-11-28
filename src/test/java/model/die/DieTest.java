@@ -1,6 +1,4 @@
-package die;
-
-import model.die.*;
+package model.die;
 
 import org.junit.Test;
 
