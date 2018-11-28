@@ -132,6 +132,7 @@ public class Turn {
     public  void updateFieldInfo(int position) {
 
         turnField=playingBoard.getTurnfield(position);
+        boardPosition = turnField.getFieldNumber();
         fieldName=turnField.getTitle();
         fieldActionText = turnField.getActionText();
 
@@ -222,7 +223,6 @@ public class Turn {
             updateFieldInfo(postPosition);
             controller.showMessage("Du bliver rykket til feltet: " + boardPosition + " - " + fieldName);
             turnFieldAction(player,deck, controller, postPosition);
-            movingPlayerGUI(player,controller,postPosition,turnPosition);
         }
     }
 
