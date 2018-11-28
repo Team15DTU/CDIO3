@@ -270,6 +270,10 @@ public class Gui {
 
     }
 
+    public void partyMode () {
+
+    }
+
     //</editor-fold>
     
     /*

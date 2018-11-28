@@ -1,8 +1,11 @@
 package model.player;
 
+import model.board.fields.Property;
 import model.player.Account;
 import model.player.Player;
 import org.junit.Test;
+
+import java.awt.*;
 
 import static org.junit.Assert.*;
 
@@ -22,6 +25,27 @@ public class PlayerTest {
 
         assertEquals( STARTINGSCORE+EXTRAPOINT, player1.getAccount().getBalance() );
 
+        Player player2 = new Player("test","cat");
+        player2.updateScore(EXTRAPOINT);
+
+        assertEquals( 500, player2.getAccount().getBalance() );
+
+        Player player3 = new Player("test",100,1);
+        player3.updateScore(EXTRAPOINT);
+
+        assertEquals( 600, player3.getAccount().getBalance() );
+
+
+        Player player4 = new Player("test","cat",100,1);
+        player4.updateScore(EXTRAPOINT);
+
+        assertEquals( 600, player4.getAccount().getBalance() );
+
+
+        Player player5 = new Player("test");
+        player5.updateScore(EXTRAPOINT);
+
+        assertEquals( 500, player5.getAccount().getBalance() );
     }
 
     @Test
@@ -94,6 +118,18 @@ public class PlayerTest {
 
         Player player1 = new Player( NAME, STARTINGSCORE );
         assertEquals( NAME, player1.getName() );
+
+    }
+
+    @Test
+    public void updateTotalProoertyValue() {
+
+        Player player = new Player("jens");
+        Property prop = new Property(1,"haven","Druk paladset have",2, Color.red);
+        player.getPropertyCost().add(prop.getCost());
+        player.updateTotalProoertyValue();
+
+        assertEquals(2, player.getTotalPropertyValue());
 
     }
 
