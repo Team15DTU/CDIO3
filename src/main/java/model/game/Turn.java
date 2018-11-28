@@ -83,7 +83,7 @@ public class Turn {
 
             // Cup is rolled and result is assigned to rollValue
             cup.cupRoll();
-            rollValue =  3; //cup.getCupValue();
+            rollValue = 3; // cup.getCupValue();
         }
     }
 
@@ -115,7 +115,7 @@ public class Turn {
 
             StringBuilder buildRaffleResult = new StringBuilder();
 
-            checkIfPassedStart(player, controller, buildRaffleResult,"Du har paseret Start og modtog 2 pengesedler.\n");
+            checkIfPassedStart(prePosition,turnPosition,player, controller, buildRaffleResult,"Du har paseret Start og modtog 2 pengesedler.\n");
 
             buildRaffleResult.append("Og landede på feltet: " + boardPosition + " - " + fieldName);
 
@@ -238,6 +238,7 @@ public class Turn {
      */
     public void TESTchancefieldFieldAction(Player player, Deck deck, Controller controller, int position) {
         String cardTypeOnFirstCardInDeck = deck.getChanceDeck().get(0).getCardType();
+        StringBuilder builderChancefield = new StringBuilder();
 
         if (cardTypeOnFirstCardInDeck.equals("movingRel")) {
             Card movingRelCard =  deck.getChanceDeck().get(0);
@@ -248,11 +249,15 @@ public class Turn {
             postPosition = player.getPosition();
             controller.showMessage(fieldActionText);
             showChancecard(controller,deck);
-            if (prePosition+movementRel<=0) {
+            if (prePosition+movementRel<=0|| movementRel<0) {
                 movingPlayerBackwardGUI(player, controller,prePosition,postPosition);
             } else {
-                movingPlayerGUI(player, controller, prePosition, postPosition);
+                movingPlayerForwardGUI(player, controller, prePosition, postPosition);
             }
+
+            checkIfPassedStart(prePosition,postPosition,player,controller,builderChancefield,
+                    "Du har paseret Start og modtog 2 pengesedler.\n");
+
 
         } else {
             prePosition = player.getPosition();
@@ -263,12 +268,20 @@ public class Turn {
             showChancecard(controller,deck);
             updatePlayersGUIBalance(controller,player);
             movingPlayerForwardGUI(player,controller,prePosition,postPosition);
+
+            checkIfPassedStart(prePosition,postPosition,player,controller,builderChancefield,
+                    "Du har paseret Start og modtog 2 pengesedler.\n");
+
         }
 
         if (turnPosition != postPosition) {
             // Updates fieldInformation so it fits the new position
             updateFieldInfo(postPosition);
-            controller.showMessage("Du bliver rykket til feltet: " + postPosition + " - " + fieldName);
+            builderChancefield.append("Du bliver rykket til feltet: " + boardPosition + " - " + fieldName);
+            String passedStartInChancecard = builderChancefield.toString();
+            controller.showMessage(passedStartInChancecard);
+
+            // controller.showMessage("Du bliver rykket til feltet: " + postPosition + " - " + fieldName);
             turnFieldAction(player,deck, controller, postPosition);
         }
     }
@@ -318,8 +331,10 @@ public class Turn {
 
 
     public void movingPlayerBackwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
-        if (prePosition<finalPosition) {
-            for (int i = prePosition-1; i>=0; i--) {
+
+        if (prePosition>finalPosition && (prePosition+finalPosition>=24)) {
+
+            for (int i = prePosition - 1; i >= 0; i--) {
                 try {
                     Thread.sleep(500);
                     controller.movePlayer(player, i);
@@ -327,27 +342,27 @@ public class Turn {
                     e.printStackTrace();
                 }
             }
-        }
 
-        for (int i=playingBoard.getBoard().length-1; i>=finalPosition; i--) {
-            try {
-                Thread.sleep(500);
-                controller.movePlayer(player, i);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = playingBoard.getBoard().length - 1; i >= finalPosition; i--) {
+                try {
+                    Thread.sleep(500);
+                    controller.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
-        }
+        } else {
 
+            for (int i = prePosition - 1; i >= finalPosition; i--) {
+                try {
+                    Thread.sleep(500);
+                    controller.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-        for (int i=prePosition-1; i>=finalPosition; i--) {
-            try {
-                Thread.sleep(500);
-                controller.movePlayer(player, i);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
-
         }
     }
 
@@ -371,15 +386,16 @@ public class Turn {
                     e.printStackTrace();
                 }
             }
-        }
-        for (int i=prePosition+1; i<=finalPosition; i++) {
-            try {
-                Thread.sleep(500);
-                controller.movePlayer(player, i);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        } else {
+            for (int i = prePosition + 1; i <= finalPosition; i++) {
+                try {
+                    Thread.sleep(500);
+                    controller.movePlayer(player, i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+            }
         }
     }
 
@@ -420,6 +436,7 @@ public class Turn {
             controller.showMessage(prisonMessage);
             player.updateScore(-1);
             player.setInPrison(false);
+            controller.updatePlayerBalance(player, player.getAccount().getBalance());
         }
     }
 
@@ -453,8 +470,8 @@ public class Turn {
         }
     }
 
-    public void checkIfPassedStart (Player player, Controller controller, StringBuilder stringBuilder, String builderString) {
-        if (prePosition> turnPosition && !player.isInPrison()) {
+    public void checkIfPassedStart (int prePosition, int postPosition,Player player, Controller controller, StringBuilder stringBuilder, String builderString) {
+        if (prePosition> postPosition && !player.isInPrison() ) {
             stringBuilder.append(builderString);
             player.updateScore(2);
             updatePlayersGUIBalance(controller,player);

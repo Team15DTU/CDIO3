@@ -78,8 +78,9 @@ public class Deck {
     }
 
     public void fixedDeck (int numberOfSetsInDeck) {
-        addMovingRel("movingRel", "RYk 5 felter tilbage","Ryk 5 felter tilabe",-5);
-        // addMovingAbs("movingAbs","positionAbs=10", "positionAbs=10", 10);
+       addMovingRel("movingRel", "RYk 2 felter tilbage","Ryk 2 felter tilabe",-2);
+       // addMovingRel("movingRel","Ryk 4 felter frem", "ryk 4 felter frem",4);
+        //addMovingAbs("movingAbs","positionAbs=10", "positionAbs=10", 10);
     }
 
     public void shuffleDeck(int totalShuffles) {
