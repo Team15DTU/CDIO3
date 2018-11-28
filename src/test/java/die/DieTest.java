@@ -1,4 +1,4 @@
-package java.die;
+package die;
 
 import model.die.*;
 

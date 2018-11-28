@@ -116,7 +116,7 @@ public class Player {
     }
 
     public void setAccount(Account account) {
-        //this.model.player.account = account;
+        this.account = account;
     }
 
     public String getName() {

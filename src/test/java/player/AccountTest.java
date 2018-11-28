@@ -31,5 +31,8 @@ public class AccountTest {
         upda.update(500);
 
         assertEquals(1500,upda.getBalance());
+
+        upda.update(-250);
+        assertEquals(1250,upda.getBalance());
     }
 }

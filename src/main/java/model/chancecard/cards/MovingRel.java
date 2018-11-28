@@ -43,11 +43,15 @@ public class MovingRel extends Card {
      */
 
     public void action(Player player) {
-
+        // TODO: Er det ikke bedre at updatePosition end at sette den?
+        /*
         int prePosition = player.getPosition(), currentPosition;
 
         currentPosition = prePosition + movementRel;
         player.setPosition(currentPosition);
+        */
+
+        player.updatePosition(movementRel);
 
     }
 
