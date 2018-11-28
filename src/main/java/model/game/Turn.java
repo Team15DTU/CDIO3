@@ -20,7 +20,7 @@ public class Turn {
     private String fieldName, fieldActionText;
     private Field turnField;
 
-    private int prePosition, turnPosition;
+    private int prePosition, turnPosition, postPosition;
 
     /*
     --------- Public Methods ----------
@@ -212,17 +212,17 @@ public class Turn {
         prePosition = player.getPosition();
         turnField.action(player,deck);
         updateFieldInfo(position);
-        prePosition = player.getPosition();
+        postPosition = player.getPosition();
         controller.showMessage(turnField.getActionText());
         showChancecard(controller,deck);
-        movingPlayerGUI(player,controller,prePosition,turnPosition);
+        movingPlayerGUI(player,controller,prePosition,postPosition);
 
-        int positionAfterChancecard = player.getPosition();
-        if (turnPosition != positionAfterChancecard) {
+        if (turnPosition != postPosition) {
             // Updates fieldInformation so it fits the new position
-            updateFieldInfo(positionAfterChancecard);
-            turnFieldAction(player,deck, controller, positionAfterChancecard);
-            movingPlayerGUI(player,controller,positionAfterChancecard,turnPosition);
+            updateFieldInfo(postPosition);
+            controller.showMessage("Du bliver rykket til feltet: " + boardPosition + " - " + fieldName);
+            turnFieldAction(player,deck, controller, postPosition);
+            movingPlayerGUI(player,controller,postPosition,turnPosition);
         }
     }
 
