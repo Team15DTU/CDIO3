@@ -135,4 +135,116 @@ public class PlayerTest {
 
     }
 
+
+    @Test
+    public void setName() {
+        Player player = new Player("jens",100,1);
+        player.setName("peter");
+        assertEquals("peter",player.getName());
+    }
+
+    @Test
+    public void getToken() {
+        Player player = new Player("jens","cat");
+        assertEquals("cat",player.getToken());
+    }
+
+    @Test
+    public void setToken() {
+        Player player = new Player("jens","cat");
+        player.setToken("car");
+        assertEquals("car",player.getToken());
+    }
+
+    @Test
+    public void isHasLost() {
+        Player player = new Player("jens");
+        assertEquals(false,player.isHasLost());
+    }
+
+    @Test
+    public void setHasLost() {
+        Player player = new Player("peter");
+        player.setHasLost(true);
+        assertEquals(true,player.isHasLost());
+    }
+
+    @Test
+    public void setPosition() {
+        Player player = new Player("jens","cat",1,1);
+        player.setPosition(15);
+        assertEquals(15,player.getPosition());
+    }
+
+    @Test
+    public void getPosition() {
+        Player player = new Player("jens","cat",1,10);
+        assertEquals(10,player.getPosition());
+    }
+
+    @Test
+    public void getPropertyCost() {
+
+        Field prop = new Property(1,"titel","min mor",5,Color.red);
+        Field prop2 = new Property(2,"titel","min mor",3,Color.red);
+        Player player = new Player("jens",100,1);
+
+        prop.action(player);
+        prop2.action(player);
+        ArrayList<Integer> fastArraylist = new ArrayList<>(2);
+        fastArraylist.add(5);
+        fastArraylist.add(3);
+
+
+        assertEquals(fastArraylist,player.getPropertyCost());
+
+    }
+
+    @Test
+    public void setPropertyCost() {
+
+        Player player = new Player("jens",100,1);
+        ArrayList<Integer> fastArraylist = new ArrayList<>(2);
+        fastArraylist.add(5);
+        fastArraylist.add(3);
+
+        Field prop = new Property(1,"titel","min mor",2,Color.red);
+        Field prop2 = new Property(2,"titel","min mor",1,Color.red);
+        prop.action(player);
+        prop2.action(player);
+
+        player.setPropertyCost(fastArraylist);
+
+        assertEquals(fastArraylist,player.getPropertyCost());
+
+
+    }
+
+    @Test
+    public void getTotalPropertyValue() {
+        Player player = new Player("jens",100,1);
+        Field prop = new Property(1,"titel","min mor",2,Color.red);
+        Field prop2 = new Property(2,"titel","min mor",1,Color.red);
+        prop.action(player);
+        prop2.action(player);
+        player.updateTotalProoertyValue();
+
+        assertEquals(3,player.getTotalPropertyValue());
+
+    }
+
+    @Test
+    public void setTotalPropertyValue() {
+
+        Player player = new Player("jens",100,1);
+        Field prop = new Property(1,"titel","min mor",2,Color.red);
+        Field prop2 = new Property(2,"titel","min mor",1,Color.red);
+        prop.action(player);
+        prop2.action(player);
+        player.setTotalPropertyValue(10);
+
+        assertEquals(10,player.getTotalPropertyValue());
+
+    }
+
 }
