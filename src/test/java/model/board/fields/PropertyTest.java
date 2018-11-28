@@ -34,4 +34,19 @@ public class PropertyTest {
 
 
     }
+
+    @Test
+    public void getCost() {
+        Field field = new Property(1,"32","chancefelt",5, Color.red);
+        assertEquals(5,field.getCost());
+    }
+
+    @Test
+    public void getColor() {
+
+        //Lidt vag test men fungere
+        Field field = new Property(1,"32","chancefelt",5, Color.red);
+        Color farve = field.getColor();
+        assertEquals(farve, field.getColor());
+    }
 }
