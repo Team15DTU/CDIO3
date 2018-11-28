@@ -49,4 +49,23 @@ public class PropertyTest {
         Color farve = field.getColor();
         assertEquals(farve, field.getColor());
     }
+
+    @Test
+    public void setCost() {
+
+        Field field = new Property(1,"32","chancefelt",5, Color.red);
+        field.setCost(2);
+        assertEquals(2,field.getCost());
+
+    }
+
+    @Test
+    public void setColor() {
+
+        Field field = new Property(1,"32","chancefelt",5, Color.red);
+        field.setColor(Color.BLACK);
+
+        assertEquals(Color.BLACK,field.getColor());
+
+    }
 }
