@@ -3,7 +3,6 @@ package model.game;
 import controller.Controller;
 import model.board.Board;
 import model.board.Field;
-import model.board.fields.Chancefield;
 import model.chancecard.Card;
 import model.chancecard.Deck;
 import model.chancecard.cards.MovingRel;
@@ -24,6 +23,7 @@ public class Turn {
     private Field turnField;
 
     private int prePosition, turnPosition, postPosition;
+
 
     /*
     --------- Public Methods ----------
@@ -83,7 +83,7 @@ public class Turn {
 
             // Cup is rolled and result is assigned to rollValue
             cup.cupRoll();
-            rollValue = 3; // cup.getCupValue();
+            rollValue  = cup.getCupValue();
         }
     }
 
@@ -249,14 +249,21 @@ public class Turn {
             postPosition = player.getPosition();
             controller.showMessage(fieldActionText);
             showChancecard(controller,deck);
-            if (prePosition+movementRel<=0|| movementRel<0) {
+            if ( movementRel<0) {
                 movingPlayerBackwardGUI(player, controller,prePosition,postPosition);
             } else {
                 movingPlayerForwardGUI(player, controller, prePosition, postPosition);
             }
 
-            checkIfPassedStart(prePosition,postPosition,player,controller,builderChancefield,
-                    "Du har paseret Start og modtog 2 pengesedler.\n");
+            //TODO: Løsningen der gøre at spilleren ikke får penge for at passere start
+            //if (prePosition>5 && postPosition>5) {
+
+           // if (!((Math.abs(movementRel)+postPosition>23))) {
+           if (((Math.abs(movementRel)+postPosition>23)))  {
+
+                checkIfPassedStart(prePosition, postPosition, player, controller, builderChancefield,
+                        "Du har paseret Start og modtog 2 pengesedler.\n");
+            }
 
 
         } else {
@@ -332,7 +339,7 @@ public class Turn {
 
     public void movingPlayerBackwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
 
-        if (prePosition>finalPosition && (prePosition+finalPosition>=24)) {
+        if (prePosition<finalPosition && ((finalPosition-prePosition)+finalPosition>=24)) {
 
             for (int i = prePosition - 1; i >= 0; i--) {
                 try {
@@ -471,11 +478,27 @@ public class Turn {
     }
 
     public void checkIfPassedStart (int prePosition, int postPosition,Player player, Controller controller, StringBuilder stringBuilder, String builderString) {
-        if (prePosition> postPosition && !player.isInPrison() ) {
-            stringBuilder.append(builderString);
-            player.updateScore(2);
-            updatePlayersGUIBalance(controller,player);
+/*
+        if (prePosition>18 && prePosition<23 && postPosition>=0 && postPosition<6 ) {
+
+            if(!(postPosition+prePosition>=23)) {
+                stringBuilder.append(builderString);
+                player.updateScore(2);
+                updatePlayersGUIBalance(controller, player);
+            }
+
         }
+*/
+
+
+        if (prePosition> postPosition && !player.isInPrison()  ) {
+   //         if((postPosition+prePosition>=23)) {
+                stringBuilder.append(builderString);
+                player.updateScore(2);
+                updatePlayersGUIBalance(controller, player);
+   //         }
+        }
+
 
     }
 
