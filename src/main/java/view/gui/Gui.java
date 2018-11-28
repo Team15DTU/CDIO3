@@ -270,8 +270,37 @@ public class Gui {
 
     }
 
-    public void partyMode () {
+    /**
+     * This methods makes all fields blink between
+     * gold and gray eternally
+     * @throws InterruptedException
+     */
+    public void partyMode () throws InterruptedException {
 
+        short sleepTime = 400;
+
+        Color color1 = new Color(255,223,0);
+        Color color2 = new Color(153,153,153);
+
+        // Loop
+        while (true) {
+
+            // Make all fields gold
+            for (GUI_Field field : fields) {
+                field.setBackGroundColor(color1);
+            }
+
+
+            Thread.sleep(sleepTime);
+
+            // Make all fields gray
+            for (GUI_Field field : fields) {
+                field.setBackGroundColor(color2);
+            }
+
+
+            Thread.sleep(sleepTime);
+        }
     }
 
     //</editor-fold>
