@@ -41,7 +41,8 @@ public class Turn {
         //  Press to roll message printed and and rolls cup.
         raffleCup(cup, player, controller);
 
-        // Present player with the result of the raffle.
+        // Present player with the result of the raffle
+        // Checks if player passes start and gives 2 player 2 "pengesedler" if true
         raffleResult(player,controller);
 
         // Does action method on the respective field,
@@ -96,6 +97,7 @@ public class Turn {
         if (!player.isHasLost()) {
             // Player position is update with value from raffleCup
             // and moved on GUI
+            int prePosition = player.getPosition();
             player.updatePosition(rollValue);
             controller.movePlayer(player);
 
@@ -109,6 +111,11 @@ public class Turn {
 
             StringBuilder buildRaffleResult = new StringBuilder();
             buildRaffleResult.append("Du slog " + rollValue + "\n");
+            if (prePosition> turnPosition && !player.isInPrison()) {
+                buildRaffleResult.append("Du har paseret Start og modtager 2 pengesedler.\n");
+                player.updateScore(2);
+                updatePlayersGUIBalance(controller,player);
+            }
             buildRaffleResult.append("Og landede på feltet: " + boardPosition + " - " + fieldName);
 
             String raffleresultStr = buildRaffleResult.toString();
