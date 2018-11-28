@@ -21,6 +21,7 @@ public class Property extends Field {
 
         super(fieldNumber, title, description,rent, color);
 
+        fieldType = "Property";
     }
 
     /*

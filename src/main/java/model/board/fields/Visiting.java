@@ -20,6 +20,8 @@ public class Visiting extends Field { //this class is used for visiting prison a
 
         super(fieldNumber, title, description, rent, color);
 
+        fieldType = "Visitin";
+
     }
 
     /*

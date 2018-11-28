@@ -120,7 +120,7 @@ public class Gui {
         gui.setDie(faceValue);
     }
 
-    //<editor-fold desc="Chancecard Methods"
+    //<editor-fold desc="Chancecard Methods">
 
     /**
      * This method sets the next Chancecard, so that

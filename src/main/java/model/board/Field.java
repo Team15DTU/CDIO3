@@ -12,9 +12,10 @@ public abstract class Field {
      */
 
     protected int fieldNumber, cost;
+    protected String fieldType;
     protected String title;
     protected String description;
-    protected Player owner;
+    protected Player owner=null;
     protected Color color;
     protected String actionText;
 
@@ -37,6 +38,15 @@ public abstract class Field {
      */
 
     //<editor-fold desc="Properties">
+
+
+    public String getFieldType() {
+        return fieldType;
+    }
+
+    public void setFieldType(String fieldType) {
+        this.fieldType = fieldType;
+    }
 
     public Color getColor() { return color; }
 
