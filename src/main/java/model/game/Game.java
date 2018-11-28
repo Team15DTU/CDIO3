@@ -23,10 +23,10 @@ public class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-    static int STARTPOINT = 20;
-    final static int STARTINGPOSITION=0;
-    boolean someoneLost = false;
-    int tokenNo;
+    private static int STARTPOINT = 20;
+    private final static int STARTINGPOSITION=0;
+    private boolean someoneLost = false;
+    private int tokenNo;
 
     /*
     -------- Public Methods -------
@@ -48,7 +48,6 @@ public class Game {
 
         // this ArrayList contains tokens but they may be changed to obejcts Token instead of Strings
 
-
         ArrayList<String> tokens = new ArrayList<>();
         tokens.add("Bil"); tokens.add("Racerbil"); tokens.add("UFO"); tokens.add("Traktor");
 
@@ -57,27 +56,23 @@ public class Game {
         //For numbers of players enter name, choose a token, pass these info to new instance of Player in ArrayList
 
         for (int i = 0; i < noOfPlayers; i++) {
-            String name = controller.getUserString("Indtast navn på spiller " + Integer.toString(i+1));
-            StringBuilder str = new StringBuilder();
-            str.append("Vælg en spillerbrik: \n");
-            int j = 1;
-            for (String t : tokens) {
-                str.append(Integer.toString(j)+" - ");
-                str.append(t+"\n");
-                j++;
+            String name = controller.getUserString("Indtast navn på spiller " + Integer.toString(i + 1));
+
+            String choosenToken = controller.getUserChoice("Vælg en spillerbrik:", tokens);
+            for (int j = 0; j < tokens.size(); j++) {
+                if (tokens.get(j).equals(choosenToken)) {
+                    tokens.remove(j);
+
+                }
             }
-            str.append("Indtast tallet der passer til den ønskede spillerbrik.");
-            String string = str.toString();
-            tokenNo = controller.getUserInteger(string, 0, tokens.size());
-            tokenNo=tokenNo-1;
-            String token = tokens.get(tokenNo);
-            Player p = new Player(name, token, STARTPOINT, STARTINGPOSITION);
+            Player p = new Player(name, choosenToken, STARTPOINT, STARTINGPOSITION);
             players.add(p);
-            controller.showMessage("Du valgt: "+tokens.get(tokenNo));
-            tokens.remove(tokenNo);
+            controller.showMessage("Du valgt: " + choosenToken);
         }
 
+
         controller.showMessage("Velkommen til Monopoly Junior");
+        controller.addPlayers(players);
 
         Cup cup = new Cup(1,6);
         Deck chancedeck = new Deck(1);
@@ -113,7 +108,7 @@ public class Game {
             i++;
         }
 
-        controller.showMessage("The winner is "+winner+" with an amount of "+amount);
+        controller.showMessage("Vinderen er "+winner+" med "+amount +" pengesedler");
     }
 
         public static int getSTARTPOINT () {

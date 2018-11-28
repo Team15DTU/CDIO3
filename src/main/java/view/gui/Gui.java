@@ -233,10 +233,7 @@ public class Gui {
     public void addPlayer ( Player player ) {
 
         // Create the GUI_Player
-        GUI_Player newPlayer = new GUI_Player(  player.getName(),
-                player.getAccount().getBalance(),
-                new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
-                );
+        GUI_Player newPlayer = setPlayer(player);
 
         // Add the player to the gui and set them on the start field
         addGUIPlayer(newPlayer);
@@ -289,6 +286,62 @@ public class Gui {
         return playerToFind;
     }
 
+    //<editor-fold desc="GUI_Player creation"
+    /**
+     * This method helps with the creation of a GUI_Player.
+     * Primarily has the responsibility for given the Player
+     * the correct Car type
+     * @param player The Player which shall be created as a GUI_Player
+     */
+    private GUI_Player setPlayer ( Player player ) {
+
+        // Declare GUI_Player variable
+        GUI_Player newPlayer;
+
+        // Create the player with the correct Car type
+        switch (player.getToken()) {
+
+            case "Bil":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "Racerbil":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "Traktor":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DOTTED));
+                break;
+
+            case "UFO":
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED));
+                break;
+
+            /*
+            The Code will default to a Yellow car with a Zebra pattern
+            which indicates that there's a fault in Token String in the
+            player.
+             */
+            default:
+                newPlayer = new GUI_Player( player.getName(),
+                        player.getAccount().getBalance(),
+                        new GUI_Car(Color.YELLOW, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA));
+                break;
+        }
+
+        // Return the newly created GUI_Player
+        return newPlayer;
+
+    }
+
     /**
      * This method has the responsibility to add a new player to
      * this objects GUI_Player list and to the visual board.
@@ -301,6 +354,33 @@ public class Gui {
         // Add the GUI_Player to the visual gui
         gui.addPlayer(player);
     }
+    /**
+     * This method helps the constructor create an Array of GUI_Player's
+     * @param players An ArrayList<Player>
+     * @return Return an ArrayList<GUI_Player>
+     */
+    private ArrayList<GUI_Player> createPlayers (ArrayList<Player> players) {
+
+        // Create the players arraylist as the right size
+        ArrayList<GUI_Player> guiPlayers = new ArrayList<>(players.size());
+
+        // Iterate over the players list and create a GUI_Player for each
+        for ( int i=0 ; i < players.size() ; i++ ) {
+            GUI_Player newPlayer = new GUI_Player(  players.get(i).getName(),
+                    players.get(i).getAccount().getBalance(),
+                    new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
+            );
+
+            // Add the created player to the player array and set the player on the start field
+            guiPlayers.add(newPlayer);
+            fields[players.get(i).getPosition()].setCar(newPlayer, true);
+        }
+
+        // Return the GUI_Player array
+        return guiPlayers;
+    }
+
+    //</editor-fold>
 
     /**
      * This method helps the constructor create an Array of GUI_Field's
@@ -378,31 +458,5 @@ public class Gui {
 
         // Return the newly created array
         return newFields;
-    }
-
-    /**
-     * This method helps the constructor create an Array of GUI_Player's
-     * @param players An ArrayList<Player>
-     * @return Return an ArrayList<GUI_Player>
-     */
-    private ArrayList<GUI_Player> createPlayers (ArrayList<Player> players) {
-
-        // Create the players arraylist as the right size
-        ArrayList<GUI_Player> guiPlayers = new ArrayList<>(players.size());
-
-        // Iterate over the players list and create a GUI_Player for each
-        for ( int i=0 ; i < players.size() ; i++ ) {
-            GUI_Player newPlayer = new GUI_Player(  players.get(i).getName(),
-                                                    players.get(i).getAccount().getBalance(),
-                                                    new GUI_Car(Color.RED, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.DOTTED)
-                                                    );
-
-            // Add the created player to the player array and set the player on the start field
-            guiPlayers.add(newPlayer);
-            fields[players.get(i).getPosition()].setCar(newPlayer, true);
-        }
-
-        // Return the GUI_Player array
-        return guiPlayers;
     }
 }

@@ -58,7 +58,7 @@ public class Board {
         addChancefield(4, "Chance felt", "Du har chancen ved et kort", 0, Color.WHITE);
         addProperty(5, "Slikbutik", "Du er landet på slikbutikken", 1, Color.cyan);
         addProperty(6, "Iskiosk", "Du er landet på iskiosken",1, Color.cyan);
-        addVisitin(7, "På besøg i fængslet", "Du er på besøg i fængslet",0,Color.GRAY);
+        addPrison(7, "På besøg i fængslet", "Du er på besøg i fængslet",0,Color.GRAY);
         addProperty(8, "Museum", "Du er landet på museet",2,Color.pink);
         addProperty(9, "Bibliotek", "Du er landet på biblioteket", 2, Color.pink);
         addChancefield(10, "Chance felt", "Du har chancen med et kort!",0,Color.white);

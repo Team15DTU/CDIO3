@@ -35,7 +35,9 @@ public class Chancefield extends Field {
 
     public void action (Player player, Deck deck) {
 
-        deck.drawCard(player);
+        actionText = "Du er landet på et chance felt og konsekvensen kan ses i midten af spillepladen.";
+        Card drawCard= deck.drawCard();
+        drawCard.action(player);
 
     }
 
