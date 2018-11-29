@@ -146,7 +146,7 @@ public class Game {
         public void setStartPointsFromNoOfPlayer (int totalNoOfPlayer) {
             switch (totalNoOfPlayer) {
                 case 2:
-                    STARTPOINT = 1;
+                    STARTPOINT = 20;
                     break;
                 case 3:
                     STARTPOINT = 18;
