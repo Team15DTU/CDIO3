@@ -98,17 +98,40 @@ public class Game {
         //When someone lost, find the player with the biggest balance and crown as winner
 
         int amount = 0;
+        Player win = players.get(0);
         String winner = "noone";
         for (int j = 0; j < noOfPlayers; j++) {
             Player currPlayer = players.get(j);
             if (currPlayer.getAccount().getBalance() > amount) {
                 amount = currPlayer.getAccount().getBalance();
                 winner = currPlayer.getName();
+                win = currPlayer;
+            }
+            else if (currPlayer.getAccount().getBalance() == amount) {
+
+                if (win.getTotalPropertyValue()>currPlayer.getTotalPropertyValue()) {
+                    winner = win.getName();
+                } else if (win.getTotalPropertyValue()<currPlayer.getTotalPropertyValue()){
+                    winner = currPlayer.getName();
+                } else {
+                    winner = currPlayer.getName() + " and " + winner;
+                }
             }
             i++;
         }
 
+        controller.showMessage("Der er en spiller der er gået fallit og spillet er slut.");
+        controller.showMessage("Vi har talt pengene op og har en fundet en vinder....\n");
+
+
+
+
+        controller.setChanceCard( "VINDEREN ER: \n \n" + winner + "\n \n" + "TILLYKKE!!!!");
+        controller.displayChanceCard();
+        controller.startWinnerMode();
         controller.showMessage("Vinderen er "+winner+" med "+amount +" pengesedler");
+
+
     }
 
         public static int getSTARTPOINT () {

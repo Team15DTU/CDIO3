@@ -9,7 +9,7 @@ public class MovingRelTest {
 
     @Test
     public void action() {
-        MovingRel movingRel = new MovingRel("Does It move","If it move the test is complete",4);
+        MovingRel movingRel = new MovingRel("movingRel","Does It move","If it move the test is complete",4);
         Player player = new Player("jens",100,3);
         movingRel.action(player);
 

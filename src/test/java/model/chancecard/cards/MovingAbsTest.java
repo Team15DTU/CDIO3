@@ -14,13 +14,13 @@ public class MovingAbsTest {
     public void action() {
 
         //Move to a position above
-        MovingAbs movingAbs = new MovingAbs("This field is on spot 13","and player land on 21",21);
+        MovingAbs movingAbs = new MovingAbs("movingAbs","This field is on spot 13","and player land on 21",21);
         Player player = new Player("jens", 100, 13);
         movingAbs.action(player);
         assertEquals(21,player.getPosition());
 
         //Move to a position below
-        MovingAbs movingAbs1 = new MovingAbs("now you on 21, and get to 7","lets try",7);
+        MovingAbs movingAbs1 = new MovingAbs("movingAbs","now you on 21, and get to 7","lets try",7);
         movingAbs1.action(player);
         assertEquals(7,player.getPosition());
     }

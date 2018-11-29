@@ -21,9 +21,9 @@ public class Transfer extends Card {
     ----------------------- Constructor -------------------------
      */
 
-    public Transfer(String text, String description, int money) {
+    public Transfer(String cardType,String text, String description, int money) {
 
-        super(text, description);
+        super(cardType, text, description);
         moneyTransferred = money;
 
     }
