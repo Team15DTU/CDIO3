@@ -63,7 +63,7 @@ public class Deck {
 
             addMovingAbs("movingAbs","Start", "Ryk frem til Start", 0);
             addMovingAbs("movingAbs","Sommerdag", "Det er 30 grader og du trænger til en dukkert. Ryk til Svømmningpoolen",11);
-            addMovingRel("movingRel","Motorvej", "Du har fart på, Ryk 5 felter fren", 5);
+            addMovingRel("movingRel","Motorvej", "Du har fart på, Ryk 5 felter frem", 5);
             addMovingRel("movingRel","Kæden faldt af", "Kæden på din cykel faldt af. Ryk 2 felter tilbage", -2);
             addMovingRel("movingRel","Forlomme", "Du får en forlomme i køen", 1);
             addTransfer("transfer","For meget slik", "Du har spist for meget slik. Betal 2 pengesedler til banken", -2);
