@@ -120,7 +120,18 @@ public class Game {
             i++;
         }
 
+        controller.showMessage("Der er en spiller der er gået fallit og spillet er slut.");
+        controller.showMessage("Vi har talt pengene op og har en fundet en vinder....\n");
+
+
+
+
+        controller.setChanceCard( "VINDEREN ER: \n \n" + winner + "\n \n" + "TILLYKKE!!!!");
+        controller.displayChanceCard();
+        controller.startWinnerMode();
         controller.showMessage("Vinderen er "+winner+" med "+amount +" pengesedler");
+
+
     }
 
         public static int getSTARTPOINT () {
@@ -135,7 +146,7 @@ public class Game {
         public void setStartPointsFromNoOfPlayer (int totalNoOfPlayer) {
             switch (totalNoOfPlayer) {
                 case 2:
-                    STARTPOINT = 20;
+                    STARTPOINT = 1;
                     break;
                 case 3:
                     STARTPOINT = 18;

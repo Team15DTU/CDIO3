@@ -231,19 +231,22 @@ public class Turn {
      * Method to fields of type: Chancefields.
      * Mehod does field.action and show chancecard.
      * If player is moved to a new fields, field.action is called on that field.
+     * Checks if chancecard action moves player passed start.
      * @param player a Player Object.
      * @param deck a deck Object.
      * @param controller a Controller object.
      * @param position an Integer which holds the player position after first roll in this turn.
      */
     public void TESTchancefieldFieldAction(Player player, Deck deck, Controller controller, int position) {
-        String cardTypeOnFirstCardInDeck = deck.getChanceDeck().get(0).getCardType();
         StringBuilder builderChancefield = new StringBuilder();
 
+        Card movingRelCard = deck.getChanceDeck().get(0);
+        String cardTypeOnFirstCardInDeck = movingRelCard.getCardType();
+
+
         if (cardTypeOnFirstCardInDeck.equals("movingRel")) {
-            Card movingRelCard =  deck.getChanceDeck().get(0);
             int movementRel= ((MovingRel) movingRelCard).getMovementRel();
-            prePosition =player.getPosition();
+            prePosition = player.getPosition();
             turnField.action(player,deck);
             updateFieldInfo(position);
             postPosition = player.getPosition();
