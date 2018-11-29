@@ -1,8 +1,6 @@
 package model.player;
 
 import model.board.fields.Property;
-import model.player.Account;
-import model.player.Player;
 import org.junit.Test;
 
 import java.awt.*;
@@ -127,7 +125,7 @@ public class PlayerTest {
         Player player = new Player("jens");
         Property prop = new Property(1,"haven","Druk paladset have",2, Color.red);
         player.getPropertyCost().add(prop.getCost());
-        player.updateTotalProoertyValue();
+        player.updateTotalPropertyValue();
 
         assertEquals(2, player.getTotalPropertyValue());
 

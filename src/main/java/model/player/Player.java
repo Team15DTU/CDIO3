@@ -94,7 +94,7 @@ public class Player {
         position = (position + value) % 24;
     }
 
-    public void updateTotalProoertyValue () {
+    public void updateTotalPropertyValue() {
 
         int totalPropertys = propertyCost.size();
         for (int p = 0; p < totalPropertys; p++) {
