@@ -98,7 +98,7 @@ public class Game {
         //When someone lost, find the player with the biggest balance and crown as winner
 
         int amount = 0;
-        Player win;
+        Player win = players.get(0);
         String winner = "noone";
         for (int j = 0; j < noOfPlayers; j++) {
             Player currPlayer = players.get(j);
