@@ -52,7 +52,7 @@ public class Board {
 
     public void createBoard () {
 
-        addStart(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 20, Color.GREEN);
+        addStart(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 0, Color.GREEN);
         addProperty(2, "Burgerbar", "Du er landet på burgerbaren", 1, new Color(205,133,63));
         addProperty(3, "Pizzeria", "Du er landet på pizzeriaet", 1, new Color(205,133,63));
         addChancefield(4, "Chance felt", "Du har chancen ved et kort", 0, Color.WHITE);

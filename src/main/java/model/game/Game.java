@@ -21,12 +21,10 @@ public class Game {
     ----------- Fields -----------
     */
 
-    Scanner scanner = new Scanner(System.in);
-
     private static int STARTPOINT = 20;
     private final static int STARTINGPOSITION=0;
     private boolean someoneLost = false;
-    private int tokenNo;
+
 
     /*
     -------- Public Methods -------

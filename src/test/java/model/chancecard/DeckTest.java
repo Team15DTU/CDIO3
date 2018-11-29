@@ -29,12 +29,12 @@ public class DeckTest {
         Card cardIndex2;
         cardIndex2 = deck.getChanceDeck().get(0);
 
-        if (cardIndex1.text.equals(cardIndex2.text)) {
+        if (cardIndex1.title.equals(cardIndex2.title)) {
             deck.shuffleDeck(1);
             cardIndex2 = deck.getChanceDeck().get(0);
         }
 
-        assertNotEquals(cardIndex1.text, cardIndex2.text);
+        assertNotEquals(cardIndex1.title, cardIndex2.title);
 
     }
 
@@ -49,7 +49,7 @@ public class DeckTest {
         Card cardIndexLast;
         cardIndexLast = deck.getChanceDeck().get(deck.getChanceDeck().size()-1);
 
-        assertEquals(cardindex1.text, cardIndexLast.text);
+        assertEquals(cardindex1.title, cardIndexLast.title);
 
 
 

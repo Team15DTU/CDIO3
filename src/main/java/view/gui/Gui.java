@@ -126,7 +126,7 @@ public class Gui {
      * This method sets the next Chancecard, so that
      * the displayChancecard method can show the card,
      * or you can press the deck to see it.
-     * @param text The text to the Chancecard
+     * @param text The title to the Chancecard
      */
     public void setChanceCard (String text) {
 
@@ -469,7 +469,7 @@ public class Gui {
                 // Create new Field
                 GUI_Jail jail = new GUI_Jail();
 
-                // Change the text of the field
+                // Change the title of the field
                 jail.setSubText("Fængsel");
                 jail.setDescription(fields[i].getDescription());
 
@@ -483,7 +483,7 @@ public class Gui {
                 // Create new Field
                 GUI_Refuge refuge = new GUI_Refuge();
 
-                // Change the text of the field
+                // Change the title of the field
                 refuge.setTitle(fields[i].getTitle());
                 refuge.setDescription(fields[i].getDescription());
                 refuge.setSubText("Gratis");
