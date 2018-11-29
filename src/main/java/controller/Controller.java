@@ -252,6 +252,21 @@ public class Controller {
         gui.setFieldOwner(player, field);
     }
 
+    /**
+     * This method will make all fields start
+     * blinking between gold and gray.
+     */
+    public void startWinnerMode () {
+
+        // Start the WinnerMode
+        try {
+            gui.partyMode();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     //</editor-fold>
 
     //<editor-fold desc="Board Colors"
