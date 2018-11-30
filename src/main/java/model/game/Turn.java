@@ -31,9 +31,6 @@ public class Turn {
 
     public void turn(Player player, Cup cup, Controller controller, Deck deck) {
 
-        // Initialize object variable
-        // TODO: Kan være der er nogle variable der skal rykkes her ned.
-
         // Checks if player is on Prison and has to pay to get out.
         checkIfInPrison(player,controller);
 
@@ -74,7 +71,7 @@ public class Turn {
      * @param player a Player object
      * @param controller a Controller object to handle GUI.
      */
-    public void raffleCup (Cup cup,Player player, Controller controller) {
+    private void raffleCup (Cup cup,Player player, Controller controller) {
         // Needs to check if player.hasLost is true,
         // as player could go to 0 when paying to get out of Prison in beginning of turn.
         if (!player.isHasLost()) {
@@ -93,7 +90,7 @@ public class Turn {
      * @param player a Player object
      * @param controller a Controller object
      */
-    public void raffleResult (Player player, Controller controller) {
+    private void raffleResult (Player player, Controller controller) {
         // Needs to check if player.hasLost is true,
         // as player could go to 0 when paying to get out of Prison in beginning of turn.
         if (!player.isHasLost()) {
@@ -130,7 +127,7 @@ public class Turn {
      * Gets information from the fields that the player lands on and set it to local variables
      * @param position Integer of the position i wishes to get information on.
      */
-    public  void updateFieldInfo(int position) {
+    private  void updateFieldInfo(int position) {
 
         turnField=playingBoard.getTurnfield(position);
         boardPosition = turnField.getFieldNumber();
@@ -149,7 +146,7 @@ public class Turn {
      * @param controller a Controller object.
      * @param position an Integer of the players position for this turn
      */
-    public void turnFieldAction (Player player, Deck deck, Controller controller, int position) {
+    private void turnFieldAction (Player player, Deck deck, Controller controller, int position) {
         // Needs to check if player.hasLost is true,
         // as player could go to 0 when paying to get out of Prison in beginning of turn.
         if (!player.isHasLost()) {
@@ -164,14 +161,13 @@ public class Turn {
             } else {
                 // Action for fields of type Chancefields
                 //Does action on new field if chancecard moves player.
-                TESTchancefieldFieldAction(player, deck, controller, position);
+                chancefieldFieldAction(player, deck, controller, position);
             }
 
             updatePlayersGUIBalance(controller, player);
         }
 
     }
-
 
     /**
      * Method for fields of type: Property
@@ -180,7 +176,7 @@ public class Turn {
      * @param controller a Controller object.
      * @param position an Integer of the players position for this turn
      */
-    public void propertyFieldAction (Player player, Controller controller, int position) {
+    private void propertyFieldAction (Player player, Controller controller, int position) {
 
         Field propertyOnPosition = playingBoard.getTurnfield(position);
 
@@ -189,7 +185,6 @@ public class Turn {
             updateFieldInfo(position);
             controller.showMessage(fieldActionText);
             updatePlayersGUIBalance(controller,player);
-            // Skal ikke bruges: controller.movePlayer(player);
         } else {
             Player propertyOwner = propertyOnPosition.getOwner();
             propertyOnPosition.action(player);
@@ -198,33 +193,6 @@ public class Turn {
             updatePlayersGUIBalance(controller, player, propertyOwner);
         }
 
-    }
-
-
-    /**
-     * Method to fields of type: Chancefields.
-     * Mehod does field.action and show chancecard.
-     * If player is moved to a new fields, field.action is called on that field.
-     * @param player a Player Object.
-     * @param deck a deck Object.
-     * @param controller a Controller object.
-     * @param position an Integer which holds the player position after first roll in this turn.
-     */
-    public void WORKINGchancefieldFieldAction(Player player, Deck deck, Controller controller, int position) {
-        prePosition = player.getPosition();
-        turnField.action(player,deck);
-        updateFieldInfo(position);
-        postPosition = player.getPosition();
-        controller.showMessage(turnField.getActionText());
-        showChancecard(controller,deck);
-        movingPlayerGUI(player,controller,prePosition,postPosition);
-
-        if (turnPosition != postPosition) {
-            // Updates fieldInformation so it fits the new position
-            updateFieldInfo(postPosition);
-            controller.showMessage("Du bliver rykket til feltet: " + boardPosition + " - " + fieldName);
-            turnFieldAction(player,deck, controller, postPosition);
-        }
     }
 
     /**
@@ -237,12 +205,11 @@ public class Turn {
      * @param controller a Controller object.
      * @param position an Integer which holds the player position after first roll in this turn.
      */
-    public void TESTchancefieldFieldAction(Player player, Deck deck, Controller controller, int position) {
+    private void chancefieldFieldAction(Player player, Deck deck, Controller controller, int position) {
         StringBuilder builderChancefield = new StringBuilder();
 
         Card movingRelCard = deck.getChanceDeck().get(0);
         String cardTypeOnFirstCardInDeck = movingRelCard.getCardType();
-
 
         if (cardTypeOnFirstCardInDeck.equals("movingRel")) {
             int movementRel= ((MovingRel) movingRelCard).getMovementRel();
@@ -264,8 +231,6 @@ public class Turn {
                 checkIfPassedStart(prePosition, postPosition, player, controller, builderChancefield,
                         "Du har paseret Start og modtog 2 pengesedler.\n");
             }
-
-
         } else {
             prePosition = player.getPosition();
             turnField.action(player,deck);
@@ -293,14 +258,13 @@ public class Turn {
         }
     }
 
-
     /**
      * Normal field.action for ANYTHING BUT Property and Chancefields
      * @param player a Player object
      * @param controller a Controller object
      * @param position an Integer which holds the player position of this turn.
      */
-    public void fieldAction (Player player, Controller controller, int position) {
+    private void fieldAction (Player player, Controller controller, int position) {
         turnField.action(player);
         updateFieldInfo(position);
         updatePlayersGUIBalance(controller, player);
@@ -311,7 +275,7 @@ public class Turn {
     //</editor-fold>
 
     // <editor-folder desc="Methods of GUI Player Updates">
-    public void updatePlayersGUIBalance(Controller controller, Player player1, Player player2) {
+    private void updatePlayersGUIBalance(Controller controller, Player player1, Player player2) {
         int player1Balance=player1.getAccount().getBalance();
         int player2Balance= player2.getAccount().getBalance();
         controller.updatePlayerBalance(player1,player1Balance);
@@ -319,25 +283,13 @@ public class Turn {
 
     }
 
-    public void updatePlayersGUIBalance(Controller controller, Player player1) {
+    private void updatePlayersGUIBalance(Controller controller, Player player1) {
         int player1Balance=player1.getAccount().getBalance();
         controller.updatePlayerBalance(player1,player1Balance);
 
     }
 
-
-    public void movingPlayerGUI (Player player, Controller controller, int prePosition, int finalPosition) {
-        if (prePosition<=finalPosition) {
-            movingPlayerForwardGUI(player,controller,prePosition,finalPosition);
-        } else {
-            movingPlayerBackwardGUI(player, controller, prePosition, finalPosition);
-        }
-
-
-    }
-
-
-    public void movingPlayerBackwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
+    private void movingPlayerBackwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
 
         if (prePosition<finalPosition && ((finalPosition-prePosition)+finalPosition>=24)) {
 
@@ -374,7 +326,7 @@ public class Turn {
     }
 
 
-    public void movingPlayerForwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
+    private void movingPlayerForwardGUI(Player player, Controller controller, int prePosition, int finalPosition) {
         if (prePosition>finalPosition) {
             for (int i = prePosition+1; i<playingBoard.getBoard().length; i++){
                 try {
@@ -416,7 +368,7 @@ public class Turn {
      * @param player a Player object.
      * @param controller a Controller object.
      */
-    public void printBalance(Player player, Controller controller) {
+    private void printBalance(Player player, Controller controller) {
 
         playerBalance = player.getAccount().getBalance();
 
@@ -434,7 +386,7 @@ public class Turn {
      * @param player a Player object.
      * @param controller a Controller object.
      */
-    public void checkIfInPrison (Player player, Controller controller) {
+    private void checkIfInPrison (Player player, Controller controller) {
         String playerName = player.getName();
         String prisonMessage = "Hov hov hov " + playerName + " du sidder i fængsel! \n"
                 + "Du betaler 1 pengeseddel for at komme ud af fængslet og kan spille videre";
@@ -454,7 +406,7 @@ public class Turn {
      * @param controller a Controller object
      * @param fallitMessange message to be printed if fallit.
      */
-    public void checkIfFallitWMessage (Player player, Controller controller, String fallitMessange) {
+    private void checkIfFallitWMessage (Player player, Controller controller, String fallitMessange) {
         int playerBalance = player.getAccount().getBalance();
         if(playerBalance <= 0) {
             player.setHasLost(true);
@@ -469,7 +421,7 @@ public class Turn {
      * @param player a Player object.
      * @param controller a Controller object
      */
-    public void checkIfFallit (Player player, Controller controller) {
+    private void checkIfFallit (Player player, Controller controller) {
         int playerBalance = player.getAccount().getBalance();
         if(playerBalance <= 0) {
             player.setHasLost(true);
@@ -477,35 +429,18 @@ public class Turn {
         }
     }
 
-    public void checkIfPassedStart (int prePosition, int postPosition,Player player, Controller controller, StringBuilder stringBuilder, String builderString) {
-/*
-        if (prePosition>18 && prePosition<23 && postPosition>=0 && postPosition<6 ) {
-
-            if(!(postPosition+prePosition>=23)) {
-                stringBuilder.append(builderString);
-                player.updateScore(2);
-                updatePlayersGUIBalance(controller, player);
-            }
-
-        }
-*/
-
+    private void checkIfPassedStart (int prePosition, int postPosition,Player player, Controller controller, StringBuilder stringBuilder, String builderString) {
 
         if (prePosition> postPosition && !player.isInPrison()  ) {
-   //         if((postPosition+prePosition>=23)) {
                 stringBuilder.append(builderString);
                 player.updateScore(2);
                 updatePlayersGUIBalance(controller, player);
-   //         }
         }
-
-
     }
 
     // </editor-folder >
 
-
-    public void showChancecard (Controller controller, Deck deck) {
+    private void showChancecard (Controller controller, Deck deck) {
         String chanceActionText = deck.getChanceDeck().get(deck.getChanceDeck().size()-1).getDescription();
         controller.setAndDisplayChanceCard(chanceActionText);
     }

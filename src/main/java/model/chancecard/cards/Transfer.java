@@ -10,7 +10,6 @@ import model.player.Player;
  */
 public class Transfer extends Card {
 
-
     /*
     -------------------------- Fields --------------------------
      */
@@ -49,11 +48,9 @@ public class Transfer extends Card {
 
         player.updateScore(moneyTransferred);
     }
-    
-    
+
     /*
     ---------------------- Support Methods ----------------------
      */
-
 
 }

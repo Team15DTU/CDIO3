@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class Board {
 
-
     /*
     -------------------------- Fields --------------------------
      */
@@ -45,11 +44,11 @@ public class Board {
         this.totalFieldsOnBoard = totalFieldsOnBoard;
     }
 
-/*
+    /*
     ---------------------- Public Methods -----------------------
      */
 
-    public void createBoard () {
+    private void createBoard () {
 
         addStart(1, "Start", "Du er landet på start og har fået 2 ekstra penge", 0, Color.GREEN);
         addProperty(2, "Burgerbar", "Du er landet på burgerbaren", 1, new Color(205,133,63));
@@ -84,32 +83,37 @@ public class Board {
     ---------------------- Support Methods ----------------------
      */
 
-    public void addProperty (int fieldNumber, String title, String description, int rent, Color color) {
+    // <editor-folder desc="Method for adding different field types">
+
+    private void addProperty (int fieldNumber, String title, String description, int rent, Color color) {
         int index = fieldNumber-1;
         board[index] = new Property(fieldNumber,title,description,rent,color);
     }
 
-    public void addChancefield ( int fieldNumber, String title, String description, int rent, Color color) {
+    private void addChancefield ( int fieldNumber, String title, String description, int rent, Color color) {
         int index = fieldNumber-1;
         board[index] = new  Chancefield(fieldNumber,title,description,rent,color);
     }
 
-    public void addPrison(int fieldNumber, String title, String description, int rent, Color color) {
+    private void addPrison(int fieldNumber, String title, String description, int rent, Color color) {
         int index = fieldNumber-1;
         board[index] = new Prison(fieldNumber,title,description,rent,color);
 
     }
-    public void addStart(int fieldNumber, String title, String description, int rent, Color color) {
+
+    private void addStart(int fieldNumber, String title, String description, int rent, Color color) {
         int index = fieldNumber-1;
         board[index] = new Start(fieldNumber,title,description,rent,color);
 
     }
 
-    public void addVisiting(int fieldNumber, String title, String description, int rent, Color color) {
+    private void addVisiting(int fieldNumber, String title, String description, int rent, Color color) {
         int index = fieldNumber-1;
         board[index] = new Visiting(fieldNumber,title,description,rent,color);
 
     }
+
+    // </editor-folder >
 
     public Field getTurnfield(int turnPosition) {
         Field turnField;

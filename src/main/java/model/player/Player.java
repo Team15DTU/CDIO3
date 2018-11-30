@@ -71,7 +71,6 @@ public class Player {
         propertyCost = new ArrayList<>();
     }
 
-
     /*
     -------- Public Methods ----------
      */
@@ -95,12 +94,7 @@ public class Player {
     }
 
     public void updateTotalPropertyValue() {
-
-        int totalPropertys = propertyCost.size();
-        for (int p = 0; p < totalPropertys; p++) {
-                int propertyValueIndex=propertyCost.get(p);
-                totalPropertyValue = totalPropertyValue + propertyValueIndex;
-        }
+        for (int p : propertyCost) { totalPropertyValue =+p; }
     }
 
     /*

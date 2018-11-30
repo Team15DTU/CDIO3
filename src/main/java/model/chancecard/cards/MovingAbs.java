@@ -1,6 +1,5 @@
 package model.chancecard.cards;
 
-import controller.Controller;
 import model.chancecard.Card;
 import model.player.Player;
 
@@ -9,7 +8,6 @@ import model.player.Player;
  * @date 19-11-2018
  */
 public class MovingAbs extends Card {
-
 
     /*
     -------------------------- Fields --------------------------
@@ -50,8 +48,7 @@ public class MovingAbs extends Card {
             int diffPassed = 23-prePosition;
             finalPositionUpdate = positionAbs + diffPassed + 1; // +1 for 0 in index
         } else {
-            int diffNotPassed = positionAbs-prePosition;
-            finalPositionUpdate= diffNotPassed;
+            finalPositionUpdate= positionAbs-prePosition;
         }
 
         player.updatePosition(finalPositionUpdate);
