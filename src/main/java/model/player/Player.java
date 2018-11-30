@@ -13,6 +13,7 @@ public class Player {
     private boolean hasLost;
     private int position;
     private String token;
+    private boolean inPrison=false;
     private ArrayList<Integer> propertyCost;
     private int totalPropertyValue = 0;
 
@@ -93,7 +94,7 @@ public class Player {
         position = (position + value) % 24;
     }
 
-    public void updateTotalProoertyValue () {
+    public void updateTotalPropertyValue() {
 
         int totalPropertys = propertyCost.size();
         for (int p = 0; p < totalPropertys; p++) {
@@ -110,6 +111,14 @@ public class Player {
     /*
      ------ Variable accessible ------
       */
+
+    public boolean isInPrison() {
+        return inPrison;
+    }
+
+    public void setInPrison(boolean inPrison) {
+        this.inPrison = inPrison;
+    }
 
     public Account getAccount() {
         return account;

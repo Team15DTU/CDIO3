@@ -21,8 +21,8 @@ public class MovingRel extends Card {
     ----------------------- Constructor -------------------------
      */
 
-    public MovingRel(String text, String description, int movementRel) {
-        super(text, description);
+    public MovingRel(String cardType, String text, String description, int movementRel) {
+        super(cardType, text, description);
         this.movementRel=movementRel;
     }
     
@@ -50,8 +50,16 @@ public class MovingRel extends Card {
         currentPosition = prePosition + movementRel;
         player.setPosition(currentPosition);
         */
+        int prePosition = player.getPosition();
+        int finalPosition;
+        if (prePosition+movementRel<=0) {
+            int restMovement = Math.abs(prePosition+movementRel);
+            finalPosition=24-(restMovement+prePosition); // 24 because of index 0
+        } else {
+            finalPosition=movementRel;
+        }
 
-        player.updatePosition(movementRel);
+        player.updatePosition(finalPosition);
 
     }
 

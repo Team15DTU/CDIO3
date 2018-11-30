@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>model.board.fields.Chancefield</OriginalElement>
+  <nodes>
+    <node x="10.5" y="444.0">model.chancecard.Deck</node>
+    <node x="218.28333333333336" y="0.0">model.player.Player</node>
+    <node x="250.50000000000003" y="455.0">controller.Controller</node>
+    <node x="391.75333333333333" y="577.0">model.game.Turn</node>
+    <node x="386.25333333333333" y="916.0">model.game.Game</node>
+    <node x="231.67000000000002" y="255.0">view.gui.Gui</node>
+    <node x="683.6700000000001" y="444.0">model.die.Cup</node>
+    <node x="477.67" y="444.0">model.board.Board</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="controller.Controller" target="view.gui.Gui">
+      <point x="0.0" y="-25.5" />
+      <point x="303.0" y="419.0" />
+      <point x="287.92" y="419.0" />
+      <point x="-56.25" y="69.5" />
+    </edge>
+    <edge source="model.game.Game" target="controller.Controller">
+      <point x="-40.0" y="-69.5" />
+      <point x="442.25333333333333" y="866.0" />
+      <point x="264.92" y="866.0" />
+      <point x="264.92" y="557.0" />
+      <point x="268.0" y="557.0" />
+      <point x="-35.0" y="25.5" />
+    </edge>
+    <edge source="model.game.Game" target="model.chancecard.Deck">
+      <point x="-56.0" y="-69.5" />
+      <point x="426.25333333333333" y="876.0" />
+      <point x="95.29333333333341" y="876.0" />
+      <point x="95.29333333333341" y="557.0" />
+      <point x="120.5" y="557.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="model.game.Game" target="model.board.Board">
+      <point x="40.0" y="-69.5" />
+      <point x="522.2533333333333" y="866.0" />
+      <point x="635.875" y="866.0" />
+      <point x="635.875" y="547.0" />
+      <point x="640.4200000000001" y="547.0" />
+      <point x="69.75" y="36.5" />
+    </edge>
+    <edge source="model.game.Game" target="model.player.Player">
+      <point x="88.0" y="-69.5" />
+      <point x="570.2533333333333" y="896.0" />
+      <point x="827.1700000000001" y="896.0" />
+      <point x="827.1700000000001" y="225.0" />
+      <point x="434.28333333333336" y="225.0" />
+      <point x="96.0" y="102.5" />
+    </edge>
+    <edge source="model.game.Turn" target="model.die.Cup">
+      <point x="75.41666666666669" y="-124.5" />
+      <point x="557.6700000000001" y="557.0" />
+      <point x="705.8366666666667" y="557.0" />
+      <point x="-44.333333333333336" y="36.5" />
+    </edge>
+    <edge source="view.gui.Gui" target="model.player.Player">
+      <point x="0.0" y="-69.5" />
+      <point x="344.17" y="235.0" />
+      <point x="338.28333333333336" y="235.0" />
+      <point x="0.0" y="102.5" />
+    </edge>
+    <edge source="model.game.Turn" target="model.player.Player">
+      <point x="-15.083333333333314" y="-124.5" />
+      <point x="467.17" y="235.0" />
+      <point x="386.28333333333336" y="235.0" />
+      <point x="48.0" y="102.5" />
+    </edge>
+    <edge source="model.game.Game" target="model.die.Cup">
+      <point x="72.0" y="-69.5" />
+      <point x="554.2533333333333" y="886.0" />
+      <point x="777.8366666666667" y="886.0" />
+      <point x="777.8366666666667" y="557.0" />
+      <point x="794.5033333333333" y="557.0" />
+      <point x="44.333333333333314" y="36.5" />
+    </edge>
+    <edge source="model.game.Turn" target="model.chancecard.Deck">
+      <point x="-75.41666666666669" y="-124.5" />
+      <point x="406.83666666666664" y="547.0" />
+      <point x="193.83333333333326" y="547.0" />
+      <point x="73.33333333333326" y="36.5" />
+    </edge>
+    <edge source="model.game.Turn" target="controller.Controller">
+      <point x="-45.25000000000006" y="-124.5" />
+      <point x="437.0033333333333" y="537.0" />
+      <point x="338.0" y="537.0" />
+      <point x="35.0" y="25.5" />
+    </edge>
+    <edge source="controller.Controller" target="model.player.Player">
+      <point x="-35.0" y="-25.5" />
+      <point x="268.0" y="419.0" />
+      <point x="184.32833333333335" y="419.0" />
+      <point x="184.32833333333335" y="235.0" />
+      <point x="290.28333333333336" y="235.0" />
+      <point x="-48.0" y="102.5" />
+    </edge>
+    <edge source="model.game.Game" target="model.game.Turn">
+      <point x="8.0" y="-69.5" />
+      <point x="490.25333333333333" y="846.0" />
+      <point x="527.5033333333333" y="846.0" />
+      <point x="45.25" y="124.5" />
+    </edge>
+    <edge source="model.game.Turn" target="model.board.Board">
+      <point x="45.25" y="-124.5" />
+      <point x="527.5033333333333" y="557.0" />
+      <point x="547.4200000000001" y="557.0" />
+      <point x="-23.25" y="36.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8753488372093022" x="426.5000000000001" y="281.8836344314559" />
+  <SelectedNodes>
+    <node>model.board.Board</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

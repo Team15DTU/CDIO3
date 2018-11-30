@@ -21,8 +21,8 @@ public class MovingAbs extends Card {
     ----------------------- Constructor -------------------------
      */
 
-    public MovingAbs(String text, String description, int positionAbs) {
-        super(text, description);
+    public MovingAbs(String cardType,String text, String description, int positionAbs) {
+        super(cardType,text, description);
         this.positionAbs=positionAbs;
     }
     
@@ -44,7 +44,17 @@ public class MovingAbs extends Card {
 
     public void action(Player player) {
 
-        player.setPosition(positionAbs);
+        int prePosition = player.getPosition();
+        int finalPositionUpdate;
+        if (prePosition>positionAbs) {
+            int diffPassed = 23-prePosition;
+            finalPositionUpdate = positionAbs + diffPassed + 1; // +1 for 0 in index
+        } else {
+            int diffNotPassed = positionAbs-prePosition;
+            finalPositionUpdate= diffNotPassed;
+        }
+
+        player.updatePosition(finalPositionUpdate);
 
     }
 
