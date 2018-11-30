@@ -1,6 +1,5 @@
 package model.chancecard;
 
-import controller.Controller;
 import model.player.Player;
 
 /**
@@ -14,7 +13,7 @@ public abstract class Card {
     -------------------------- Fields --------------------------
      */
 
-    protected String text;
+    protected String title;
     protected String description;
     protected String cardType;
 
@@ -22,10 +21,10 @@ public abstract class Card {
     ----------------------- Constructor -------------------------
      */
 
-    protected Card (String cardType,String text, String description) {
+    protected Card (String cardType, String title, String description) {
 
         this.cardType=cardType;
-        this.text=text;
+        this.title = title;
         this.description=description;
 
     }
@@ -37,9 +36,9 @@ public abstract class Card {
     //<editor-fold desc="Properties">
 
 
-    public String getText()                         { return text; }
+    public String getTitle()                         { return title; }
 
-    public void setText(String text)                { this.text = text; }
+    public void setTitle(String title)                { this.title = title; }
 
     public String getDescription()                  { return description; }
 

@@ -35,7 +35,7 @@ public class Start extends Field { //start could be an instance of 'visiting'
 
     public void action (Player player) {
 
-        actionText = "Du er landet på startfeltet og har modtaget 2 penge.";
+        actionText = "Du er landet på startfeltet og har modtaget 2 pengesedler.";
         //payment of startline is handled elsewhere.
 
     }

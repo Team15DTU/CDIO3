@@ -82,7 +82,7 @@ public class Controller {
     /**
      * This method sets the next ChanceCard and
      * displays it right away.
-     * @param text The text to the ChanceCard.
+     * @param text The title to the ChanceCard.
      */
     public void setAndDisplayChanceCard (String text) {
 
@@ -97,7 +97,7 @@ public class Controller {
      * This method sets the next Chancecard, so that
      * the displayChancecard method can show the card,
      * or you can press the deck to see it.
-     * @param text The text to the Chancecard
+     * @param text The title to the Chancecard
      */
     public void setChanceCard (String text) {
 
@@ -283,7 +283,7 @@ public class Controller {
     }
 
     /**
-     * This method will change the text color.
+     * This method will change the title color.
      * @param color An awt Color
      */
     public void setTextColor (Color color) {

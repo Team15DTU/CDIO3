@@ -13,8 +13,8 @@ public class PrisonTest {
     @Test
     public void action() {
 
-        Field field = new Prison(1,"32","chancefelt",0, Color.red);
-        Player player = new Player("jens",100,1);
+        Field field = new Prison(19,"32","chancefelt",0, Color.red);
+        Player player = new Player("jens",100,19);
         field.action(player);
         assertEquals(6,player.getPosition());
 

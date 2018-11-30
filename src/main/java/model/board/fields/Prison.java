@@ -35,10 +35,10 @@ public class Prison extends Field {
 
     public void action (Player player) {
 
-        if (player.getPosition()==6) {
-            actionText = "Du er på besøg i fængslet. Det koster ikke noget";
-        } else if(player.getPosition()==18) {
-            actionText = "Du er landet på fængslet og du bliver sendt tilbage til felt 7";
+        if (fieldNumber==7) {
+            actionText = "Du er på besøg i fængslet. Dit ophold er gratis.";
+        } else if(fieldNumber==19) {
+            actionText = "Du er landet på fængslet og du bliver sendt direkte i fængselt, felt 7";
             player.setInPrison(true);
             player.setPosition(6);
         }

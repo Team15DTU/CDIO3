@@ -57,7 +57,7 @@ public class Deck {
     ---------------------- Public Methods -----------------------
      */
 
-    public void createDeck (int numberOfSetsInDeck) {
+    private void createDeck (int numberOfSetsInDeck) {
 
         for (int i =0; i<numberOfSetsInDeck; i++) {
 
@@ -76,7 +76,7 @@ public class Deck {
 
         totalCardsInDeck = chanceDeck.size();
     }
-
+ /*
     public void movingRelDeck (int numberOfSetsInDeck) {
      addMovingRel("movingRel", "RYk 2 felter tilbage","Ryk 2 felter tilabe",-2);
         addMovingRel("movingRel", "RYk 7 felter tilbage","Ryk 7 felter tilabe",-7);
@@ -91,7 +91,8 @@ public class Deck {
         addMovingRel("movingRel","Ryk 3 felter frem", "ryk 3 felter frem",3);
         addMovingRel("movingRel","Ryk 2 felter frem", "ryk 2 felter frem",2);
 
-    }    public void movingAbsDeck (int numberOfSetsInDeck) {
+    }
+    public void movingAbsDeck (int numberOfSetsInDeck) {
         addMovingAbs("movingAbs", "Feild= 2 ","Feild= 2 ",2);
         addMovingAbs("movingAbs", "Feild= 4 ","Feild= 4 ",4);
         addMovingAbs("movingAbs", "Feild= 6 ","Feild= 6 ",6);
@@ -104,13 +105,13 @@ public class Deck {
 
 
     }
+*/
 
     public void shuffleDeck(int totalShuffles) {
 
         for (int i =0; i<totalShuffles; i++) {
             Collections.shuffle(chanceDeck);
         }
-
     }
 
     public Card drawCard () {
@@ -126,6 +127,7 @@ public class Deck {
     ---------------------- Support Methods ----------------------
      */
 
+    // <editor-folder desc="Adding different chancecard types to deck">
     private void addMovingAbs (String cardType, String text, String description, int positionAbs) {
         chanceDeck.add(new MovingAbs(cardType,text,description,positionAbs));
 
@@ -139,5 +141,6 @@ public class Deck {
         chanceDeck.add( new Transfer(cardType,text,description,money));
     }
 
+    // </editor-folder >
 
 }

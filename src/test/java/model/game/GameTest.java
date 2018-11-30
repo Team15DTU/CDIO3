@@ -18,4 +18,12 @@ public class GameTest {
         Player player2 = new Player("peter",game.getSTARTPOINT(),1);
         assertEquals(20,player2.getAccount().getBalance());
     }
+
+
+    @Test
+    public void getSTARTPOINT() {
+        Game game = new Game();
+        game.setStartPointsFromNoOfPlayer(3);
+        assertEquals(18,game.getSTARTPOINT());
+    }
 }

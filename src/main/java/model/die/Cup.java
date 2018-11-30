@@ -28,9 +28,9 @@ public class Cup {
         /*
         foreach loop that apparently doesn't work
 
-        for (Die die : dies) {
+        for (Die model.die : dies) {
 
-            die = new Die();
+            model.die = new Die();
         } */
 
     }
@@ -55,8 +55,8 @@ public class Cup {
         foreach loop that apparently doesn't work
 
         // Fill the array with the specified amount of dies
-        for (Die die : dies) {
-            die = new Die(dieSides);
+        for (Die model.die : dies) {
+            model.die = new Die(dieSides);
         }
 
         */
@@ -67,7 +67,7 @@ public class Cup {
      */
 
     /**
-     * This method rolls every die in the cup
+     * This method rolls every model.die in the cup
      * @return Returns the total value of the facevalues in the cup
      */
     public int cupRoll () {
@@ -75,7 +75,7 @@ public class Cup {
         int cupValue = 0;
         // Iterate through all dies and roll
         for (Die die : dies) {
-            // Roll the current die
+            // Roll the current model.die
             die.roll();
 
             // Update cupValue

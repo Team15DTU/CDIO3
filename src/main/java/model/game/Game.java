@@ -7,7 +7,6 @@ import model.player.Player;
 import model.die.Cup;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * @author team15
@@ -21,12 +20,10 @@ public class Game {
     ----------- Fields -----------
     */
 
-    Scanner scanner = new Scanner(System.in);
-
     private static int STARTPOINT = 20;
     private final static int STARTINGPOSITION=0;
     private boolean someoneLost = false;
-    private int tokenNo;
+
 
     /*
     -------- Public Methods -------
@@ -58,18 +55,17 @@ public class Game {
         for (int i = 0; i < noOfPlayers; i++) {
             String name = controller.getUserString("Indtast navn på spiller " + Integer.toString(i + 1));
 
-            String choosenToken = controller.getUserChoice("Vælg en spillerbrik:", tokens);
+            String chosenToken = controller.getUserChoice("Vælg en spillerbrik:", tokens);
             for (int j = 0; j < tokens.size(); j++) {
-                if (tokens.get(j).equals(choosenToken)) {
+                if (tokens.get(j).equals(chosenToken)) {
                     tokens.remove(j);
 
                 }
             }
-            Player p = new Player(name, choosenToken, STARTPOINT, STARTINGPOSITION);
+            Player p = new Player(name, chosenToken, STARTPOINT, STARTINGPOSITION);
             players.add(p);
-            controller.showMessage("Du valgt: " + choosenToken);
+            controller.showMessage("Du valgt: " + chosenToken);
         }
-
 
         controller.showMessage("Velkommen til Monopoly Junior");
         controller.addPlayers(players);
@@ -82,7 +78,6 @@ public class Game {
         Turn GameTurn = new Turn();
 
         //As long as no one has lost loop through players list and do a turn
-
         int i = 0;
         int k;
         while (!someoneLost) {
@@ -97,53 +92,64 @@ public class Game {
 
         //When someone lost, find the player with the biggest balance and crown as winner
 
-        int amount = 0;
-        Player win = players.get(0);
-        String winner = "noone";
-        for (int j = 0; j < noOfPlayers; j++) {
-            Player currPlayer = players.get(j);
-            if (currPlayer.getAccount().getBalance() > amount) {
-                amount = currPlayer.getAccount().getBalance();
-                winner = currPlayer.getName();
-                win = currPlayer;
-            }
-            else if (currPlayer.getAccount().getBalance() == amount) {
-
-                if (win.getTotalPropertyValue()>currPlayer.getTotalPropertyValue()) {
-                    winner = win.getName();
-                } else if (win.getTotalPropertyValue()<currPlayer.getTotalPropertyValue()){
-                    winner = currPlayer.getName();
-                } else {
-                    winner = currPlayer.getName() + " and " + winner;
-                }
-            }
-            i++;
-        }
-
         controller.showMessage("Der er en spiller der er gået fallit og spillet er slut.");
         controller.showMessage("Vi har talt pengene op og har en fundet en vinder....\n");
 
-
-
-
-        controller.setChanceCard( "VINDEREN ER: \n \n" + winner + "\n \n" + "TILLYKKE!!!!");
-        controller.displayChanceCard();
-        controller.startWinnerMode();
-        controller.showMessage("Vinderen er "+winner+" med "+amount +" pengesedler");
-
+        String winningResult= findWinner(players,noOfPlayers);
+        announceWinner(winningResult,controller);
 
     }
+
+    /*
+    ------------------ Properties --------------------
+     */
+
 
         public static int getSTARTPOINT () {
             return STARTPOINT;
         }
 
+    /*
+    ---------------- Support Method --------------------
+     */
 
-        /*
-        ---------------- Support Method --------------------
-         */
+    private String findWinner (ArrayList<Player> players, int numberOfPlayers) {
+            //When someone lost, find the player with the biggest balance and crown as winner
 
-        public void setStartPointsFromNoOfPlayer (int totalNoOfPlayer) {
+            int amount = 0;
+            Player win = players.get(0);
+            String winner = "noone";
+            for (int j = 0; j < numberOfPlayers; j++) {
+                Player currPlayer = players.get(j);
+                if (currPlayer.getAccount().getBalance() > amount) {
+                    amount = currPlayer.getAccount().getBalance();
+                    winner = currPlayer.getName();
+                    win = currPlayer;
+                }
+                else if (currPlayer.getAccount().getBalance() == amount) {
+
+                    if (win.getTotalPropertyValue()>currPlayer.getTotalPropertyValue()) {
+                        winner = win.getName();
+                    } else if (win.getTotalPropertyValue()<currPlayer.getTotalPropertyValue()){
+                        winner = currPlayer.getName();
+                    } else {
+                        winner = currPlayer.getName() + " og " + winner;
+                    }
+                }
+            }
+
+            return "VINDEREN ER: \n \n" + winner + "\n \n" + "TILLYKKE!!!!";
+        }
+
+    private void announceWinner (String winnerResult, Controller controller) {
+
+            controller.setChanceCard( winnerResult);
+            controller.displayChanceCard();
+            controller.startWinnerMode();
+
+        }
+
+    public void setStartPointsFromNoOfPlayer (int totalNoOfPlayer) {
             switch (totalNoOfPlayer) {
                 case 2:
                     STARTPOINT = 20;
