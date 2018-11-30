@@ -92,6 +92,15 @@ public abstract class Field {
 
     }
 
+    @Override
+    public String toString() {
+        return "Field{" +
+                "fieldNumber=" + fieldNumber +
+                ", fieldType='" + fieldType + '\'' +
+                ", title='" + title + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
 
     /*
     ---------------------- Support Methods ----------------------

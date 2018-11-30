@@ -1,5 +1,4 @@
 package model.board;
-import model.board.Field;
 import model.board.fields.*;
 
 import java.awt.*;
@@ -64,7 +63,7 @@ public class Board {
         addChancefield(10, "Chance felt", "Du har chancen med et kort!",0,Color.white);
         addProperty(11, "Skaterpark", "Du er landet på skaterparken", 2, Color.orange);
         addProperty(12, "Swimmingpool", "Du er landet på swimmingpoolen", 2, Color.orange);
-        addVisitin(13, "Gratis parkering", "Du får gratis parkering, tag en pause",0,Color.GRAY  );
+        addVisiting(13, "Gratis parkering", "Du får gratis parkering, tag en pause",0,Color.GRAY  );
         addProperty(14, "Spillehal", "Du er landet på spillehallen", 3, Color.red);
         addProperty(15, "Biograf", "Du er landet på biografen", 3, Color.red);
         addChancefield(16, "Chance felt", "Du har chancen ved et kort",0,Color.white);
@@ -106,7 +105,7 @@ public class Board {
 
     }
 
-    public void addVisitin(int fieldNumber, String title, String description, int rent, Color color) {
+    public void addVisiting(int fieldNumber, String title, String description, int rent, Color color) {
         int index = fieldNumber-1;
         board[index] = new Visiting(fieldNumber,title,description,rent,color);
 
@@ -117,5 +116,20 @@ public class Board {
         turnField = board[turnPosition];
 
         return turnField;
+    }
+
+    @Override
+    public String toString () {
+
+        // Initialize empty String object
+        StringBuilder boardInfo = new StringBuilder();
+
+        // Iterate over every Field in board, and add it to string
+        for ( Field f : board) {
+            boardInfo.append( f.toString() + "\n");
+        }
+
+        // Return boardInfo
+        return boardInfo.toString();
     }
 }
