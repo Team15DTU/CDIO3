@@ -225,7 +225,7 @@ public class PlayerTest {
         Field prop2 = new Property(2,"titel","min mor",1,Color.red);
         prop.action(player);
         prop2.action(player);
-        player.updateTotalProoertyValue();
+        player.updateTotalPropertyValue();
 
         assertEquals(3,player.getTotalPropertyValue());
 
