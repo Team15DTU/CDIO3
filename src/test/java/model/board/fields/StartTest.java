@@ -16,6 +16,6 @@ public class StartTest {
         Player player = new Player("jens",100,1);
         start.action(player);
 
-        assertEquals("Du er landet på startfeltet og har modtaget 2 penge.",start.getActionText());
+        assertEquals("Du er landet på startfeltet og har modtaget 2 pengesedler.",start.getActionText());
     }
 }

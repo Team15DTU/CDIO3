@@ -17,7 +17,7 @@ public class VisitingTest {
         Player player = new Player("jens",100,1);
         visiting.action(player);
 
-        assertEquals("Du er landet på et besøgsfelt og din pengebeholdning er konstant",visiting.getActionText());
+        assertEquals("Du er landet på et besøgsfelt og nyder godt af den gratis parkering.",visiting.getActionText());
 
     }
 }

@@ -94,7 +94,7 @@ public class Player {
     }
 
     public void updateTotalPropertyValue() {
-        for (int p : propertyCost) { totalPropertyValue =+p; }
+        for (int p : propertyCost) { totalPropertyValue +=p; }
     }
 
     /*
